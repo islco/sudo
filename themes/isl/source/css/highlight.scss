@@ -1,0 +1,138 @@
+// Highlight.js sytles syntax highlighting
+// Based on: http://istrat.gy/1Gul0HD
+
+pre {
+    font-family: monaco, Consolas, "Lucida Console", monospace;
+}
+
+figure.highlight {
+    border: 1px solid lightGray;
+    padding: 2em 2.5em;
+    margin-left: 0;
+    margin-right: 0;
+    line-height: 1.6;
+    font-size: 0.9em;
+    font-family: monospace;
+    overflow: auto;
+
+    pre {
+        margin: 0;
+
+        // Theme: github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+        // https://highlightjs.org/static/styles/github.css
+        .comment,
+        .template_comment,
+        .diff .header,
+        .javadoc {
+            color: #998;
+            font-style: italic;
+        }
+
+        .keyword,
+        .css .rule .keyword,
+        .winutils,
+        .javascript .title,
+        .nginx .title,
+        .subst,
+        .request,
+        .status {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .number,
+        .hexcolor,
+        .ruby .constant {
+            color: #008080;
+        }
+
+        .string,
+        .tag .value,
+        .phpdoc,
+        .dartdoc,
+        .tex .formula {
+            color: #d14;
+        }
+
+        .title,
+        .id,
+        .scss .preprocessor {
+            color: #900;
+            font-weight: bold;
+        }
+
+        .javascript .title,
+        .list .keyword,
+        .subst {
+            font-weight: normal;
+        }
+
+        .class .title,
+        .type,
+        .vhdl .literal,
+        .tex .command {
+            color: #458;
+            font-weight: bold;
+        }
+
+        .tag,
+        .tag .title,
+        .rules .property,
+        .django .tag .keyword {
+            color: #000080;
+            font-weight: normal;
+        }
+
+        .attribute,
+        .variable,
+        .lisp .body {
+            color: #008080;
+        }
+
+        .regexp {
+            color: #009926;
+        }
+
+        .symbol,
+        .ruby .symbol .string,
+        .lisp .keyword,
+        .clojure .keyword,
+        .scheme .keyword,
+        .tex .special,
+        .prompt {
+            color: #990073;
+        }
+
+        .built_in {
+            color: #0086b3;
+        }
+
+        .preprocessor,
+        .pragma,
+        .pi,
+        .doctype,
+        .shebang,
+        .cdata {
+            color: #999;
+            font-weight: bold;
+        }
+
+        .deletion {
+            background: #fdd;
+        }
+
+        .addition {
+            background: #dfd;
+        }
+
+        .diff {
+            .change {
+                background: #0086b3;
+            }
+        }
+
+        .chunk {
+            color: #aaa;
+        }
+    }
+}
