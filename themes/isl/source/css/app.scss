@@ -1,71 +1,44 @@
-/*!
- * sudo ISL
- *
- */
+// 
+// sudo ISL stylesheet
+// 
 
 @import "settings";
-@import "normalize";
-@import "foundation/components/grid";
-// @import "foundation/components/accordion";
-// @import "foundation/components/alert-boxes";
-// @import "foundation/components/block-grid";
-// @import "foundation/components/breadcrumbs";
-// @import "foundation/components/button-groups";
-// @import "foundation/components/buttons";
-// @import "foundation/components/clearing";
-// @import "foundation/components/dropdown";
-// @import "foundation/components/dropdown-buttons";
-// @import "foundation/components/flex-video";
-// @import "foundation/components/forms";
-// @import "foundation/components/icon-bar";
-@import "foundation/components/inline-lists";
-// @import "foundation/components/joyride";
-// @import "foundation/components/keystrokes";
-// @import "foundation/components/labels";
-// @import "foundation/components/magellan";
-// @import "foundation/components/orbit";
-// @import "foundation/components/pagination";
-// @import "foundation/components/panels";
-// @import "foundation/components/pricing-tables";
-// @import "foundation/components/progress-bars";
-// @import "foundation/components/range-slider";
-// @import "foundation/components/reveal";
-// @import "foundation/components/side-nav";
-// @import "foundation/components/split-buttons";
-// @import "foundation/components/sub-nav";
-// @import "foundation/components/switches";
-// @import "foundation/components/tables";
-// @import "foundation/components/tabs";
-// @import "foundation/components/thumbs";
-// @import "foundation/components/tooltips";
-// @import "foundation/components/top-bar";
-// @import "foundation/components/type";
-// @import "foundation/components/offcanvas";
-// @import "foundation/components/visibility";
 
-.logo {
-    display: inline-block;
-    width: 100px;
-    height: 67px;
-    background: url('../img/isl-logo.svg');
-    background-size: 100px 67px;
-    background-repeat: no-repeat;
-    color: transparent;
-    margin: 1.5em 0;
-    overflow: hidden;
-}
 
-.nav {
-}
-
-    .nav__current {
-        font-style: italic;
-    }
-
-.post blockquote {
-    margin-left: 0;
-    margin-right: 0;
-    line-height: 1.6;
-    font-size: 1.5em;
-}
-
+// Foundation Components
+@import "foundation";
+@include foundation-global-styles;
+@include foundation-grid;
+@include foundation-typography;
+@include foundation-button;
+// @include foundation-forms;
+// @include foundation-visibility-classes;
+// @include foundation-float-classes;
+// @include foundation-accordion;
+// @include foundation-accordion-menu;
+// @include foundation-badge;
+// @include foundation-breadcrumbs;
+// @include foundation-button-group;
+// @include foundation-callout;
+// @include foundation-close-button;
+// @include foundation-drilldown-menu;
+// @include foundation-dropdown;
+// @include foundation-dropdown-menu;
+// @include foundation-flex-video;
+// @include foundation-label;
+// @include foundation-media-object;
+// @include foundation-menu;
+// @include foundation-off-canvas;
+// @include foundation-orbit;
+// @include foundation-pagination;
+// @include foundation-progress-bar;
+// @include foundation-slider;
+// @include foundation-sticky;
+// @include foundation-reveal;
+// @include foundation-switch;
+// @include foundation-table;
+// @include foundation-tabs;
+// @include foundation-thumbnail;
+// @include foundation-title-bar;
+// @include foundation-tooltip;
+// @include foundation-top-bar;
