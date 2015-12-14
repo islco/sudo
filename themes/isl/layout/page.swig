@@ -1,14 +1,9 @@
 {% extends 'base.swig' %}
 
 {% block content %}
-    <div class="row">
-        <div class="column small-12">
-            <h1>{{ page.title }}</h1>
-        </div>
+<div class="row align-center">
+    <div class="small-10 columns">
+        {{ page.content }}
     </div>
-    <div class="row">
-        <div class="column small-12">
-            {{ page.content }}
-        </div>
-    </div>
+</div>
 {% endblock %}

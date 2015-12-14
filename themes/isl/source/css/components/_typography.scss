@@ -148,3 +148,18 @@
         margin-bottom: 0;
     }
 }
+
+// Typography for Values
+
+.value {
+    height: 75vh;
+
+    .article__title {
+        @include main-heading(#fff);
+        margin-bottom: 1rem;
+    }
+
+    p {
+        color: #fff;
+    }
+}
