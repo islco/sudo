@@ -117,5 +117,16 @@
         margin-bottom: 1.5rem;
     }
     
-}
 
+    // Styling for Code Examples
+
+    code {
+        border-radius: 4px;
+    }
+
+    figure.highlight {
+        border-radius: 4px;
+        background: #fefefe;
+        font-size: 0.9rem;
+    }
+}
