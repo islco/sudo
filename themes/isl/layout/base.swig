@@ -18,8 +18,9 @@
     </head>
     <body class="{{ page.layout }}">
         {% include 'partials/header.swig' %}
-
-        {% block content %}{% endblock %}
+        <main class="main">
+            {% block content %}{% endblock %}
+        </main>
 
         {% include 'partials/footer.swig' %}
         {{ js('js/app') }}
