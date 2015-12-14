@@ -1,0 +1,70 @@
+// Variables
+
+$red: #ee6760;
+$offwhite: #f2f3f5;
+$navy: #273342;
+
+$text-black: #262729;
+$text-width: 42rem;
+
+$sidebar-width: 18rem;
+
+
+
+// Base layouts
+
+body {
+    background: $red;
+
+    &.post {
+        background: $offwhite;
+
+        p {
+            line-height: 1.75;
+        }
+    }
+}
+
+.main {
+    padding-top: 3rem;
+    padding-bottom: 6rem;
+
+    @include breakpoint(large) {
+        padding-top: 6rem;
+        margin-left: $sidebar-width;
+    }
+}
+
+.header {
+    background: $navy;
+    padding: 2rem;
+    padding-bottom: 1rem;
+    color: #fff;
+    font-family: 'Conduit ITC';
+    text-transform: uppercase;
+    font-style: normal;
+    margin-bottom: 3rem;
+
+    a {
+        color: #fff;
+    }
+
+    @include breakpoint(large) {
+        width: $sidebar-width;
+        position: fixed;
+        height: 100%;
+        padding: 2rem 1rem;
+    }
+}
+
+.isl-logo {
+    display: block;
+    width: 75%;
+    max-width: 15rem;
+    height: auto;
+    margin: 1rem auto;
+
+    @include breakpoint(large) {
+        margin-left: 1rem;
+    }
+}
