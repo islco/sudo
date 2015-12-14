@@ -6,20 +6,16 @@
 
 {% block content %}
     {% set post = page %}
-    <article itemscope itemtype="http://schema.org/Article">
-        <div class="row">
-            <div class="column small-12">
-                <h1 itemprop="name">{{ post.title }}</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column small-12" itemprop="datePublished">
-                {{ time_tag(post.date) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="column small-12" itemprop="articleBody">
+    <div class="row align-center">
+        <div class="columns small-10">
+            <article class="article">
+                <span class="article__author">{{ post.author }}</span>
+                <span class="text-separator"></span>
+                <span class="article__date">{{ time_tag(post.date) }}</span>
+                <h1 class="article__title">{{ post.title }}</h1>
+
                 {{ post.content }}
-            </div>
+            </article>
         </div>
+    </div>
 {% endblock %}

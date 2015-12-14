@@ -1,0 +1,121 @@
+// Type Utilities
+
+
+// Mixin for custom link underlines
+
+%link-underline-base {
+    position: relative;
+    z-index: 0;
+    
+    &:after {
+        content: '';
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 4px;
+        z-index: -1;
+        transition: width 200ms ease-out;
+    }
+}
+
+@mixin link-underline($text-color, $background-color) {
+    @extend %link-underline-base;
+    color: $text-color;
+    text-shadow: 1px 1px $background-color, -1px 1px $background-color;
+    
+    &:hover {
+        color: darken($text-color, 10%);
+    }
+
+    &:after {
+        border-bottom: 1px solid $text-color;
+    }
+}
+
+// Mixin for heading
+
+%main-heading-base {
+    font-family: 'Playfair Display';
+    font-weight: bold;
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+}
+
+@mixin main-heading($text-color) {
+    @extend %main-heading-base;
+    color: $text-color;
+
+    a {
+        color: $text-color;
+
+        &:hover {
+            border-bottom: 2px solid $text-color;
+        }
+    }
+}
+
+
+// Simple text separator
+.text-separator {
+    margin-left: .25em;
+    margin-right: .25em;
+    color: $navy;
+
+    &:after {
+        content: '//';
+    }
+}
+
+
+
+// Typography for articles
+
+.article {
+    max-width: $text-width;
+}
+
+    .article__date {
+        font-family: 'Conduit ITC';
+        text-transform: uppercase;
+        color: $navy;
+        font-size: 1.2rem;
+        margin-left: .25rem;
+    }
+
+    .article__author {
+        @extend .article__date;
+        color: #fff;
+
+        .post & {
+            color: $red;
+        }
+    }
+
+
+.article {
+
+    .article__title {
+        @include main-heading($navy);
+    }
+
+    h2 {
+        margin-top: 3rem;
+    }
+
+    a {
+        @include link-underline($red, $offwhite);
+    }
+
+    blockquote {
+        p {
+            font-size: 1.25em;
+        }
+    }
+
+    p {
+        margin-bottom: 1.5rem;
+    }
+    
+}
+
