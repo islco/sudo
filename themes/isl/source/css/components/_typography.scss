@@ -130,3 +130,21 @@
         font-size: 0.9rem;
     }
 }
+
+
+// Typography for Excerpts
+
+.article__excerpt {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid $navy;
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    .article__title {
+        @include main-heading(#fff);
+        margin-bottom: 0;
+    }
+}
