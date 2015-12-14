@@ -1,0 +1,19 @@
+.nav {
+    font-size: 1.5em;
+}
+
+.menu {
+    margin-top: 1rem;
+    
+    a:hover {
+        color: $red;
+    }
+
+    @include breakpoint(large) {
+        margin-top: 3rem;        
+
+        li {
+            display: block;
+        }
+    }
+}
