@@ -9,7 +9,7 @@ author: ISL
 language: en
 timezone: UTC
 url: https://sudo.isl.co/
-root: /
+root: /sudo-site/
 permalink: :title/
 source_dir: source
 public_dir: public
@@ -55,3 +55,7 @@ node_sass:
   precision: 10
   sourceComments: false
 
+# Deployment
+deploy:
+  type: git
+  repo: git@github.com:istrategylabs/sudo-site.git

@@ -25,6 +25,7 @@
     "gulp-uglify": "1.1.0",
     "hexo": "3.1.1",
     "hexo-browsersync": "0.2.0",
+    "hexo-deployer-git": "0.0.4",
     "hexo-generator-feed": "1.0.3",
     "hexo-generator-index": "0.1.2",
     "hexo-generator-sitemap": "1.0.1",
