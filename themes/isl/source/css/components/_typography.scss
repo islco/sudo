@@ -6,7 +6,7 @@
 %link-underline-base {
     position: relative;
     z-index: 0;
-    
+
     &:after {
         content: '';
         width: 100%;
@@ -22,7 +22,7 @@
     @extend %link-underline-base;
     color: $text-color;
     text-shadow: 1px 1px $background-color, -1px 1px $background-color;
-    
+
     &:hover {
         color: darken($text-color, 10%);
     }
@@ -116,7 +116,7 @@
     p {
         margin-bottom: 1.5rem;
     }
-    
+
 
     // Styling for Code Examples
 
@@ -127,7 +127,7 @@
     figure.highlight {
         border-radius: 4px;
         background: #fefefe;
-        font-size: 0.9rem;
+        font-size: 0.6em;
     }
 }
 
