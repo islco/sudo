@@ -11,25 +11,20 @@ Our development team decided that a more modular approach was appropriate to sol
 
 // mainCtrl.js
 (function(angular){
-
-module.exports = ['$scope', function($scope){
-  $scope.theThings = ['thing1', 'thing2', 'thing3'];
-}];
-
+  module.exports = ['$scope', function($scope){
+    $scope.theThings = ['thing1', 'thing2', 'thing3'];
+  }];
 }(window.angular));
 
 // fooCtrl.js
 (function(angular){
-
-module.exports = ['$scope', function($scope){
-  $scope.foo = 'bar';
-}];
-
+  module.exports = ['$scope', function($scope){
+    $scope.foo = 'bar';
+  }];
 }(window.angular));
 
 // controllers.js
 (function(angular){
-
   var controllers = {
     MainCtrl: require('./mainCtrl'),
     FooCtrl: require('./fooCtrl')
@@ -40,18 +35,15 @@ module.exports = ['$scope', function($scope){
     .forModule('myApp.controllers')
     .setType('controller')
     .injectAll(controllers);
-
 }(window.angular));
 
 // finally in app.js
 (function(angular){
-
   angular.module('myApp', [
     'myApp.controllers',
     'myApp.services',
     // …. and so on
   ]);
-
 }(window.angular));
 ```
 
