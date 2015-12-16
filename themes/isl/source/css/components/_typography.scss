@@ -1,5 +1,14 @@
 // Type Utilities
 
+@font-face {
+  font-family: "Source Code Pro Regular";
+  src:url("../fonts/SourceCodePro-Regular.eot");
+  src:url("../fonts/SourceCodePro-Regular.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/SourceCodePro-Regular.otf.woff") format("woff"),
+    url("../fonts/SourceCodePro-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 // Mixin for custom link underlines
 
