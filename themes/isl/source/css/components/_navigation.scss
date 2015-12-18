@@ -3,17 +3,42 @@
 }
 
 .menu {
-    margin-top: 1rem;
+    margin: 1.5rem -2rem -1rem;
+    border-top: 1px solid lighten($navy, 15%);
     
-    a:hover {
-        color: $red;
+    li:hover {
+        // color: $red;
+        background: lighten($navy, 15%);
+        cursor: pointer;
+
+    }
+
+    li {
+        width: 50vw;
+        text-align: center;
+        transition: background 100ms ease-in;
+
+        &:first-child {
+            border-right: 1px solid lighten($navy, 15%);
+        }
     }
 
     @include breakpoint(large) {
-        margin-top: 3rem;        
+        margin: 3rem -1rem;        
 
         li {
             display: block;
+            width: auto;
+            border: 0;
+            margin-top: 1rem;
+            padding: .5rem;
+            
+            &:first-child {
+                border-right: 0;
+            }
+        }
+    }
+}
 
 .sidenav {
     font-family: $font-family-sans;
