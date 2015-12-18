@@ -8,7 +8,7 @@
         </a>
         <ul class="menu">
             <li>
-                <a href="{{ url_for('/') }}">
+                <a href="{{ config.root }}">
                     Blog
                 </a>
             </li>
