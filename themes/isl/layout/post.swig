@@ -1,9 +1,5 @@
 {% extends 'base.swig' %}
 
-{% block styles %}
-    {{ css('css/highlight') }}
-{% endblock %}
-
 {% block content %}
     {% set post = page %}
     <div class="row align-center">

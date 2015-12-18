@@ -15,6 +15,8 @@
         {{ css('css/app') }}
         {% block styles %}{% endblock %}
         {{ feed_tag('atom.xml') }}
+        <script src="https://use.typekit.net/oqn5bkx.js"></script>
+        <script>try{Typekit.load({ async: true });}catch(e){}</script>
     </head>
     <body class="{{ page.layout }}">
         {% include 'partials/header.swig' %}

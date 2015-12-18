@@ -1,3 +1,11 @@
+//  ISL Settings
+//  -----------------------------
+$font-family-serif: 'ff-tisa-web-pro', Garamond, Georgia, serif;
+$font-family-sans: 'Conduit ITC', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$font-family-mono: 'source-code-pro', Monaco, Consolas, monospace;
+$font-family-display: 'Playfair Display', serif;
+
+
 //  Foundation for Sites Settings
 //  -----------------------------
 //
@@ -44,7 +52,7 @@
 // ---------
 
 // $global-width: rem-calc(1200);
-$global-font-size: 115%;
+$global-font-size: 110%;
 // $global-lineheight: 1.5;
 // $primary-color: #2199e8;
 // $secondary-color: #777;
@@ -58,8 +66,7 @@ $global-font-size: 115%;
 // $white: #fefefe;
 // $body-background: $white;
 // $body-font-color: $black;
-$body-font-family: 'Adelle Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
-$source-code-regular: 'Source Code Pro Regular', sans-serif;
+$body-font-family: $font-family-serif;
 // $body-antialiased: true;
 // $global-margin: 1rem;
 // $global-padding: 1rem;
