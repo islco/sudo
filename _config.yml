@@ -8,7 +8,7 @@ description: ISL Engineering Blog
 author: ISL
 language: en
 timezone: UTC
-url: https://sudo.isl.co/
+url: http://istrategylabs.github.io/sudo-site
 root: /sudo-site/
 permalink: :title/
 source_dir: source
