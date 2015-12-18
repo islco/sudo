@@ -16,6 +16,7 @@
         {% block styles %}{% endblock %}
         {{ feed_tag('atom.xml') }}
         <script src="https://use.typekit.net/wra7dkq.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script>try{Typekit.load({ async: true });}catch(e){}</script>
     </head>
     <body class="{{ page.layout }}">
@@ -24,7 +25,8 @@
             {% block content %}{% endblock %}
         </main>
 
-        {% include 'partials/footer.swig' %}
+        <!-- {% include 'partials/footer.swig' %} -->
+        {{ js('js/scrollspy') }}
         {{ js('js/app') }}
     </body>
 </html>
