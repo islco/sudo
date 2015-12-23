@@ -13,13 +13,13 @@
         <!-- OpenGraph Metatags -->
         <meta property="og:site_name" content="{{ config.title }}">
         <meta property="og:description" content="{{ config.description }}">
-        <meta property="og:image" content="{{ url_for('img/sudoisl-share-facebook.jpg') }}">
+        <meta property="og:image" content="{{ config.url + '/img/sudoisl-share-facebook.jpg' }}">
         
         <!-- Twitter Metatags -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{ config.title }} &middot; {{ config.subtitle }}">
         <meta name="twitter:description" content="{{ config.description }}">
-        <meta name="twitter:image" content="{{ url_for('img/sudoisl-share-twitter.jpg') }}">
+        <meta name="twitter:image" content="{{ config.url + '/img/sudoisl-share-twitter.jpg' }}">
         
         <link rel="author" href="{{ url_for('humans.txt') }}">
         <link rel="apple-touch-icon" href="{{ url_for('img/apple-touch-icon.png') }}">
