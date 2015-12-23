@@ -9,6 +9,18 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- OpenGraph Metatags -->
+        <meta property="og:site_name" content="{{ config.title }}">
+        <meta property="og:description" content="{{ config.description }}">
+        <meta property="og:image" content="{{ url_for('img/sudoisl-share-facebook.jpg') }}">
+        
+        <!-- Twitter Metatags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ config.title }} &middot; {{ config.subtitle }}">
+        <meta name="twitter:description" content="{{ config.description }}">
+        <meta name="twitter:image" content="{{ url_for('img/sudoisl-share-twitter.jpg') }}">
+        
         <link rel="author" href="{{ url_for('humans.txt') }}">
         <link rel="apple-touch-icon" href="{{ url_for('img/apple-touch-icon.png') }}">
         <link rel="shortcut icon" href="{{ url_for('img/favicon.ico') }}">
