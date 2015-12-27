@@ -25,7 +25,7 @@ console.log(arr); // [ 'beep__', 'boop__', 'bop__' ]
 
 This certainly achieves the goal of transforming an array but it produces what's known as side effects. That is to say, the function `transform()` reaches outside of its functional scope, to fetch a reference to `arr` and then modifies it. What if this file is several hundred lines long (that's a different post) and an unsuspecting junior dev attempts to use the `arr` function? If she doesn't know that `transform()` exists, she may use `arr` thinking that the contents are one thing, but have indeed been changed by `transform()`.
 
-A key principle of functional programming is to, as much as possible, prevent side effects such as the one described above. Data goes in, new data comes out. One way is to accomplish this is
+A key principle of functional programming is to, as much as possible, prevent side effects such as the one described above. Data goes in, new data comes out. One way to accomplish would be
 
 ```
 'use strict';
