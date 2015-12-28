@@ -160,7 +160,7 @@
         @include breakpoint(large) {
             padding-top: 30vh;
             margin-top: -6rem;
-        }        
+        }
     }
 
     &:last-child {
@@ -175,4 +175,20 @@
     p {
         color: #fff;
     }
+}
+
+.block {
+    display: block;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.underline {
+    text-decoration: underline;
 }
