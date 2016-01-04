@@ -34,9 +34,12 @@
 %main-heading-base {
     font-family: $font-family-display;
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 1.7rem;
     line-height: 1.2;
     margin-bottom: 3rem;
+    @include breakpoint(medium) {
+        font-size: 3rem;
+    }
 }
 
 @mixin main-heading($text-color) {
