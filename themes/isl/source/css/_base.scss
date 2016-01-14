@@ -14,7 +14,7 @@ $sidebar-width: 18rem;
 // Base layouts
 
 body {
-    background: $red;
+    background: $navy;
 
     &.post {
         background: $offwhite;
@@ -26,13 +26,18 @@ body {
 }
 
 .main {
-    padding-top: 3rem;
+    background: $offwhite;
+    padding-top: 6rem;
     padding-bottom: 6rem;
 
     @include breakpoint(large) {
         padding-top: 6rem;
         margin-left: $sidebar-width;
     }
+}
+
+.main--index {
+    background: $red;
 }
 
 .header {
@@ -43,7 +48,6 @@ body {
     font-family: $font-family-sans;
     text-transform: uppercase;
     font-style: normal;
-    margin-bottom: 3rem;
 
     a {
         color: #fff;

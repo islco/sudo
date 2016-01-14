@@ -1,6 +1,7 @@
 {% extends 'base.swig' %}
 
 {% block content %}
+<main class="main">
     {% set post = page %}
     <div class="row align-center">
         <div class="columns small-10">
@@ -14,4 +15,5 @@
             </article>
         </div>
     </div>
+</main>
 {% endblock %}

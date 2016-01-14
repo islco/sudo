@@ -33,11 +33,8 @@
     </head>
     <body class="{{ page.layout }}">
         {% include 'partials/header.swig' %}
-        <main class="main">
-            {% block content %}{% endblock %}
-        </main>
+        {% block content %}{% endblock %}
 
-        <!-- {% include 'partials/footer.swig' %} -->
         {{ js('js/scrollspy') }}
         {{ js('js/app') }}
     </body>
