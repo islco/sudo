@@ -150,36 +150,6 @@
     }
 }
 
-// Typography for Values
-
-.value {
-    padding-top: 30vh;
-    height: 100vh;
-
-    &:first-child {
-        padding-top: 13rem;
-        margin-top: -15rem;
-
-        @include breakpoint(large) {
-            padding-top: 30vh;
-            margin-top: -6rem;
-        }
-    }
-
-    &:last-child {
-        height: 85vh;
-    }
-
-    .article__title {
-        @include main-heading(#fff);
-        margin-bottom: 1rem;
-    }
-
-    p {
-        color: #fff;
-    }
-}
-
 .block {
     display: block;
 }

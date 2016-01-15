@@ -1,0 +1,31 @@
+// Slide block component
+
+#slides-container {
+    @include breakpoint(large) {
+        margin-left: 18rem;
+    }
+}
+
+.slide {
+    height: 100vh;
+    background-size: cover;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.slide__content {
+    height: 100%;
+}
+
+// Typography for Slide Blocks
+
+.slide {
+    .article__title {
+        @include main-heading(#fff);
+        margin-bottom: 1rem;
+    }
+
+    p {
+        color: #fff;
+    }
+}
