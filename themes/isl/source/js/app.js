@@ -1,38 +1,79 @@
 /* jshint devel: true */
 
 $(document).ready(function(){
-  $('.page').css('overflow', 'hidden');
 
-  var slides = new IScroll('.slides-container', {
-    snap: '.slide',
-    snapSpeed: 750,
-    disableMouse: true
+  // set minimum browser size needed to initialize
+  var intializeWidth = 1024;
+  var intializeHeight = 500;
+
+  var resizeTimer;
+  var slides;
+  var isInitialized = false;
+
+
+  $(window).on('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      checkInit();
+    }, 300);
   });
 
-  var slideMoved = false;
-  var sensitivity = 10;
-
-  $('.slides-container').on('mousewheel', function(event) {
-    // if scroll has stopped, unlock 
-    if (Math.abs(event.deltaY) === 1) {
-      slideMoved = false;
-      slides._transitionTime();
+  var checkInit = function() {
+    if ( $(window).width() > intializeWidth && $(window).height() > intializeHeight ) {
+      // If scroll is already initialized
+      if (!isInitialized) {
+        // scroll back to top to reset slide position
+        window.scrollTo(0, 0);
+        initializeScroll();
+        isInitialized = true;
+        console.log('initialized');
+      }
     }
-
-    // Prevent multiple slides from moving per scroll
-    if (slideMoved) {
-      return;
+    else {
+      if (isInitialized) {
+        slides.destroy();
+        $('.page').css('overflow', 'visible');
+        isInitialized = false;
+        console.log('destroyed');
+      }
     }
+  }
 
-    if (event.deltaY < (-1 * sensitivity)) {
-      slides.next();
-      slideMoved = true;
-    }
+  var initializeScroll = function() {
+    slides = new IScroll('.slides-container', {
+      snap: '.slide',
+      snapSpeed: 750,
+      disableMouse: true
+    });
 
-    if (event.deltaY > sensitivity) {
-      slides.prev();
-      slideMoved = true;
-    }
+    var slideMoved = false;
+    var sensitivity = 10;
 
-  });
+    $('.page').css('overflow', 'hidden');
+
+    $('.slides-container').on('mousewheel', function(event) {
+      // if scroll has stopped, unlock 
+      if (Math.abs(event.deltaY) === 1) {
+        slideMoved = false;
+        slides._transitionTime();
+      }
+
+      // Prevent multiple slides from moving per scroll
+      if (slideMoved) {
+        return;
+      }
+
+      if (event.deltaY < (-1 * sensitivity)) {
+        slides.next();
+        slideMoved = true;
+      }
+
+      if (event.deltaY > sensitivity) {
+        slides.prev();
+        slideMoved = true;
+      }
+    });
+  }
+
+  checkInit();
 });

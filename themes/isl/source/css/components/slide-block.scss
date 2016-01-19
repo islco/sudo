@@ -5,17 +5,20 @@
         margin-left: 18rem;
         position: absolute;
         width: calc(100% - 18rem);
-        overflow: hidden;
         z-index: 1;
         height: 100vh;
     }
 }
 
 .slide {
-    height: 100vh;
+    min-height: 100vh;
     background-size: cover;
     padding-top: 6rem;
     padding-bottom: 6rem;
+
+    @media #{breakpoint(large)} and (min-height: 500px) {
+        height: 100vh;
+    }
 }
 
 .slide__content {
