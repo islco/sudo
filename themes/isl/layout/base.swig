@@ -28,14 +28,15 @@
         {% block styles %}{% endblock %}
         {{ feed_tag('atom.xml') }}
         <script src="https://use.typekit.net/wra7dkq.js"></script>
-        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script>try{Typekit.load({ async: true });}catch(e){}</script>
     </head>
     <body class="{{ page.layout }}">
         {% include 'partials/header.swig' %}
         {% block content %}{% endblock %}
 
-        {{ js('js/scrollspy') }}
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        {{ js('js/jquery.mousewheel.min.js') }}
+        {{ js('js/iscroll') }}
         {{ js('js/app') }}
     </body>
 </html>

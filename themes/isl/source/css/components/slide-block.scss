@@ -1,8 +1,13 @@
 // Slide block component
 
-#slides-container {
+.slides-container {
     @include breakpoint(large) {
         margin-left: 18rem;
+        position: absolute;
+        width: calc(100% - 18rem);
+        overflow: hidden;
+        z-index: 1;
+        height: 100vh;
     }
 }
 
@@ -28,4 +33,8 @@
     p {
         color: #fff;
     }
+}
+
+.scroll-container {
+    position: relative;
 }

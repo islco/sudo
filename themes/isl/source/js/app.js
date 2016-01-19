@@ -1,25 +1,38 @@
 /* jshint devel: true */
 
-(function () {
-  'use strict';
-  
-  var $values = $('.value');
-  var $slideNavs = $('.sidenav > ul > li');
-  var offset = $('.value').height() / 3;
+$(document).ready(function(){
+  $('.page').css('overflow', 'hidden');
 
-  for(var i = 0; i < $values.length; i++) {
-    var slide = $('.js-value-' + (i + 1));
-    var max = slide.offset().top + (slide.height());
+  var slides = new IScroll('.slides-container', {
+    snap: '.slide',
+    snapSpeed: 750,
+    disableMouse: true
+  });
 
-      slide.scrollspy({
-        min: i === 0 ? 0 : slide.offset().top - offset,
-        max: max,
-        onEnter: function(element) {
-          var slideNumber = $(element).attr('class').split(' ')[0].split('-')[2];
-          $slideNavs.removeClass('is-active');
-          $('.js-nav-slide-' + slideNumber).addClass('is-active');
-      }
-    });
-  }
+  var slideMoved = false;
+  var sensitivity = 10;
 
-})();
+  $('.slides-container').on('mousewheel', function(event) {
+    // if scroll has stopped, unlock 
+    if (Math.abs(event.deltaY) === 1) {
+      slideMoved = false;
+      slides._transitionTime();
+    }
+
+    // Prevent multiple slides from moving per scroll
+    if (slideMoved) {
+      return;
+    }
+
+    if (event.deltaY < (-1 * sensitivity)) {
+      slides.next();
+      slideMoved = true;
+    }
+
+    if (event.deltaY > sensitivity) {
+      slides.prev();
+      slideMoved = true;
+    }
+
+  });
+});
