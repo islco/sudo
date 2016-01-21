@@ -33,6 +33,7 @@
     <body class="{{ page.layout }}">
         {% include 'partials/header.swig' %}
         {% block content %}{% endblock %}
+        {% include 'partials/footer.swig' %}
 
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         {{ js('js/jquery.mousewheel.min.js') }}

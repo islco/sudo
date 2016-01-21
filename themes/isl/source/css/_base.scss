@@ -36,12 +36,12 @@ body {
 
 .main {
     background: $offwhite;
-    padding-top: 6rem;
     padding-bottom: 6rem;
+    padding-top: calc(6rem + #{rem-calc(75)});
 
     @include breakpoint(large) {
-        padding-top: 6rem;
         margin-left: $sidebar-width;
+        padding-top: 6rem;
     }
 }
 
@@ -50,10 +50,13 @@ body {
 }
 
 .header {
+    background-color: $navy;
     color: #fff;
     font-family: $font-family-sans;
     font-style: normal;
+    position: fixed;
     text-transform: uppercase;
+    z-index: 2;
 
     a {
         color: #fff;
@@ -84,4 +87,47 @@ body {
     @include breakpoint(large) {
         padding-right: 0;
     }
+}
+
+.footer {
+    align-items: center;
+    background-color: $navy;
+    color: #fff;
+    display: flex;
+    font-family: $font-family-sans;
+    justify-content: center;
+    letter-spacing: 2px;
+    padding: 1rem 0;
+    text-transform: uppercase;
+    width: 100%;
+    
+    @include breakpoint(large) {
+        border-top: 1px solid #fff;
+        bottom: 0;
+        margin: 2rem;
+        padding-bottom: 0;
+        position: fixed;
+        width: calc(#{$sidebar-width} - 4rem);
+    }
+}
+
+.footer__byline {
+    margin-top: .5rem;
+}
+
+.footer__logo {
+    display: block;
+    height: rem-calc(30);
+    opacity: 1;
+    transition: opacity 200ms;
+
+    &:hover {
+        opacity: .85;
+    }
+}
+
+.isl-logo {
+    height: rem-calc(30);
+    margin-left: .75rem;
+    width: rem-calc(45);
 }
