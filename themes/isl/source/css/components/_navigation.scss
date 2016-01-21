@@ -1,70 +1,87 @@
 .nav {
+    align-items: center;
+    background-color: $navy;
+    display: flex;
     font-size: 1.5em;
-}
-
-.menu {
-    margin: 1.5rem -2rem -1rem;
-    border-top: 1px solid lighten($navy, 15%);
-    
-    li:hover {
-        // color: $red;
-        background: lighten($navy, 15%);
-        cursor: pointer;
-
-    }
-
-    li {
-        width: 50vw;
-        text-align: center;
-        transition: background 100ms ease-in;
-
-        &:first-child {
-            border-right: 1px solid lighten($navy, 15%);
-        }
-    }
-
-    @include breakpoint(large) {
-        margin: 3rem -1rem;        
-
-        li {
-            display: block;
-            width: auto;
-            border: 0;
-            margin-top: 1rem;
-            padding: .5rem;
-            
-            &:first-child {
-                border-right: 0;
-            }
-        }
-    }
-}
-
-.sidenav {
-    font-family: $font-family-sans;
-    font-size: 1.5rem;
-    float: left;
-    margin-right: 2rem;
+    height: rem-calc(75);
+    padding: 0 2rem;
     position: fixed;
-    top: calc(50% - 165px);
+    width: 100%;
+    z-index: 2;
 
-    ul {
-        list-style: none;
-        margin: 0;
+    @include breakpoint(large){
+        justify-content: center;
+        position: relative;
     }
+}
 
-    li {
-        color: #fff;
-        margin-bottom: 1rem;
-        opacity: 0.4;
-        transition: opacity 150ms ease-in-out;
+.nav-icon {
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
 
-        &.is-active {
-            opacity: 1;
+    @include breakpoint(large){
+        display: none;
+    }
+}
+
+.nav-icon__bar {
+    background-color: #fff;
+    display: block;
+    height: 2px;
+    margin-bottom: 4px;
+    position: relative;
+    transition: 200ms;
+    width: 20px;
+
+    .nav-icon.is-active & {
+
+        &:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
         }
 
-        a {
-            color: #fff;
+        &:nth-child(2) {
+            opacity: 0;
+        }
+
+        &:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+    }
+}
+
+.nav-menu {
+    background-color: #1a2430;
+    display: none;
+    height: 100vh;
+    opacity: 0;
+    padding-top: rem-calc(75);
+    position: fixed;
+    transition: opacity 200ms;
+    width: 100%;
+    z-index: 1;
+
+    &.is-available {
+        display: block;
+    }
+
+    &.is-visible {
+        opacity: 1;
+    }
+}
+
+.nav-menu__item {
+    border-bottom: 2px solid $navy;
+    font-size: 1.5rem;
+    text-align: center;
+
+    a {
+        display: block;
+        padding: 2rem;
+        transition: 200ms;
+
+        &:hover {
+            background-color: $red;
         }
     }
 }

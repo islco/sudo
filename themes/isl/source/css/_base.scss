@@ -13,9 +13,18 @@ $sidebar-width: 18rem;
 
 // Base layouts
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     background: $navy;
-
+    
+    &.is-unscrollable {
+        overflow: hidden;
+        height: 100%;
+    }
+    
     &.post {
         background: $offwhite;
 
@@ -41,34 +50,39 @@ body {
 }
 
 .header {
-    background: $navy;
-    padding: 2rem;
-    padding-bottom: 1rem;
     color: #fff;
     font-family: $font-family-sans;
-    text-transform: uppercase;
     font-style: normal;
+    text-transform: uppercase;
 
     a {
         color: #fff;
     }
 
     @include breakpoint(large) {
-        width: $sidebar-width;
-        position: fixed;
         height: 100%;
         padding: 2rem 1rem;
+        position: fixed;
+        width: $sidebar-width;
     }
 }
 
-.isl-logo {
-    display: block;
-    width: 75%;
-    max-width: 15rem;
-    height: auto;
-    margin: 1rem auto;
+.brand {
+    height: rem-calc(30);
+}
+
+.brand__logo {
+    display: inline-block;
+    height: rem-calc(30);
+    max-width: rem-calc(125);
+    padding-right: 1rem;
+    width: 100%;
+
+    path {
+        fill: #fff;
+    }
 
     @include breakpoint(large) {
-        margin-left: 1rem;
+        padding-right: 0;
     }
 }

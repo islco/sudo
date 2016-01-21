@@ -2,6 +2,17 @@
 
 $(document).ready(function(){
 
+// Toggle nav menu
+$('.nav-icon').click(function() {
+  $('.nav-icon').toggleClass('is-active');
+  $('body').toggleClass('is-unscrollable');
+  $('.nav-menu').toggleClass('is-available').delay(100).queue(function(next){
+    $('.nav-menu').toggleClass('is-visible');
+    next();
+  });
+});
+
+
   // set minimum browser size needed to initialize
   var intializeWidth = 1024;
   var intializeHeight = 500;
@@ -11,7 +22,7 @@ $(document).ready(function(){
   var isInitialized = false;
 
 
-  $(window).on('resize', function(){
+  $(window).on('resize', function() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function(){
       checkInit();
