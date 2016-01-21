@@ -14,9 +14,11 @@
     background-position: center center;
     background-size: cover;
     min-height: 100vh;
+    padding-top: 6rem;
 
     @media #{breakpoint(large)} and (min-height: 500px) {
         height: 100vh;
+        padding-top: 0;
     }
 }
 

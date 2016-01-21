@@ -19,6 +19,7 @@ $sidebar-width: 18rem;
 
 body {
     background: $navy;
+    color: $navy;
     
     &.is-unscrollable {
         overflow: hidden !important;
@@ -102,7 +103,6 @@ body {
     width: 100%;
     
     @include breakpoint(large) {
-        border-top: 1px solid #fff;
         bottom: 0;
         margin: 2rem;
         padding-bottom: 0;

@@ -98,7 +98,8 @@
             font-size: 1.25rem;
             padding: 1.5rem 0;
 
-            &:hover {
+            &:hover,
+            &.is-active {
                 background-color: lighten($navy, 10%);
             }
         }
