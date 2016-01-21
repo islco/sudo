@@ -15,6 +15,11 @@
     </nav>
     <div class="nav-menu">
         <div class="nav-menu__item">
+            <a href="{{ url_for('about/') }}">
+                About
+            </a>
+        </div>
+        <div class="nav-menu__item">
             <a href="{{ config.root }}">
                 Blog
             </a>
@@ -22,11 +27,6 @@
         <div class="nav-menu__item">
             <a href="{{ url_for('values/') }}">
                 Values
-            </a>
-        </div>
-        <div class="nav-menu__item">
-            <a href="{{ url_for('about/') }}">
-                About
             </a>
         </div>
     </div>

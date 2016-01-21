@@ -21,8 +21,8 @@ body {
     background: $navy;
     
     &.is-unscrollable {
-        overflow: hidden;
-        height: 100%;
+        overflow: hidden !important;
+        height: 100% !important;
     }
     
     &.post {
@@ -61,7 +61,6 @@ body {
 
     @include breakpoint(large) {
         height: 100%;
-        padding: 2rem 1rem;
         position: fixed;
         width: $sidebar-width;
     }

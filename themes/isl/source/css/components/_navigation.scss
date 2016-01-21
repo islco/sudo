@@ -9,9 +9,10 @@
     width: 100%;
     z-index: 2;
 
-    @include breakpoint(large){
+    @include breakpoint(large) {
         justify-content: center;
         position: relative;
+        padding-top: 2rem;
     }
 }
 
@@ -20,7 +21,7 @@
     display: block;
     margin-left: auto;
 
-    @include breakpoint(large){
+    @include breakpoint(large) {
         display: none;
     }
 }
@@ -68,6 +69,13 @@
     &.is-visible {
         opacity: 1;
     }
+
+    @include breakpoint(large) {
+        background-color: transparent;
+        display: block;
+        opacity: 1;
+        position: relative;
+    }
 }
 
 .nav-menu__item {
@@ -77,11 +85,21 @@
 
     a {
         display: block;
-        padding: 2rem;
-        transition: 200ms;
+        padding: 2rem 0;
+        transition: background-color 200ms;
+        letter-spacing: 2px;
 
         &:hover {
             background-color: $red;
+        }
+
+        @include breakpoint(large) {
+            font-size: 1.25rem;
+            padding: 1.5rem 0;
+
+            &:hover {
+                background-color: lighten($navy, 10%);
+            }
         }
     }
 }
