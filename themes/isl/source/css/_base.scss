@@ -108,6 +108,7 @@ body {
         padding-bottom: 0;
         position: fixed;
         width: calc(#{$sidebar-width} - 4rem);
+        z-index: 2;
     }
 }
 
