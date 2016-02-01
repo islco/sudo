@@ -1,66 +1,68 @@
 /* jshint devel: true */
 
-$(document).ready(function(){
+(function() {
+  'use strict';
 
-// Toggle nav menu
-$('.nav-icon').click(function() {
-  $('.nav-icon').toggleClass('is-active');
-  $('body').toggleClass('is-unscrollable');
-  $('.nav-menu').toggleClass('is-available').delay(100).queue(function(next){
-    $('.nav-menu').toggleClass('is-visible');
-    next();
-  });
-});
-
-
-  // set minimum browser size needed to initialize
-  var intializeWidth = 1024;
-  var intializeHeight = 500;
-
-  var resizeTimer;
   var slides;
-  var isInitialized = false;
+  var slideMinWidth = 1024;
+  var slideMinHeight = 500;
+  var slidesInitialized = false;
+
+  var resizeTimerNav;
+  var resizeTimerSlide;
 
 
-  $(window).on('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function(){
-      checkInit();
-    }, 300);
-  });
+  // Toggle navigation
+  function toggleNavigation() {
+    $('.nav-icon').toggleClass('is-active');
+    $('body').toggleClass('is-unscrollable');
+    $('.nav-menu').toggleClass('is-available').delay(100).queue(function(next) {
+      $('.nav-menu').toggleClass('is-visible');
+      next();
+    });
+  }
 
-  var checkInit = function() {
-    if ( $(window).width() > intializeWidth && $(window).height() > intializeHeight ) {
-      // If scroll is already initialized
-      if (!isInitialized) {
-        // scroll back to top to reset slide position
-        window.scrollTo(0, 0);
-        initializeScroll();
-        isInitialized = true;
-        console.log('initialized');
+  /**
+   * Updates the currently selected slide nav item
+   * @param {string} sibling - 'prev' or 'next'
+   */
+  function updateSlideNav(sibling) {
+    var $currentSlide = $('.is-current');
+    $currentSlide[sibling]().addClass('is-current');
+    $currentSlide.removeClass('is-current');
+  }
+
+  // Check whether to initialize or destroy slides
+  function resetSlides() {
+    var requiresInitialization = $(window).width() >= slideMinWidth && $(window).height() > slideMinHeight;
+    
+    if (requiresInitialization) {
+      if (!slidesInitialized) {
+        initializeSlides();
       }
     }
     else {
-      if (isInitialized) {
-        slides.destroy();
-        $('.page').css('overflow', 'visible');
-        isInitialized = false;
-        console.log('destroyed');
+      if (slidesInitialized) {
+        destroySlides();
       }
     }
   }
 
-  var initializeScroll = function() {
+  // Initialize slides
+  function initializeSlides() {
+    var slideMoved = false;
+    var sensitivity = 10;
+
+    // Scroll back to top to reset slide position
+    window.scrollTo(0, 0);
+    
     slides = new IScroll('.slides-container', {
       snap: '.slide',
       snapSpeed: 750,
       disableMouse: true
     });
 
-    var slideMoved = false;
-    var sensitivity = 10;
-
-    $('.page').css('overflow', 'hidden');
+    $('.js-values').css('overflow', 'hidden');
 
     $('.slides-container').on('mousewheel', function(event) {
       // if scroll has stopped, unlock 
@@ -77,14 +79,58 @@ $('.nav-icon').click(function() {
       if (event.deltaY < (-1 * sensitivity)) {
         slides.next();
         slideMoved = true;
+        updateSlideNav('next');
       }
 
       if (event.deltaY > sensitivity) {
         slides.prev();
         slideMoved = true;
+        updateSlideNav('prev');
       }
+    });
+
+    slidesInitialized = true;
+  }
+
+  // Destroy slides
+  function destroySlides() {
+    slides.destroy();
+    $('.slides-container').off('mousewheel');
+    $('.js-values').css('overflow', 'visible');
+    slidesInitialized = false;
+  }
+
+  // Executes callback in a debounced resize window event
+  function resizeWindow(callback) {
+    var resizeTimer;
+
+    $(window).on('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        callback();
+      }, 300);
     });
   }
 
-  checkInit();
-});
+  $(document).ready(function() {
+
+    // Toggle nav menu
+    $('.nav-icon').click(function() {
+      toggleNavigation();
+    });
+
+    resizeWindow(function(){
+      if ($(window).width() >= slideMinWidth && $('.nav-icon').hasClass('is-active')) {
+        toggleNavigation();
+      }
+    });
+
+    if ($('body').hasClass('js-values')) {
+      resizeWindow(resetSlides);
+
+      resetSlides();
+    }
+  });
+
+
+})();
