@@ -1,0 +1,39 @@
+// Mixin for heading
+
+%main-heading-base {
+    font-family: $font-family-display;
+    font-weight: bold;
+    font-size: 1.7rem;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+    @include breakpoint(medium) {
+        font-size: 3rem;
+    }
+}
+
+@mixin main-heading($text-color) {
+    @extend %main-heading-base;
+    color: $text-color;
+
+    a {
+        color: $text-color;
+
+        &:hover {
+            border-bottom: 1px solid $text-color;
+        }
+    }
+}
+
+
+// Mixin for alt heading
+
+@mixin alt-heading($font-size) {
+    font-family: $font-family-sans;
+    letter-spacing: 1.5px;
+    margin-top: 3rem;
+    text-transform: uppercase;
+
+    @if $font-size {
+        font-size: $font-size;
+    }
+}

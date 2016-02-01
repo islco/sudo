@@ -55,6 +55,16 @@
     }
 }
 
+// Mixin for alt heading
+
+@mixin alt-heading($font-size) {
+    font-family: $font-family-sans;
+    font-size: $font-size;
+    letter-spacing: 1.5px;
+    margin-top: 3rem;
+    text-transform: uppercase;
+}
+
 
 // Simple text separator
 .text-separator {
@@ -67,7 +77,6 @@
 }
 
 
-
 // Typography for articles
 
 .article {
@@ -75,12 +84,8 @@
 }
 
     .article__byline {
+        @include alt-heading(1.1rem);
         color: $navy;
-        font-family: $font-family-sans;
-        font-size: 1.1rem;
-        letter-spacing: 1.5px;
-        margin-left: .25rem;
-        text-transform: uppercase;
 
         .post & {
             color: $red;
@@ -95,11 +100,7 @@
     }
 
     h2 {
-        font-family: $font-family-sans;
-        font-size: 1.5rem;
-        letter-spacing: 1.5px;
-        margin-top: 3rem;
-        text-transform: uppercase;
+        @include alt-heading(1.5rem);
     }
 
     a {

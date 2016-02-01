@@ -46,6 +46,8 @@
 // @include foundation-tooltip;
 // @include foundation-top-bar;
 
+@inclue "mixins/type-utilities";
+
 @import "base";
 @import "highlight";
 

@@ -1,6 +1,8 @@
 // Slide block component
 
 .slides-container {
+    background-color: $red;
+    
     @include breakpoint(large) {
         height: 100vh;
         margin-left: 18rem;
@@ -38,14 +40,11 @@
     }
 
     .slide__link {
+        @include alt-heading(1.25rem);
         border-bottom: 2px solid #fff;
         color: #fff;
         display: inline-block;
-        font-family: $font-family-sans;
-        font-size: 1.25rem;
-        letter-spacing: 2px;
         margin-top: 2.5rem;
-        text-transform: uppercase;
         transition: 200ms;
 
         &:hover {
@@ -57,4 +56,35 @@
 
 .scroll-container {
     position: relative;
+}
+
+// Navigation for slides
+
+.slides-navigation {
+    display: none;
+
+    @include breakpoint(large) {
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 32%;
+        transform: translateY(-50%);
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+        }
+
+        li {
+            font-family: $font-family-sans;
+            margin-bottom: 25px;
+            opacity: .3;
+            transition: 500ms opacity;
+            font-size: 1.1rem;
+
+            &.is-current {
+                opacity: 1;
+            }
+        }
+    }
 }
