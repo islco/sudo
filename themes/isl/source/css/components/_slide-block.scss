@@ -12,6 +12,10 @@
     }
 }
 
+.scroll-container {
+    position: relative;
+}
+
 .slide {
     background-position: center center;
     background-size: cover;
@@ -53,6 +57,10 @@
         @include main-heading(#fff);
         margin-bottom: 1rem;
     }
+    
+    .slide__description {
+        font-size: 1.2rem;
+    }
 
     .slide__link {
         @include alt-heading(1.25rem);
@@ -68,9 +76,6 @@
         }
     }
 
-.scroll-container {
-    position: relative;
-}
 
 // Navigation for slides
 
