@@ -28,8 +28,12 @@
    */
   function updateSlideNav(sibling) {
     var $currentSlide = $('.is-current');
-    $currentSlide[sibling]().addClass('is-current');
-    $currentSlide.removeClass('is-current');
+    var $nextSlide = $currentSlide[sibling]();
+
+    if ($nextSlide.length) {
+      $nextSlide.addClass('is-current');
+      $currentSlide.removeClass('is-current');
+    }
   }
 
   // Check whether to initialize or destroy slides
