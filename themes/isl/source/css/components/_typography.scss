@@ -37,7 +37,7 @@
     }
 
     a {
-        @include link-underline($red, $offwhite);
+        @include link-underline($red, $offwhite, 2px);
     }
 
     blockquote {
@@ -62,6 +62,7 @@
         border-radius: 4px;
         background: #fefefe;
         font-size: 0.75rem;
+        margin-top: rem-calc(25);
     }
 }
 

@@ -50,10 +50,13 @@
     }
 }
 
-@mixin link-underline($text-color, $background-color) {
+@mixin link-underline($text-color, $background-color, $space) {
     @extend %link-underline-base;
     color: $text-color;
     text-shadow: 1px 1px $background-color, -1px 1px $background-color;
+    @if $space { 
+        padding-bottom: $space;
+    }
 
     &:hover {
         color: darken($text-color, 10%);
