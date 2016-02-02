@@ -78,7 +78,9 @@ body {
 }
 
 .footer {
-    // @include alt-heading(1rem);
+    font-family: $font-family-sans;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     align-items: center;
     background-color: $navy;
     color: #fff;

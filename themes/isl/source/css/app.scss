@@ -5,10 +5,8 @@
 @import "fonts";
 @import "settings";
 
-
 // Foundation Components
 @import "foundation";
-
 @include foundation-global-styles;
 // @include foundation-grid;
 @include foundation-flex-grid;
@@ -46,7 +44,9 @@
 // @include foundation-tooltip;
 // @include foundation-top-bar;
 
-@inclue "mixins/type-utilities";
+// Mixins
+@import "mixins/type-utilities";
+
 
 @import "base";
 @import "highlight";

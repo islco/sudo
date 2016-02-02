@@ -32,7 +32,17 @@
 // Typography for Slide Blocks
 
 .slide {
+    border-bottom: 1px solid lighten($red, 10%);
     color: #fff;
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    @include breakpoint(large) {
+        border-bottom: 0;
+    }
+}
 
     .slide__title {
         @include main-heading(#fff);
@@ -52,7 +62,6 @@
             color: $red;
         }
     }
-}
 
 .scroll-container {
     position: relative;
@@ -67,24 +76,28 @@
         display: block;
         position: fixed;
         top: 50%;
-        left: 32%;
+        left: calc(#{$sidebar-width} + 5%);
         transform: translateY(-50%);
+    }
 
-        ul {
-            list-style-type: none;
-            margin: 0;
+    ul {
+        list-style-type: none;
+        margin: 0;
+    }
+
+    li {
+        font-family: $font-family-sans;
+        margin-bottom: 25px;
+        opacity: .3;
+        transition: 500ms opacity;
+        font-size: 1.1rem;
+
+        &.is-current {
+            opacity: 1;
         }
 
-        li {
-            font-family: $font-family-sans;
-            margin-bottom: 25px;
-            opacity: .3;
-            transition: 500ms opacity;
-            font-size: 1.1rem;
-
-            &.is-current {
-                opacity: 1;
-            }
+        &:last-child {
+            margin-bottom: 0;
         }
     }
 }
