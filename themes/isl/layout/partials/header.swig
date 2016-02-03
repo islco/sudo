@@ -15,17 +15,17 @@
     </nav>
     <div class="nav-menu">
         <div class="nav-menu__item">
-            <a href="{{ url_for('about/') }}">
+            <a href="{{ url_for('about/') }}" class="{% if is_current('about') %}is-active{% endif %}">
                 About
             </a>
         </div>
         <div class="nav-menu__item">
-            <a href="{{ config.root }}">
+            <a href="{{ config.root }}" class="{% if is_home() || is_post() %}is-active{% endif %}">
                 Blog
             </a>
         </div>
         <div class="nav-menu__item">
-            <a href="{{ url_for('values/') }}">
+            <a href="{{ url_for('values/') }}" class="{% if is_current('values') %}is-active{% endif %}">
                 Values
             </a>
         </div>

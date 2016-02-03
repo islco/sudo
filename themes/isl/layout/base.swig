@@ -30,7 +30,7 @@
         <script src="https://use.typekit.net/wra7dkq.js"></script>
         <script>try{Typekit.load({ async: true });}catch(e){}</script>
     </head>
-    <body class="{{ page.layout }}">
+    <body class="{{ page.layout }} {% if is_current('values') %}js-values{% endif %}">
         {% include 'partials/header.swig' %}
         {% block content %}{% endblock %}
         {% include 'partials/footer.swig' %}

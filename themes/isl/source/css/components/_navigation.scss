@@ -81,14 +81,13 @@
 
 .nav-menu__item {
     border-bottom: 2px solid $navy;
-    font-size: 1.5rem;
     text-align: center;
 
     a {
         display: block;
-        padding: 2rem 0;
+        padding: 3rem 0;
         transition: background-color 200ms;
-        letter-spacing: 2px;
+        @include alt-heading(1.5rem);
 
         &:hover {
             background-color: $red;
