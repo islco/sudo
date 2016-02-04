@@ -22,18 +22,30 @@
     });
   }
 
+  function setSlideNav(nextSlide) {
+    var $currentSlide = $('.is-current');
+
+    if (nextSlide.length) {
+      nextSlide.addClass('is-current');
+      $currentSlide.removeClass('is-current');
+    }
+  }
+
   /**
-   * Updates the currently selected slide nav item
+   * Updates the currently selected slide nav
    * @param {string} sibling - 'prev' or 'next'
    */
   function updateSlideNav(sibling) {
-    var $currentSlide = $('.is-current');
-    var $nextSlide = $currentSlide[sibling]();
+    var $nextSlide = $('.is-current')[sibling]();
+    setSlideNav($nextSlide);
+  }
 
-    if ($nextSlide.length) {
-      $nextSlide.addClass('is-current');
-      $currentSlide.removeClass('is-current');
-    }
+  /**
+   * Jumps the currently selected slide nav to a specific one
+   */
+  function jumpSlideNav(slideNumber) {
+    var $nextSlide = $('.slides-navigation li:eq(' + slideNumber + ')');
+    setSlideNav($nextSlide);
   }
 
   // Check whether to initialize or destroy slides
@@ -95,6 +107,15 @@
 
     slidesInitialized = true;
   }
+  
+  function gotoSlides(slideNumber) {
+    var $currentSlideNumber = $('.is-current').data('slide');
+
+    if ($currentSlideNumber !== slideNumber) {
+      slides.goToPage(0, slideNumber, 1000);
+      jumpSlideNav(slideNumber);
+    }
+  }
 
   // Destroy slides
   function destroySlides() {
@@ -134,6 +155,11 @@
 
       resetSlides();
     }
+
+    $('.slides-navigation li').on('click', function() {
+      var slideNumber = $(this).data('slide');
+      gotoSlides(slideNumber);
+    });
   });
 
 
