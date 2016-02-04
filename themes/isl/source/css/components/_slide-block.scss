@@ -102,6 +102,10 @@
         transition: 500ms opacity;
         font-size: 1.1rem;
 
+        &:hover {
+            cursor: pointer;
+        }
+
         &.is-current {
             opacity: 1;
         }
