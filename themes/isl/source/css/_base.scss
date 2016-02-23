@@ -22,6 +22,17 @@ body {
     }
 }
 
+::selection {
+  background: $offwhite;
+  color: $navy;
+}
+
+.post ::selection {
+  background: $navy;
+  color: $offwhite;
+  text-shadow: none;
+}
+
 .main {
     background: $offwhite;
     padding-bottom: 6rem;
