@@ -101,6 +101,11 @@
             &.is-active {
                 background-color: lighten($navy, 10%);
             }
+            
+            &:active {
+                background-color: lighten($navy, 15%);
+                transition: none;
+            }
         }
     }
 }
