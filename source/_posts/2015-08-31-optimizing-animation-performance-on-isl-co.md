@@ -1,6 +1,7 @@
 ---
 title: "Optimizing Animation Performance On ISL.co"
 author: Eli Fitch
+description: "A walkthrough of some techniques we used to make sure our render performance was butter smooth."
 ---
 
 When it came to building ISL.co, performance was a huge priority; we wanted our site to load quickly, feel responsive & alive throughout the entire experience. This meant animation. A lot of animation. A lot of quite complex animation. It also meant creating all this motion without breaking a rock solid 60 frames per second (fps) stride. I’m going to walk you through the handful of techniques we used to jank bust our site and make sure our render performance was butter smooth.

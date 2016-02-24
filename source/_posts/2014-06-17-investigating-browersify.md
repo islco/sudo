@@ -1,6 +1,7 @@
 ---
 title: "Investigating Browersify: The Development Tool That Lets You Write Modular Code For Use In Browser"
 author: Johnny Ray Austin
+description: "How we manage the multitude of files associated with using a framework like Angular"
 ---
 
 A while back, the engineering team adopted [AngularJS](https://angularjs.org/) as the front end JavaScript framework of choice. Not every project we work on requires a framework like Angular, but when we need one — it's where we go. This post, however isn't about Angular itself — or why we chose it — it's about how we manage the multitude of files associated with using such a framework. Every FED (front end developer) knows that simply using a separate script tag to include all files does not scale very well. Most take to simple concatenation, allowing them to use one js file for their app code. This also works, but can get out of hand and also forces you to either pollute the window namespace or create your own namespace in order to access various components outside of their respective files.

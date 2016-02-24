@@ -11,14 +11,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- OpenGraph Metatags -->
-        <meta property="og:site_name" content="{{ config.title }}">
-        <meta property="og:description" content="{{ config.description }}">
+        <meta property="og:site_name" content="{% if page.title %}{{page.title}}{% else %}{{ config.title }} &middot; {{ config.subtitle }}{% endif %}">
+        <meta property="og:description" content="{% if page.description %}{{page.description}}{% else %}{{ config.description }}{% endif %}">
         <meta property="og:image" content="{{ config.url + '/img/sudoisl-share-facebook.jpg' }}">
 
         <!-- Twitter Metatags -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{ config.title }} &middot; {{ config.subtitle }}">
-        <meta name="twitter:description" content="{{ config.description }}">
+        <meta name="twitter:title" content="{% if page.title %}{{page.title}}{% else %}{{ config.title }} &middot; {{ config.subtitle }}{% endif %}">
+        <meta name="twitter:description" content="{% if page.description %}{{page.description}}{% else %}{{ config.description }}{% endif %}">
         <meta name="twitter:image" content="{{ config.url + '/img/sudoisl-share-twitter.jpg' }}">
 
         <link rel="author" href="{{ url_for('humans.txt') }}">

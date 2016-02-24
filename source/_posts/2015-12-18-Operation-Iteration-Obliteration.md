@@ -2,6 +2,7 @@
 title: "Operation: Iteration Obliteration"
 permalink: operation-iteration-obliteration
 author: Johnny Ray Austin
+description: "Functional programming is a big topic - how exactly, does one embrace functional programming? At ISL, we've decided to take an incremental approach."
 ---
 
 ### *And also death to side effects.*
