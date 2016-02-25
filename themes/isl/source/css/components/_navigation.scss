@@ -111,3 +111,16 @@
         }
     }
 }
+
+.pagination {
+    margin-top: 3rem;
+}
+
+.pagination__link {
+    @include alt-heading(1rem);
+    color: $navy;
+
+    &:hover {
+        color: darken($navy, 10%);
+    }
+}
