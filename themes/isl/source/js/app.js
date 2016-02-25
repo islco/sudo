@@ -157,7 +157,22 @@
     });
   }
 
+  function easterEgg() {
+    console.log( ' _____  _____ _                       _   _                 _   _' );
+    console.log( '|_   _|/ ____| |          /\\         | | (_)               | | | |' );
+    console.log( '  | | | (___ | |         /  \\   _ __ | |_ _ _ __ ___   __ _| |_| |_ ___ _ __' );
+    console.log( '  | |  \\___ \\| |        / /\\ \\ | \'_ \| __| | \'_ \` _ \\ / _\` | __| __/ _ \\ \'__|' );
+    console.log( ' _| |_ ____) | |____   / ____ \\| | | | |_| | | | | | | (_| | |_| ||  __/ |' );
+    console.log( '|_____|_____/|______| /_/    \\_\\_| |_|\\__|_|_| |_| |_|\\__,_|\\__|\\__\\___|_|' );
+    console.log( '\n' );
+    console.log( 'Oh, hi there! We see you like viewing code! Well, ISL\'s engineering team Antimatter\n' );
+    console.log( 'is hiring! Mosey on over to http://isl.co/careers/ and take a look at our\n' );
+    console.log( 'engineering positions! Hope to hear from you soon!\n' );
+  }
+
   $(document).ready(function() {
+    
+    easterEgg();
 
     // Toggle nav menu
     $('.nav-icon').click(function() {
@@ -181,7 +196,7 @@
         gotoSlides(slideNumber);
       });
     }
-    
+
   });
 
 })();
