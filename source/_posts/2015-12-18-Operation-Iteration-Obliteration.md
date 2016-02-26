@@ -7,7 +7,7 @@ description: "Functional programming is a big topic - how exactly, does one embr
 
 ### *And also death to side effects.*
 
-Let's get right into it. ISL is embracing the functional side of JavaScript. Functional programming is a big topic  - how exactly, does one "embrace" functional programming? We've decided to take an incremental approach. One piece of low-hanging fruit is to favor [higher-order functions](https://en.wikipedia.org/wiki/Higher-order_function) (map, reduce) over iterative constructs such as for-loops. Lets look at an example. If want to create a new array of values based on an existing array, one's first instinct might be to do so this way
+Let's get right into it. ISL is embracing the functional side of JavaScript. Functional programming is a big topic  - how exactly, does one "embrace" functional programming? We've decided to take an incremental approach. One piece of low-hanging fruit is to favor [higher-order functions](https://en.wikipedia.org/wiki/Higher-order_function) (map, reduce) over iterative constructs such as for-loops. Let's look at an example. If we want to create a new array of values based on an existing array, one's first instinct might be to do so this way:
 
 ```
 'use strict';
@@ -26,7 +26,7 @@ console.log(arr); // [ 'beep__', 'boop__', 'bop__' ]
 
 This certainly achieves the goal of transforming an array but it produces what's known as side effects. That is to say, the function `transform()` reaches outside of its functional scope, to fetch a reference to `arr` and then modifies it. What if this file is several hundred lines long (that's a different post) and an unsuspecting junior dev attempts to use the `arr` function? If she doesn't know that `transform()` exists, she may use `arr` thinking that the contents are one thing, but have indeed been changed by `transform()`.
 
-A key principle of functional programming is to, as much as possible, prevent side effects such as the one described above. Data goes in, new data comes out. One way to accomplish would be
+A key principle of functional programming is to, as much as possible, prevent side effects such as the one described above. Data goes in, new data comes out. One way to accomplish that would be:
 
 ```
 'use strict';
@@ -46,7 +46,7 @@ console.log(arr); // [ 'beep', 'boop', 'bop' ]
 console.log(arr2); // [ 'beep__', 'boop__', 'bop__' ]
 ```
 
-And so we've performed a non-destructive operation which gives us a transformed version of our original data and keeps the original data in tact. We're done, right? Not quite. We had to add a new variable declaration and then a return statement on a new line. I don't know about you, but my favorite type of refactoring results in less code, not more. In general, there's "cruft code" that doesn't add to the expressiveness of what we're trying to accomplish. Try this instead
+And so, we've performed a non-destructive operation which gives us a transformed version of our original data and keeps the original data in tact. We're done, right? Not quite. We had to add a new variable declaration and then a return statement on a new line. I don't know about you, but my favorite type of refactoring results in less code, not more. In general, there's "cruft code" that doesn't add to the expressiveness of what we're trying to accomplish. Try this instead:
 
 ```
 'use strict';
@@ -64,7 +64,7 @@ console.log(arr2); // [ 'beep__', 'boop__', 'bop__' ]
 console.log(arr); // [ 'beep', 'boop', 'bop' ]
 ```
 
-Need more flexibility on that transform? Use a closure
+Need more flexibility on that transform? Use a closure:
 
 ```
 'use strict';
@@ -82,7 +82,7 @@ console.log(arr2); // [ 'beep__', 'boop__', 'bop__' ]
 console.log(arr); // [ 'beep', 'boop', 'bop' ]
 ```
 
-Or if you really want to go nuts
+Or if you really want to go nuts:
 
 ```
 'use strict';
