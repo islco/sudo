@@ -1,12 +1,14 @@
 ---
 title: "Swept up in the stream: 5 ways ISL used Gulp to improve our process"
+permalink: 5-ways-isl-used-gulp-to-improve-our-process
 author: Andrew Krawchyk
 description: "After modifying our existing build process to adhere to the Gulp way, we saw a drastic improvement in overall build speed, on the order of several seconds, and near instant rebuilds for live reloading during development."
+image: isl-gulp-liz.jpg
 ---
 
 ISL recently switched our front-end build system from Grunt to Gulp. Our primary motivations for switching are Gulp’s preference for code over configuration, node streams, and asynchronous tasks by default. After modifying our existing build process to adhere to the Gulp way, we saw a drastic improvement in overall build speed, on the order of several seconds, and near instant rebuilds for live reloading during development.
 
-{% asset_img 'Swept-up-in-the-stream_ISL-Gulp_Computer.png' "ISL Gulp computer" %}
+![An ISL engineer writing code](isl-gulp-computer.png)
 
 By adopting Gulp we’re actually scripting and coding our build process, unlike Grunt where we merely configured tasks. For example, if you want to tap into a Gulp stream and transform a file using plain old vanilla JavaScript, you can. It enables developers to customize their build workflow much easier, and the streaming paradigm works well since we’re literally just dealing with text files.
 
@@ -16,7 +18,7 @@ We did take advantage of run-sequence to better control task execution order (wh
 
 While we probably could have accomplished these changes by refactoring our Grunt workflow, we decided that time would be better spent reevaluating the entire system.
 
-{% asset_img 'Swept-up-in-the-stream_ISL-Gulp_Liz.jpg' "Liz gulp computer" %}
+![Liz, an ISL engineer writing code](isl-gulp-liz.jpg)
 
 ## How we switched
 
