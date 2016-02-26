@@ -8,8 +8,8 @@ description: Articles by the ISL engineering team
 author: ISL
 language: en
 timezone: UTC
-url: http://istrategylabs.github.io/sudo-site
-root: /sudo-site/
+url: http://istrategylabs.github.io/sudo
+root: /sudo/
 permalink: :title/
 source_dir: source
 public_dir: public
@@ -58,4 +58,4 @@ node_sass:
 # Deployment
 deploy:
   type: git
-  repo: git@github.com:istrategylabs/sudo-site.git
+  repo: git@github.com:istrategylabs/sudo.git
