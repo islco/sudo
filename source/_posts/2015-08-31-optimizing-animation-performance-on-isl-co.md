@@ -61,8 +61,8 @@ It’s not always 100% possible to avoid animating layout properties or paint pr
 
 It’s impossible to overstate the importance of making a commitment to testing render performance *during* development. Performance problems are often only noticeable once a significant amount of damage has been done, and there’s a nightmarish rats nest of incremental little issues that have to be resolved. Testing while you work makes it possible to pick up these small little straws before things get too overwhelming.
 
-> “Don’t guess it, Test it”
-– Paul Lewis
+> Don’t guess it, test it.
+> – Paul Lewis
 
 
 Chrome, Firefox, and Safari all let you see paint and render events frame by frame in the network tab. Keeping a close eye on this while building an animation is absolutely essential, so you can quickly rectify mistakes or explore alternatives. Chrome also comes packaged with an additional suite of performance tools in the “Rendering” tab of the console. You can enable an FPS meter, show layer borders and visualize browser painting. **Here’s how you get there:**

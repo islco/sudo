@@ -41,8 +41,16 @@
     }
 
     blockquote {
+        margin-top: 2rem;
+        padding: 1rem 1.5rem;
+
         p {
             font-size: 1.25em;
+            padding: 0;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 
