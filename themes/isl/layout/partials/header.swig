@@ -30,4 +30,5 @@
             </a>
         </div>
     </div>
+    {% include 'footer.swig' %}
 </header>

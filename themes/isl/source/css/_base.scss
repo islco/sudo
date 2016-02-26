@@ -22,6 +22,17 @@ body {
     }
 }
 
+::selection {
+  background: $offwhite;
+  color: $navy;
+}
+
+.post ::selection {
+  background: $navy;
+  color: $offwhite;
+  text-shadow: none;
+}
+
 .main {
     background: $offwhite;
     padding-bottom: 6rem;
@@ -54,6 +65,7 @@ body {
         height: 100%;
         position: fixed;
         width: $sidebar-width;
+        overflow: auto;
     }
 }
 
@@ -90,12 +102,24 @@ body {
     width: 100%;
     
     @include breakpoint(large) {
-        bottom: 0;
-        margin: 2rem;
-        padding-bottom: 0;
-        position: fixed;
-        width: calc(#{$sidebar-width} - 4rem);
-        z-index: 2;
+        display: none;
+    }
+
+    .header & {
+        display: none;
+
+        @include breakpoint(large) {
+            display: flex;
+            bottom: 0;
+            margin-top: 2rem;
+            padding-bottom: 2rem;
+            position: absolute;
+            z-index: 2;
+        }
+        
+        @media screen and #{breakpoint(large)} and (max-height: 500px) {
+            position: relative;
+        }
     }
 }
 

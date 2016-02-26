@@ -54,13 +54,14 @@
 .nav-menu {
     background-color: #1a2430;
     display: none;
-    height: 100vh;
+    height: 100%;
     opacity: 0;
     padding-top: rem-calc(75);
     position: fixed;
     transition: opacity 200ms;
     width: 100%;
     z-index: 1;
+    overflow: auto;
 
     &.is-available {
         display: block;
@@ -73,6 +74,7 @@
     @include breakpoint(large) {
         background-color: transparent;
         display: block;
+        height: auto;
         opacity: 1;
         position: relative;
         z-index: 0;
@@ -101,6 +103,24 @@
             &.is-active {
                 background-color: lighten($navy, 10%);
             }
+            
+            &:active {
+                background-color: lighten($navy, 15%);
+                transition: none;
+            }
         }
+    }
+}
+
+.pagination {
+    margin-top: 3rem;
+}
+
+.pagination__link {
+    @include alt-heading(1rem);
+    color: $navy;
+
+    &:hover {
+        color: darken($navy, 10%);
     }
 }

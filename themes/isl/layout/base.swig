@@ -10,17 +10,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- OpenGraph Metatags -->
-        <meta property="og:site_name" content="{{ config.title }}">
-        <meta property="og:description" content="{{ config.description }}">
-        <meta property="og:image" content="{{ config.url + '/img/sudoisl-share-facebook.jpg' }}">
+        <!-- Open Graph data -->
+        <meta property="og:type" content="{% if is_post() %}article{% else %}website{% endif %}">
+        <meta property="og:site_name" content="{{ config.title }} &middot; {{ config.subtitle }}">
+        <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ config.title }} &middot; {{ config.subtitle }}{% endif %}">
+        <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif %}">
+        <meta property="og:image" content="{% if page.image %}{{ page.permalink }}{{ page.image }}{% else %}{{ config.url + '/img/sudoisl-share-facebook.jpg' }}{% endif %}">
 
-        <!-- Twitter Metatags -->
+        <!-- Twitter Card data -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{ config.title }} &middot; {{ config.subtitle }}">
-        <meta name="twitter:description" content="{{ config.description }}">
-        <meta name="twitter:image" content="{{ config.url + '/img/sudoisl-share-twitter.jpg' }}">
-
+        <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ config.title }} &middot; {{ config.subtitle }}{% endif %}">
+        <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif %}">
+        <meta name="twitter:image" content="{% if page.image %}{{ page.permalink }}{{ page.image }}{% else %}{{ config.url + '/img/sudoisl-share-facebook.jpg' }}{% endif %}">
+        
         <link rel="author" href="{{ url_for('humans.txt') }}">
         <link rel="apple-touch-icon" href="{{ url_for('img/apple-touch-icon.png') }}">
         <link rel="shortcut icon" href="{{ url_for('img/favicon.ico') }}">

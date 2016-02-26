@@ -1,19 +1,7 @@
 // Highlight.js sytles syntax highlighting
 // Based on: http://istrat.gy/1Gul0HD
 
-pre {
-    font-family: $font-family-mono;
-}
-
 figure.highlight {
-    border: 1px solid lightGray;
-    padding: 2em 2.5em;
-    margin-left: 0;
-    margin-right: 0;
-    line-height: 1.6;
-    font-size: 0.9em;
-    font-family: monospace;
-    overflow: auto;
 
     pre {
         margin: 0;

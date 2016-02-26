@@ -81,8 +81,8 @@
 
 .slides-navigation {
     display: none;
-
-    @include breakpoint(large) {
+    
+    @media screen and #{breakpoint(large)} and (min-height: 500px) {
         display: block;
         position: fixed;
         top: 50%;
