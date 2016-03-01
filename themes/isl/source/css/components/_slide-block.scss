@@ -70,7 +70,8 @@
         margin-top: 2.5rem;
         transition: 200ms;
 
-        &:hover {
+        &:hover,
+        &:focus {
             border-color: $red;
             color: $red;
         }

@@ -8,8 +8,8 @@ description: Articles by the ISL engineering team
 author: ISL
 language: en
 timezone: UTC
-url: http://istrategylabs.github.io/sudo
-root: /sudo/
+url: http://sudo.isl.co
+root: /
 permalink: :title/
 source_dir: source
 public_dir: public
