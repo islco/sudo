@@ -10,7 +10,10 @@
                     {{ post.author }}<span class="text-separator"></span>{{ time_tag(post.date) }}
                 </span>
                 <h1 class="article__title">
-                    <a href="{{ url_for(post.path) }}">{{ post.title }}</a>
+                    <a href="{{ url_for(post.path) }}">
+                      {% if not post.published %}[DRAFT]{% endif %}
+                      {{ post.title }}
+                    </a>
                 </h1>
             </article>
             {% endfor %}

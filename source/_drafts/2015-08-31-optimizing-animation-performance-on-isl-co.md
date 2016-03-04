@@ -2,13 +2,13 @@
 title: "Optimizing Animation Performance On ISL.co"
 author: Eli Fitch
 description: "A walkthrough of some techniques we used to make sure our render performance was butter smooth."
-image: og-rendering-tools.jpg
 ---
 
 When it came to building ISL.co, performance was a huge priority; we wanted our site to load quickly, feel responsive & alive throughout the entire experience. This meant animation. A lot of animation. A lot of quite complex animation. It also meant creating all this motion without breaking a rock solid 60 frames per second (fps) stride. I’m going to walk you through the handful of techniques we used to jank bust our site and make sure our render performance was butter smooth.
 
 ## Choosing The Right Properties To Animate
-![Can't stop, won't stop animation](cant-stop-wont-stop-300.gif)
+
+{% asset_img cant-stop-wont-stop.gif 'Can't stop, won't stop animation' %}
 
 When it comes to animation, all CSS properties are not created equal.  There are key differences in how hard it is for the browser to animate a property, and that difficulty shows up with a slow framerate.  Understanding how your choices impact page rendering is crucial to creating smooth animations.
 
@@ -47,13 +47,13 @@ One of the main weaknesses of relying on transform to animate objects instead of
 
 In our first attempt, we decided to set `max-height` to `0` and animated max height to the drawer’s natural height. The drawer appeared to slide down, and it bumped the blog feed down with it. Unfortunately animating max-height caused a lot of thrash, leading to stutters that dropped the framerate to as low as 7 fps.  As you can see in the GIF (pronounced like “gift”) below, it was pretty bad, so we tried to find a way to animate with just transform.
 
-![Janky animation](janky-animation.gif)
+{% asset_img janky-animation.gif 'Janky animation example' %}
 
 After max-height failed, we knew we had to rely on transform; but pulling the drawer up underneath the hero image with `transform: translateY(-100%)` just left a big gap where the menu once was.  Animating to `translateY(0)` would simply slide the menu back to its original position on the page, without sliding the rest of the page’s content down with it.  We had to get a little creative.
 
 Instead of using an initial transform, we pulled up the menu with a negative margin (a layout property).  This erased the big gap in the initial state.  However, we didn’t animate this property. We set it once, and left it there. On click of the drawer toggle, we animated the drawer, as well as its siblings, to `transform: translateY(0)` with the same duration and easing. This gave the pleasing appearance of the menu nudging its siblings with all the performance gains of using only composite properties. Animating transform, even on almost an entire page, was orders of magnitude more performant than animating max height on a single element. Check out the difference in the GIF below.
 
-![Smooth animation](smooth-animation-600.gif)
+{% asset_img smooth-animation.gif 'Smooth animation example' %}
 
 ## Test Like Crazy
 
@@ -67,7 +67,7 @@ It’s impossible to overstate the importance of making a commitment to testing 
 
 Chrome, Firefox, and Safari all let you see paint and render events frame by frame in the network tab. Keeping a close eye on this while building an animation is absolutely essential, so you can quickly rectify mistakes or explore alternatives. Chrome also comes packaged with an additional suite of performance tools in the “Rendering” tab of the console. You can enable an FPS meter, show layer borders and visualize browser painting. **Here’s how you get there:**
 
-![Rendering tools in Chrome](rendering-tools.gif)
+{% asset_img rendering-tools.gif 'Rendering tools' %}
 
 Neither Firefox nor Safari come with the breadth of tools that Chrome does, but their internal rendering processes are similar enough that improvements will be felt across the board even if you’re primarily working in Chrome. Many of Chrome’s ancillary render testing tools are available in other browsers as addons.
 

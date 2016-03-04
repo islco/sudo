@@ -2,7 +2,7 @@
 
 .slides-container {
     background-color: $red;
-    
+
     @include breakpoint(large) {
         height: 100vh;
         margin-left: 18rem;
@@ -57,7 +57,7 @@
         @include main-heading(#fff);
         margin-bottom: 1rem;
     }
-    
+
     .slide__description {
         font-size: 1.2rem;
     }
@@ -82,7 +82,7 @@
 
 .slides-navigation {
     display: none;
-    
+
     @media screen and #{breakpoint(large)} and (min-height: 500px) {
         display: block;
         position: fixed;

@@ -1,7 +1,8 @@
 ---
-title: {{ title }}
-author:
-description:
+title: Introducing sudo ISL
+author: Joseph Abrahams
+description: Introducing ISL's new Engineering Blog
+image:
 ---
 
 Excellent work getting started on this blog post!
@@ -39,4 +40,4 @@ function hello() {
 }
 ```
 
-Look forward to seeing your post live on [sudo.isl.co](https://sudo.isl.co/)!
+Look forward to seeing your post live on [sudo.isl.co](https://sudo.isl.co)!

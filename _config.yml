@@ -3,12 +3,12 @@
 
 # Site
 title: sudo ISL
-subtitle: We build the Internet
-description: Articles by the ISL engineering team
+subtitle: Engineering Ideas
+description: Articles by the ISL engineering team about design, development, Django, and Javascript.
 author: ISL
 language: en
 timezone: UTC
-url: http://sudo.isl.co
+url: https://sudo.isl.co
 root: /
 permalink: :title/
 source_dir: source
