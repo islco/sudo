@@ -39,6 +39,9 @@
     position: relative;
     z-index: 0;
 
+    // fixes issues with links spanning multiple lines
+    display: inline-block;
+
     &:after {
         content: '';
         width: 100%;
