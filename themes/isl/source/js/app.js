@@ -1,6 +1,7 @@
-/* jshint devel: true */
+/* jshint browser: true, devel: true, jquery: true */
+/* global IScroll */
 
-(function() {
+(function($) {
   'use strict';
 
   var slides;
@@ -8,13 +9,10 @@
   var slideMinHeight = 500;
   var slidesInitialized = false;
 
-  var resizeTimerNav;
-  var resizeTimerSlide;
-
   var keycode = {
     arrowUp: 38,
     arrowDown: 40
-  }
+  };
 
   // Toggle navigation
   function toggleNavigation() {
@@ -55,7 +53,7 @@
   // Check whether to initialize or destroy slides
   function resetSlides() {
     var requiresInitialization = $(window).width() >= slideMinWidth && $(window).height() > slideMinHeight;
-    
+
     if (requiresInitialization) {
       if (!slidesInitialized) {
         initializeSlides();
@@ -75,7 +73,7 @@
 
     // Scroll back to top to reset slide position
     window.scrollTo(0, 0);
-    
+
     slides = new IScroll('.slides-container', {
       snap: '.slide',
       snapSpeed: 750,
@@ -85,7 +83,7 @@
     $('.js-values').css('overflow', 'hidden');
 
     $('.slides-container').on('mousewheel', function(event) {
-      // if scroll has stopped, unlock 
+      // if scroll has stopped, unlock
       if (Math.abs(event.deltaY) === 1) {
         slideMoved = false;
         slides._transitionTime();
@@ -110,7 +108,7 @@
     });
 
     $('body').on('keyup', function(event) {
-      if(event.which == keycode.arrowDown) {
+      if (event.which === keycode.arrowDown) {
         slides.next();
         slideMoved = true;
         updateSlideNav('next');
@@ -118,7 +116,7 @@
     });
 
     $('body').on('keyup', function(event) {
-      if(event.which == keycode.arrowUp) {
+      if (event.which === keycode.arrowUp) {
         slides.prev();
         slideMoved = true;
         updateSlideNav('prev');
@@ -127,7 +125,7 @@
 
     slidesInitialized = true;
   }
-  
+
   function gotoSlides(slideNumber) {
     var $currentSlideNumber = $('.is-current').data('slide');
 
@@ -158,20 +156,22 @@
   }
 
   function easterEgg() {
-    console.log( ' _____  _____ _                       _   _                 _   _' );
-    console.log( '|_   _|/ ____| |          /\\         | | (_)               | | | |' );
-    console.log( '  | | | (___ | |         /  \\   _ __ | |_ _ _ __ ___   __ _| |_| |_ ___ _ __' );
-    console.log( '  | |  \\___ \\| |        / /\\ \\ | \'_ \| __| | \'_ \` _ \\ / _\` | __| __/ _ \\ \'__|' );
-    console.log( ' _| |_ ____) | |____   / ____ \\| | | | |_| | | | | | | (_| | |_| ||  __/ |' );
-    console.log( '|_____|_____/|______| /_/    \\_\\_| |_|\\__|_|_| |_| |_|\\__,_|\\__|\\__\\___|_|' );
-    console.log( '\n' );
-    console.log( 'Oh, hi there! We see you like viewing code! Well, ISL\'s engineering team Antimatter\n' );
-    console.log( 'is hiring! Mosey on over to http://isl.co/careers/ and take a look at our\n' );
-    console.log( 'engineering positions! Hope to hear from you soon!\n' );
+    console.log(' _____  _____ _        ______             _                      _             ');
+    console.log('|_   _|/ ____| |      |  ____|           (_)                    (_)            ');
+    console.log('  | | | (___ | |      | |__   _ __   __ _ _ _ __   ___  ___ _ __ _ _ __   __ _ ');
+    console.log('  | |  \\___ \\| |      |  __| | \'_ \\ / _` | | \'_ \\ / _ \\/ _ \\ \'__| | \'_ \\ / _` |');
+    console.log(' _| |_ ____) | |____  | |____| | | | (_| | | | | |  __/  __/ |  | | | | | (_| |');
+    console.log('|_____|_____/|______| |______|_| |_|\\__, |_|_| |_|\\___|\\___|_|  |_|_| |_|\\__, |');
+    console.log('                                     __/ |                                __/ |');
+    console.log('                                    |___/                                |___/ ');
+    console.log();
+    console.log('Oh, hi there! We see you like viewing code! Well, ISL is hiring!');
+    console.log('Mosey on over to http://isl.co/careers/ and take a look at our open positions!');
+    console.log('Hope to hear from you soon!');
   }
 
   $(document).ready(function() {
-    
+
     easterEgg();
 
     // Toggle nav menu
@@ -199,4 +199,4 @@
 
   });
 
-})();
+})(jQuery);

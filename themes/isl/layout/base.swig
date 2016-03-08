@@ -9,37 +9,27 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        {{ feed_tag('atom.xml') }}
+        {{ open_graph({}) }}
+        <meta property="og:image" content="{{ config.url + url_for('img/ogp.jpg') }}">
+        <meta name="twitter:image" content="{{ config.url + url_for('img/ogp-twitter.jpg') }}">
 
-        <!-- Open Graph data -->
-        <meta property="og:type" content="{% if is_post() %}article{% else %}website{% endif %}">
-        <meta property="og:site_name" content="{{ config.title }} &middot; {{ config.subtitle }}">
-        <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ config.title }} &middot; {{ config.subtitle }}{% endif %}">
-        <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif %}">
-        <meta property="og:image" content="{% if page.image %}{{ page.permalink }}{{ page.image }}{% else %}{{ config.url + '/img/sudoisl-share-facebook.jpg' }}{% endif %}">
-
-        <!-- Twitter Card data -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ config.title }} &middot; {{ config.subtitle }}{% endif %}">
-        <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif %}">
-        <meta name="twitter:image" content="{% if page.image %}{{ page.permalink }}{{ page.image }}{% else %}{{ config.url + '/img/sudoisl-share-facebook.jpg' }}{% endif %}">
-        
         <link rel="author" href="{{ url_for('humans.txt') }}">
         <link rel="apple-touch-icon" href="{{ url_for('img/apple-touch-icon.png') }}">
         <link rel="shortcut icon" href="{{ url_for('img/favicon.ico') }}">
         {{ css('css/app') }}
-        {% block styles %}{% endblock %}
-        <link rel="alternate" href="{{ config.root + 'atom.xml' }}" title="sudo ISL" type="application/atom+xml">
         <script src="https://use.typekit.net/wra7dkq.js"></script>
         <script>try{Typekit.load({ async: true });}catch(e){}</script>
     </head>
-    <body class="{{ page.layout }} {% if is_current('values') %}js-values{% endif %}">
+    <body class="{{ page.layout }}{% if is_current('values') %} js-values{% endif %}">
         {% include 'partials/header.swig' %}
         {% block content %}{% endblock %}
         {% include 'partials/footer.swig' %}
-
-        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-        {{ js('js/jquery.mousewheel.min.js') }}
-        {{ js('js/iscroll') }}
+        <!-- build:js /js/bundle.js -->
+        {{ js('js/vendor/jquery.slim') }}
+        {{ js('js/vendor/jquery.mousewheel') }}
+        {{ js('js/vendor/iscroll') }}
         {{ js('js/app') }}
+        <!-- endbuild -->
     </body>
 </html>

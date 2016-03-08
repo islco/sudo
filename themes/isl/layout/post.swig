@@ -9,7 +9,10 @@
                 <span class="article__byline">
                     {{ post.author }}<span class="text-separator"></span>{{ time_tag(post.date) }}
                 </span>
-                <h1 class="article__title">{{ post.title }}</h1>
+                <h1 class="article__title">
+                  {% if not post.published %}[DRAFT]{% endif %}
+                  {{ post.title }}
+                </h1>
 
                 {{ post.content }}
             </article>
