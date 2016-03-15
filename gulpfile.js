@@ -52,7 +52,9 @@ gulp.task('build', function() {
   ])))
 
   // uglify js
-  .pipe($.if('*.js', $.uglify()))
+  .pipe($.if('*.js', $.uglify({
+    preserveComments: 'license'
+  })))
 
   // rev assets
   .pipe($.if(['**/*', '!**/*.html', '!**/*.xml'], $.rev()))
