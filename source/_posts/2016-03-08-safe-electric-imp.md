@@ -1,11 +1,11 @@
 ---
 title: Safe Electric Imp
 author: Joseph Solomon
-description: "How to safely using the Electric Imp without saving sensitive data in GitHub"
+description: "How to safely use the Electric Imp without saving sensitive data in GitHub"
 ---
 
 
-We find it important to keep sensitive data out of our git repositories in GitHub because security best practices recommend never committing sensitive data to a git repository, unfortunately the imp developer workflow doesn't include a mechanism to account for this.
+We find it important to keep sensitive data out of our git repositories in GitHub. Security best practices recommend never committing sensitive data to a git repository; unfortunately, the imp developer workflow doesn't include a mechanism to account for this.
 
 We like using [Electric Imps](https://www.electricimp.com/) for many of our IoT devices. They are easy to setup and provide us with a quick server-device connection. There are some downsides to using the imps, but most of those have been solved by using their command line interface.
 
