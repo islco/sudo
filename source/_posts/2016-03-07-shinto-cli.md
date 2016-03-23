@@ -7,7 +7,7 @@ description: "Adding jinja templating to a set of files"
 
 ## Why another Jinja2 CLI Package?
 
-Shinto CLI was forked from the pip package [j2cli](https://github.com/kolypto/j2cli). 
+Shinto CLI was forked from the python package [j2cli](https://github.com/kolypto/j2cli). 
 The package is great for adding environment variables and other secrets to individual files, but we wanted to be able to use templating in all of the files in a project. Shinto CLI solves this problem by adding file globbing. (We also pulled some outstanding PRs.)
 
 ## How can you use it?
