@@ -4,13 +4,9 @@ author: 'Rodrigo Thauby'
 description: 'Using Unity for webGL content in a real-world scenario'
 ---
 
-A few months ago, we were approached by [Framestore](http://www.framestore.com/), a fellow agency to collaborate on a project for their client [Lockheed Martin](http://www.lockheedmartin.com/). This project was a large one: experiental and activation, plus an accompanying website design/build. I was lucky enough to be involved in the website portion.
+A few months ago, we were approached by [Framestore](http://www.framestore.com/), a fellow agency, to collaborate on a project for their client [Lockheed Martin](http://www.lockheedmartin.com/). This project was a large one, and involved a real world experiential component plus an accompanying website design/build. While we'd love to share all the details, this post will only focus on the website portion of the project and the associated challenges and lessons learned along the way.
 
-Here's a rundown of the challenges we faced and what we learned along the way.
-
-The site is called [Generation Beyond](https://www.generation-beyond.com/), and it's meant as an information piece on the current efforts lead by Lockheed in the space exploration field, and its educational possibilities.
-
-The client asked for an engaging and attractive website that would act as a hub for various related aspects of this project, one of which included an interactive display of the Orion space capsule and various information points of what a Mars team would have to face on the surface of the red planet.
+The site we delivered can be viewed at [Generation Beyond](https://www.generation-beyond.com/).  It is an information hub on Lockheed's current efforts in space exploration and their educational possibilities. One effort we highlighted was an interactive display of the Orion space capsule and various information points of what a Mars team would have to face on the surface of the red planet.
 
 ## The interactive experience
 
@@ -18,25 +14,21 @@ The experience was designed to be a 3D journey through space, starting at the be
 
 ## Choosing Technologies
 
-As far choosing technologies, we were essentially limited to two options: plain JavaScript manipulation of webGL on the canvas, most likely using something like [three.js](http://threejs.org/), and the second option was to leverage a game engine that could build for webGL.
+We were essentially limited to two options to accomplish the goal: plain JavaScript manipulation of webGL on the canvas, most likely using something like [three.js](http://threejs.org/), or, option \#2 - leverage a game engine that could build for webGL.
 
-We had previous success using three.js for our [Facebook F8 tends visualization](https://isl.co/2015/03/whats-trending-on-facebook-a-touchscreen-visualization-of-the-trends-api-live-at-f8/). Coming out of that project we observed that, while using a library like three.js can greatly simplify the development process of a 3d application and camera management, there was still a fair amount of "manual" labor involved.
+We have had previous success using three.js for our [Facebook F8 tends visualization](https://isl.co/2015/03/whats-trending-on-facebook-a-touchscreen-visualization-of-the-trends-api-live-at-f8/).  However, while using a library like three.js can greatly simplify the development process of a 3d application and camera management, there was still a fair amount of "manual" labor involved.  Thus, while javascript manupulation of webGL was possible, it did not seem feasible.  We had to use a game engine.  
 
-There were many aspects of the project that we would've had to deal with at a much lower level of abstraction if we had gone down the three.js route. For example, something that comes for free with Unity and has to be handled manually in three.js are object collision and Rigid Body physics. Other examples are: Shader creation, object/camera movement, and others.
+In choosing an engine there were a few key criteria that had to be addressed:
 
-Three.js is a great tool for abstracting [all the parts needed for an effective 3d rendering](https://dev.opera.com/articles/introduction-to-webgl-part-1/) on the browser, such as 3d object manipulation, shader construction and so on. At the end of the day though, three.js is much closer to bare metal than something like Unity or Unreal Engine are and we couldn't afford the kind of time needed to build it in that way.
-
-At this point we knew that a game engine would get us closer and more quickly to an end product, we had a few remaining questions that needed to be addressed:
-
-- Could we build for webGL.
-- Would the build sizes be acceptable.
-- How stable would the end product be.
-- How performance intensive would the end product be.
+- Could we build for webGL?
+- Would the build sizes be acceptable?
+- How stable would the end product be?
+- How performance intensive would the end product be?
 - Were there any other benefits of using a game engine?
 
 ## Advantages and obstacles
 
-The product is built by transpiling the C# codebase, through [emscripten](https://github.com/kripken/emscripten), into a low-level subset of JavaScript instructions. It works, and most surprisingly, it works *well*.
+The delivered product is built by transpiling the C# codebase, through [emscripten](https://github.com/kripken/emscripten), into a low-level subset of JavaScript instructions. It works, and most surprisingly, it works *well*.
 
 Our first order of business, then, was to analyze just how well-supported webGL builds were in Unity. We knew that it's in the bullet list of Unity's feaure list, but we wanted to know for certain if this was something we could rely on for a production build. It proved to be very robust and polished. On par with building for any other platform, with minimal adjustments necessary for us to leverage it.
 
