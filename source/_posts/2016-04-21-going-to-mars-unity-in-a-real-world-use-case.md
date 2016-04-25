@@ -4,13 +4,11 @@ author: 'Rodrigo Thauby'
 description: 'Using Unity for webGL content in a real-world scenario'
 ---
 
-A few months ago, we were approached by [Framestore](http://www.framestore.com/), a fellow agency, to collaborate on a project for their client [Lockheed Martin](http://www.lockheedmartin.com/). This project was a large one, and involved a real world experiential component plus an accompanying website design/build. While we'd love to share all the details, this post will only focus on the website portion of the project and the associated challenges and lessons learned along the way.
+A few months ago, we were approached by [Framestore](http://www.framestore.com/), a fellow agency, to collaborate on a project for their client [Lockheed Martin](http://www.lockheedmartin.com/). This project involved a real world experiential component plus an accompanying website design/build. While we'd love to share all the details, this post will only focus on the website portion of the project and the associated challenges and lessons learned along the way.
 
-The site we delivered can be viewed at [Generation Beyond](https://www.generation-beyond.com/).  It is an information hub on Lockheed's current efforts in space exploration and their educational possibilities. One effort we highlighted was an interactive display of the Orion space capsule and various information points of what a Mars team would have to face on the surface of the red planet.
+The site we delivered can be viewed at [Generation Beyond](https://www.generation-beyond.com/).  It is an information hub on Lockheed's current efforts in space exploration and their educational possibilities. 
 
-## The interactive experience
-
-The experience was designed to be a 3D journey through space, starting at the beginnings of space exploration, visiting the Orion capsule mid-journey, and finally making a stop on mars itself.
+One effort of Lockheed's we highlighted was an interactive display of the Orion space capsule and various information points of what a Mars team would have to face on the surface of the red planet.  The experience was designed to be a 3D journey through space, starting at the beginnings of space exploration, visiting the Orion capsule mid-journey, and finally making a stop on mars itself.
 
 ## Choosing Technologies
 
