@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="row align-center">
-        <div class="small-10 columns"> 
+        <div class="small-10 columns">
             <nav class="pagination">
                 {% if page.next %}
                 <a class="pagination__link" href="{{ url_for(page.next_link) }}">{{ __('< Older Posts') }}</a>
