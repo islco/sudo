@@ -4,7 +4,7 @@ author: 'Rodrigo Thauby'
 description: 'Using Unity for webGL content in a real-world scenario'
 ---
 
-A few months ago, we were approached by [Framestore](http://www.framestore.com/), a fellow agency to collaborate on a project for their client [Lockheed Martin](http://www.lockheedmartin.com/). This project was a large one: experiental and activation, plus an accompanying website design/build. I was lucky enough to be involved in the website portion.
+A few months ago, we were approached by [Framestore](http://www.framestore.com/) to collaborate on a project for their client [Lockheed Martin](http://www.lockheedmartin.com/). This project was a large one: experiental and activation, plus an accompanying website design/build. I was lucky enough to be involved in the website portion.
 
 Here's a rundown of the challenges we faced and what we learned along the way.
 
