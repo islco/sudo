@@ -38,6 +38,14 @@
 
     a {
         @include link-underline($red, $offwhite, 2px);
+
+        code {
+            color: $red;
+
+            &:hover {
+                color: darken($red, 12%);
+            }
+        }
     }
 
     blockquote {
