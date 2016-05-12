@@ -18,7 +18,7 @@ fetch('/polls/2/')
 })
 ```
 
-Notice that in this example we are processing the response as text, which is the default content type Django will reply with. What if we wanted to retrieve JSON with Fetch, but still reply with text HTML for browser navigations? With Fetch requests, we can set an 'Accept' header to request the `application/json` content type.
+Notice that in this example we are processing the response as text, which is the default content type Django will reply with. What if we wanted to retrieve JSON with Fetch, but still reply with text HTML for browser navigations? With Fetch requests, we can set an `Accept` header to request the `application/json` content type.
 
 In the Django application, chances are you'd use the `django.http.HttpRequest` function [`is_ajax()`](https://github.com/django/django/blob/6e749c21e77dc74af068c8e943a6e6850ae0bb24/django/http/request.py#L209) to check for an Ajax request, and respond with JSON. This function simply inspects the `X-Requested-With` header to see if the request was initiated with XMLHttpRequest. Unfortunately, this header isn't automatically set by Fetch because it's a convention, not a standard as described in [this Github issue](https://github.com/github/fetch/issues/17). 
 
