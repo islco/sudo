@@ -23,10 +23,10 @@
         <div class="small-10 columns">
             <nav class="pagination">
                 {% if page.next %}
-                <a class="pagination__link" href="{{ url_for(page.next_link) }}">{{ __('< Older Posts') }}</a>
+                <a class="pagination__link" href="{{ url_for(page.next_link) }}">{{ __('&lt; Older Posts') }}</a>
                 {% endif %}
                 {% if page.prev %}
-                <a class="pagination__link float-right" href="{{ url_for(page.prev_link) }}">{{ __('Newer Posts >') }}</a>
+                <a class="pagination__link float-right" href="{{ url_for(page.prev_link) }}">{{ __('Newer Posts &gt;') }}</a>
                 {% endif %}
             </nav>
         </div>
