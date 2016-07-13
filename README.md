@@ -6,7 +6,7 @@ The [Hexo](https://hexo.io/) Powered ISL Engineering Blog
 
     $ nvm use
     $ npm install
-    $ npm start
+    $ npm run dev
 
 ##  Write a New Post
 
