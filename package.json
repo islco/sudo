@@ -6,7 +6,7 @@
   "scripts": {
     "hexo": "hexo",
     "build": "gulp copy:js && hexo clean && hexo generate && gulp build",
-    "dev": "gulp copy:js && hexo server --debug --draft",
+    "dev": "gulp copy:js && hexo server --debug --draft --port $PORT",
     "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run build; fi"
   },
   "dependencies": {

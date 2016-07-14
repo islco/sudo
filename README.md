@@ -13,6 +13,10 @@ The [Hexo](https://hexo.io/) Powered ISL Engineering Blog
     $ nvm use
     $ npm run dev
 
+If you want to change the port that Hexo uses, set the $PORT environment variable:
+
+    $ PORT=8000 npm run dev
+
 ##  Write a New Post
 
 1. Create a new post by running `npm run hexo new post "my blog post title"`
@@ -25,7 +29,7 @@ sample post)
 
 ## Deployment
 
-Build site into `public` and cachebust the assets
+Build site into `public` and cachebust the assets:
 
     $ npm run build
 
