@@ -4,4 +4,4 @@ db.json
 *.log
 node_modules/
 public/
-themes/isl/source/js/vendor/
+themes/sudo/source/js/vendor/

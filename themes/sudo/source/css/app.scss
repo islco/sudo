@@ -1,12 +1,16 @@
-//
-// sudo ISL stylesheet
-//
+/*!
+ * sudo ISL
+ */
 
 @import "fonts";
 @import "settings";
-
-// Foundation Components
 @import "foundation";
+
+
+/**
+ * Foundation Components
+ */
+
 @include foundation-global-styles;
 // @include foundation-grid;
 @include foundation-flex-grid;
@@ -44,14 +48,29 @@
 // @include foundation-tooltip;
 // @include foundation-top-bar;
 
-// Mixins
-@import "mixins/type-utilities";
 
+/**
+ * Mixins
+ */
+
+@import "mixins/type-utilities";
+@import "mixins/wf-loading";
+
+
+/**
+ * Base
+ */
 
 @import "base";
 @import "highlight";
 
-@import "components/typography";
-@import "components/navigation";
-@import "components/media";
-@import "components/slide-block";
+
+/**
+ * Components
+ */
+
+@import "components/header";
+@import "components/nav";
+@import "components/posts";
+@import "components/slides";
+@import "components/footer";

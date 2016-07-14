@@ -1,21 +1,31 @@
-//  ISL Settings
-//  -----------------------------
-$font-family-serif: 'ff-tisa-web-pro', Garamond, Georgia, serif;
-$font-family-sans: 'conduit-itc', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
-$font-family-mono: 'source-code-pro', Monaco, Consolas, monospace;
-$font-family-display: 'playfair-display', serif;
+/**
+ * Fonts
+ */
 
-// Variables
+$font-family-serif: "ff-tisa-web-pro", Garamond, Georgia, serif;
+$font-family-sans: "conduit-itc", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$font-family-mono: "source-code-pro", Monaco, Consolas, monospace;
+$font-family-display: "playfair-display", serif;
+
+
+/**
+ * Colors
+ */
 
 $red: #ee6760;
 $offwhite: #f2f3f5;
 $navy: #273342;
-
 $text-black: #262729;
-$text-width: 42rem;
 
+
+/**
+ * Heights / Widths
+ */
+
+$navbar-height: 4rem;
+$footer-height: 4rem;
 $sidebar-width: 18rem;
-
+$text-width: 42rem;
 
 
 //  Foundation for Sites Settings
@@ -66,7 +76,7 @@ $sidebar-width: 18rem;
 // $global-width: rem-calc(1200);
 $global-font-size: 110%;
 // $global-lineheight: 1.5;
-// $primary-color: #2199e8;
+$primary-color: $navy;
 // $secondary-color: #777;
 // $success-color: #3adb76;
 // $warning-color: #ffae00;
@@ -76,7 +86,7 @@ $global-font-size: 110%;
 // $dark-gray: #8a8a8a;
 // $black: #0a0a0a;
 // $white: #fefefe;
-// $body-background: $white;
+$body-background: $navy;
 // $body-font-color: $black;
 $body-font-family: $font-family-serif;
 // $body-antialiased: true;
@@ -547,4 +557,3 @@ $header-sizes: (
 // $topbar-background: #eee;
 // $topbar-link-color: #fff;
 // $topbar-input-width: 200px;
-

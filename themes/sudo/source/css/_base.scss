@@ -1,0 +1,97 @@
+/*------------------------------------*\
+    #BASE
+\*------------------------------------*/
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    &:focus {
+        outline: $offwhite thin solid;
+    }
+
+    &:hover:focus {
+        outline: none;
+    }
+}
+
+::selection {
+  background: $offwhite;
+  color: $navy;
+  text-shadow: none;
+}
+
+
+/**
+ * Colors
+ */
+
+.bg-offwhite {
+    background: $offwhite;
+}
+
+.bg-red {
+    background: $red;
+}
+
+
+/**
+ * Text
+ */
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+
+/**
+ * Layout
+ */
+
+.block {
+    display: block;
+}
+
+.main {
+    min-height: calc(100vh - #{$footer-height});
+    padding-top: $navbar-height;
+
+    @include breakpoint(large) {
+        margin-left: $sidebar-width;
+        min-height: 100vh;
+        padding-top: 0;
+    }
+}
+
+
+/**
+ * Helpers
+ */
+
+.scroll-disable {
+    overflow: hidden;
+    height: 100%;
+
+    body {
+        overflow: hidden;
+        height: 100%;
+    }
+}
+
+.text-separator {
+    margin-left: .5em;
+    margin-right: .5em;
+
+    &:after {
+        content: '/';
+    }
+}

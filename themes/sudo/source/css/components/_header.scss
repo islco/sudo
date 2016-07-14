@@ -1,0 +1,45 @@
+/*------------------------------------*\
+    #HEADER
+\*------------------------------------*/
+
+.header {
+    background-color: $navy;
+    color: #fff;
+    font-family: $font-family-sans;
+    font-style: normal;
+    position: fixed;
+    text-transform: uppercase;
+    top: 0;
+    z-index: 10;
+
+    a {
+        color: #fff;
+    }
+
+    @include breakpoint(large) {
+        height: 100%;
+        width: $sidebar-width;
+        overflow: auto;
+    }
+}
+
+
+/**
+ * Sudo logo
+ */
+
+.brand {
+    height: rem-calc(30);
+}
+
+    .brand__logo {
+        display: inline-block;
+        height: rem-calc(30);
+        max-width: rem-calc(125);
+        padding-right: 1rem;
+        width: 100%;
+
+        @include breakpoint(large) {
+            padding-right: 0;
+        }
+    }
