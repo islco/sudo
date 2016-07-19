@@ -12,12 +12,13 @@ var cssnano = require('cssnano');
  */
 gulp.task('copy:js', function() {
   return gulp.src([
+    'node_modules/iscroll/build/iscroll.js',
     'node_modules/jquery/dist/jquery.slim.js',
     'node_modules/jquery-mousewheel/jquery.mousewheel.js',
-    'node_modules/iscroll/build/iscroll.js',
+    'node_modules/pjax/pjax.js'
   ])
 
-  .pipe(gulp.dest('themes/isl/source/js/vendor'));
+  .pipe(gulp.dest('themes/sudo/source/js/vendor'));
 });
 
 /**
@@ -47,8 +48,23 @@ gulp.task('build', function() {
 
   // autoprefix & minify css
   .pipe($.if('*.css', $.postcss([
-    autoprefixer({ browsers: ['> 1%']}),
-    cssnano()
+    autoprefixer({
+      browsers: [
+        'ie >= 10',
+        'ie_mob >= 10',
+        'ff >= 30',
+        'chrome >= 34',
+        'safari >= 7',
+        'opera >= 23',
+        'ios >= 7',
+        'android >= 4.4',
+        'bb >= 10'
+      ]
+    }),
+    cssnano({
+      safe: true,
+      mergeRules: false
+    })
   ])))
 
   // uglify js

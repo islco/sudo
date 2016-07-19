@@ -1,0 +1,13 @@
+/*------------------------------------*\
+    #WF-LOADING
+\*------------------------------------*/
+
+@mixin wf-loading() {
+    .wf-loading & {
+        opacity: 0;
+    }
+    .wf-active &,
+    .wf-inactive & {
+        transition: opacity 50ms ease;
+    }
+}

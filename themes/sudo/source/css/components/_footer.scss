@@ -1,0 +1,63 @@
+/*------------------------------------*\
+    #FOOTER
+\*------------------------------------*/
+
+.footer {
+    @include wf-loading();
+    align-items: center;
+    background-color: $navy;
+    color: #fff;
+    display: flex;
+    font-family: $font-family-sans;
+    height: $footer-height;
+    justify-content: center;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    @include breakpoint(large) {
+        display: none;
+    }
+
+    .header & {
+        display: none;
+
+        @include breakpoint(large) {
+            bottom: 0;
+            display: flex;
+            margin-top: 2rem;
+            padding-bottom: 2rem;
+            position: absolute;
+            width: 100%;
+            z-index: 2;
+        }
+
+        @media screen and #{breakpoint(large)} and (max-height: 500px) {
+            position: relative;
+        }
+    }
+}
+
+    .footer__byline {
+        margin-top: 0.5rem;
+        margin-right: 0.75rem;
+    }
+
+    .footer__logo {
+        height: rem-calc(30);
+        opacity: 1;
+        transition: opacity 200ms;
+
+        &:hover {
+            opacity: 0.85;
+        }
+    }
+
+
+/**
+ * ISL logo
+ */
+
+.isl-logo {
+    height: rem-calc(30);
+    width: rem-calc(45);
+}

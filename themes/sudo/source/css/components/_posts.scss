@@ -1,0 +1,172 @@
+/*------------------------------------*\
+    #POSTS
+\*------------------------------------*/
+
+.posts {
+    padding-bottom: 6rem;
+    padding-top: 6rem;
+}
+
+.post {
+    @include wf-loading();
+    max-width: $text-width;
+    padding-bottom: 6rem;
+    padding-top: 6rem;
+
+    a {
+        @include link-underline($red, $offwhite, 2px);
+    }
+
+    blockquote {
+        margin-top: 2rem;
+        padding: 1rem 1.5rem;
+
+        p {
+            font-size: 1.25em;
+            padding: 0;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    h2 {
+        @include alt-heading(1.5rem);
+        margin-top: 3rem;
+    }
+
+    p {
+        padding-top: 1rem;
+        margin-bottom: 1rem;
+
+    }
+
+    code {
+        border-radius: 3px;
+        margin: auto 2px;
+        padding: 0 4px;
+    }
+
+    code,
+    pre {
+        font-family: $font-family-mono;
+        font-size: 0.8rem;
+    }
+
+    figure.highlight {
+        background: #fff;
+        border-radius: 4px;
+        border: 1px solid darken($offwhite, 5%);
+        line-height: 1.6;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: rem-calc(25);
+        overflow: auto;
+        padding: 1.25rem;
+    }
+
+    img {
+        display: block;
+        margin: 2rem auto;
+    }
+
+    ::selection {
+      background: $navy;
+      color: $offwhite;
+    }
+}
+
+    .post__title {
+        @include main-heading($navy);
+    }
+
+    .post__byline {
+        @include alt-heading(1.1rem);
+        color: $navy;
+
+        .post & {
+            color: $red;
+        }
+    }
+
+.post__excerpt {
+    @include wf-loading();
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid lighten($red, 5%);
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    .post__title {
+        @include main-heading(#fff);
+        margin-bottom: 0;
+    }
+}
+
+
+/**
+ * Pagination
+ */
+
+.pagination {
+    margin-top: 3rem;
+}
+
+    .pagination__link {
+        @include alt-heading(1rem);
+        color: $navy;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: darken($navy, 10%);
+        }
+
+        &:focus {
+            outline: $navy thin solid;
+        }
+    }
+
+    .pagination__link--next {
+        &:before {
+          content: "< ";
+        }
+    }
+
+    .pagination__link--prev {
+        &:after {
+          content: " >";
+        }
+    }
+
+    .pagination__link-text {
+        color: $navy;
+        display: inline-block;
+        padding-bottom: 2px;
+        position: relative;
+        text-shadow: 1px 1px $red, -1px 1px $red;
+        z-index: 0;
+
+        &:hover {
+            color: darken($navy, 12%);
+        }
+
+        &:after {
+            border-bottom: 1px solid $navy;
+            bottom: 4px;
+            content: '';
+            left: 0;
+            position: absolute;
+            transition: width 200ms ease-out;
+            width: 100%;
+            z-index: -1;
+
+        }
+
+        &:hover:after {
+            border-color: darken($navy, 10%);
+        }
+    }

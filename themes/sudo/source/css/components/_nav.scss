@@ -1,9 +1,13 @@
+/*------------------------------------*\
+    #NAV
+\*------------------------------------*/
+
 .nav {
     align-items: center;
     background-color: $navy;
     display: flex;
     font-size: 1.5em;
-    height: rem-calc(75);
+    height: $navbar-height;
     padding: 0 2rem;
     position: fixed;
     width: 100%;
@@ -16,6 +20,11 @@
     }
 }
 
+
+/**
+ * Nav icon
+ */
+
 .nav-icon {
     cursor: pointer;
     display: block;
@@ -26,48 +35,50 @@
     }
 }
 
-.nav-icon__bar {
-    background-color: #fff;
-    display: block;
-    height: 2px;
-    margin-bottom: 4px;
-    position: relative;
-    transition: 200ms;
-    width: 20px;
+    .nav-icon__bar {
+        background-color: #fff;
+        display: block;
+        height: 2px;
+        margin-bottom: 4px;
+        position: relative;
+        transition: 200ms;
+        width: 20px;
 
-    .nav-icon.is-active & {
+        .nav-icon.is-active & {
+            &:nth-child(1) {
+                transform: translateY(6px) rotate(45deg);
+            }
 
-        &:nth-child(1) {
-            transform: translateY(6px) rotate(45deg);
-        }
+            &:nth-child(2) {
+                opacity: 0;
+            }
 
-        &:nth-child(2) {
-            opacity: 0;
-        }
-
-        &:nth-child(3) {
-            transform: translateY(-6px) rotate(-45deg);
+            &:nth-child(3) {
+                transform: translateY(-6px) rotate(-45deg);
+            }
         }
     }
-}
+
+
+/**
+ * Nav menu
+ */
 
 .nav-menu {
+    @include wf-loading();
     background-color: #1a2430;
     display: none;
     height: 100%;
     opacity: 0;
+    overflow: auto;
     padding-top: rem-calc(75);
     position: fixed;
     transition: opacity 200ms;
     width: 100%;
     z-index: 1;
-    overflow: auto;
 
-    &.is-available {
+    &.is-active {
         display: block;
-    }
-
-    &.is-visible {
         opacity: 1;
     }
 
@@ -81,15 +92,13 @@
     }
 }
 
-.nav-menu__item {
-    border-bottom: 2px solid $navy;
-    text-align: center;
-
-    a {
+    .nav-menu__item {
+        @include alt-heading(1.5rem);
+        border-bottom: 2px solid $navy;
         display: block;
         padding: 3rem 0;
+        text-align: center;
         transition: background-color 200ms;
-        @include alt-heading(1.5rem);
 
         &:hover {
             background-color: $red;
@@ -100,27 +109,13 @@
             padding: 1.5rem 0;
 
             &:hover,
-            &.is-active {
+            &.nav-menu__item--current {
                 background-color: lighten($navy, 10%);
             }
-            
+
             &:active {
                 background-color: lighten($navy, 15%);
                 transition: none;
             }
         }
     }
-}
-
-.pagination {
-    margin-top: 3rem;
-}
-
-.pagination__link {
-    @include alt-heading(1rem);
-    color: $navy;
-
-    &:hover {
-        color: darken($navy, 10%);
-    }
-}

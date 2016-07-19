@@ -1,19 +1,22 @@
-// Mixin for heading
+/*------------------------------------*\
+    #TYPE-UTILITIES
+\*------------------------------------*/
 
-%main-heading-base {
+/**
+ * Mixin for heading
+ */
+
+@mixin main-heading($text-color) {
+    color: $text-color;
     font-family: $font-family-display;
-    font-weight: bold;
     font-size: 1.7rem;
+    font-weight: bold;
     line-height: 1.2;
     margin-bottom: 3rem;
+
     @include breakpoint(medium) {
         font-size: 3rem;
     }
-}
-
-@mixin main-heading($text-color) {
-    @extend %main-heading-base;
-    color: $text-color;
 
     a {
         color: $text-color;
@@ -24,7 +27,10 @@
     }
 }
 
-// Mixin for alt heading
+
+/**
+ * Mixin for alt heading
+ */
 
 @mixin alt-heading($font-size) {
     font-family: $font-family-sans;
@@ -33,44 +39,45 @@
     text-transform: uppercase;
 }
 
-// Mixin for custom link underlines
 
-%link-underline-base {
+/**
+ * Mixin for custom link underlines
+ */
+
+@mixin link-underline($text-color, $background-color, $space) {
+    color: $text-color;
     position: relative;
+    text-shadow: 1px 1px $background-color, -1px 1px $background-color;
     z-index: 0;
 
     // fixes issues with links spanning multiple lines
     display: inline-block;
 
-    &:after {
-        content: '';
-        width: 100%;
-        position: absolute;
-        left: 0;
-        bottom: 4px;
-        z-index: 0;
-        transition: width 200ms ease-out;
-    }
-}
-
-@mixin link-underline($text-color, $background-color, $space) {
-    @extend %link-underline-base;
-    color: $text-color;
-    text-shadow: 1px 1px $background-color, -1px 1px $background-color;
     @if $space {
         padding-bottom: $space;
     }
 
-    &:hover {
+    &:hover,
+    &:hover:focus {
+        outline: none;
         color: darken($text-color, 12%);
     }
 
     &:active,
     &:focus {
         color: $text-color;
+        outline: $text-color thin solid;
     }
+
 
     &:after {
         border-bottom: 1px solid $text-color;
+        bottom: 4px;
+        content: '';
+        left: 0;
+        position: absolute;
+        transition: width 200ms ease-out;
+        width: 100%;
+        z-index: -1;
     }
 }

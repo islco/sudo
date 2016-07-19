@@ -4,7 +4,7 @@
 # Site
 title: sudo ISL
 subtitle: Engineering Ideas
-description: Articles by the ISL engineering team about design, development, hardware, Django, and JavaScript.
+description: Articles by the ISL engineering team about design, development, Django, and Javascript.
 author: ISL
 language: en
 timezone: UTC
@@ -16,7 +16,7 @@ public_dir: public
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
-theme: isl
+theme: sudo
 
 # Writing
 new_post_name: :year-:month-:day-:title.md

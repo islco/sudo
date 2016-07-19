@@ -1,0 +1,25 @@
+/*------------------------------------*\
+    #FONTS
+\*------------------------------------*/
+
+@font-face {
+    font-family: "conduit-itc";
+    src: url("../fonts/conduit-itc.eot");
+    src: url("../fonts/conduit-itc.eot?#iefix") format("embedded-opentype"),
+         url("../fonts/conduit-itc.woff") format("woff"),
+         url("../fonts/conduit-itc.ttf") format("truetype"),
+         url("../fonts/conduit-itc.svg#5ca41e3d31d3674b03dba8a2855abe29") format("svg");
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "playfair-display";
+    src: url("../fonts/playfair-display-bold.eot");
+    src: url("../fonts/playfair-display-bold.eot?#iefix") format("embedded-opentype"),
+         url("../fonts/playfair-display-bold.woff") format("woff"),
+         url("../fonts/playfair-display-bold.ttf") format("truetype"),
+         url("../fonts/playfair-display-bold.svg#798d8a621812f2b0a3cb96fce20cf246") format("svg");
+    font-style: normal;
+    font-weight: 700;
+}
