@@ -4,7 +4,7 @@ author: Joseph Solomon
 description: "A CSV exporter that doesn't explode in memory, runs in the background, and bundles files."
 ---
 
-Here at ISL, we work on a lot of Django projects. We find the package [Django import/export](https://django-import-export.readthedocs.io/en/latest/) to be very useful when we need to retrieve large datasets for clients. However, it does have it's shortcomings.
+Here at ISL, we work on a lot of Django projects. We find the package [Django import/export](https://django-import-export.readthedocs.io/en/latest/) to be very useful when we need to retrieve large datasets for clients. However, it does have its shortcomings.
 
 1. It loads all data into memory then writes it to a file.
 2. It runs on the request thread which can lead to timeouts for long running operations.
@@ -12,7 +12,7 @@ Here at ISL, we work on a lot of Django projects. We find the package [Django im
 
 As part of our [SELFIE](https://getselfiemirror.com) project, we wanted to be able to export email lists and photo albums for clients. Since some events can include thousands of selfies, we needed to have an export mechanism that solved all 3 of the above problems.
 
-We started on our journey by tring to patch *Django import/export* to fix those three issues and keep it backwards compatible; that proved to be a very difficult task. We then reevaluated our needs and realized that on *SELFIE* and our other projects where we use *Django import/export*, we only needed csv files with simple functionality outside of that.
+We started on our journey by tring to patch *Django import/export* to fix those three issues and keep it backwards compatible; that proved to be a very difficult task. We then reevaluated our needs and realized that on *SELFIE* and our other projects where we use *Django import/export*, we only needed CSV files with simple functionality outside of that.
 
 Enter the [Django CSV Exporter](https://github.com/istrategylabs/django-csv-exporter). Simple to use, and highly functional. Export a queryset with given parameters and get a link to the zip file emailed to you when it is ready.
 
@@ -66,12 +66,12 @@ def send_email_to_user(file_url, timedelta, emails, subject='Your data export is
 
 ### 1. It loads all data into memory then writes it to a file.
 
-Because we only support csv exports, we can create our csv file with appropriate headers before iterating over the queryset. Then as we generate each item's dataset, we write it's row into the csv immediately. We also write it's corresponding files to the zip file while processing.
+Because we only support CSV exports, we can create our CSV file with appropriate headers before iterating over the queryset. Then as we generate each item's dataset, we write its row into the CSV immediately. We also write its corresponding files to the zip file while processing.
 
 ### 2. It runs on the request thread which can lead to timeouts for long running operations.
 
-The ability to run this code in a django_rq worker allows you to respond immidately to requests and send users notifications later.
+The ability to run this code in a django_rq worker allows you to respond immedately to requests and send users notifications later.
 
 ### 3. It can't handle exporting uploaded files.
 
-We have talked about sending a link to a zip file this whole time but only mentioned writing to a zip file. Our `export` function creates a zip file that includes a csv and all the exported files in the same file structure as they are stored in your Django File Storage. Whenever you request an attribute that is a FileField (or ImageField or any other subclass of FileField), we write that file to our zip file archive and create a relative `=HYPERLINK('./photos/profile/asdf.jpg');` entry for our csv. Importing the csv into excel should allow you to open the files simply by clicking on the HYPERLINK reference.
+We have talked about sending a link to a zip file this whole time but only mentioned writing to a zip file. Our `export` function creates a zip file that includes a CSV and all the exported files in the same file structure as they are stored in your Django File Storage. Whenever you request an attribute that is a FileField (or ImageField or any other subclass of FileField), we write that file to our zip file archive and create a relative `=HYPERLINK('./photos/profile/asdf.jpg');` entry for our CSV. Importing the CSV into excel should allow you to open the files simply by clicking on the HYPERLINK reference.
