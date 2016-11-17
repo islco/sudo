@@ -6,33 +6,33 @@ description: "Creating a high performance leaderboard using Django and
 backed by Redis"
 ---
 
-We built a desktop game for one of our clients. In the game we expected a high traffic, with a number of simultaneous users playing the game. One of the core components of any game is keeping score. In addition to keeping score we need to create a leaderboard to show how players rank against one another.
+We built a desktop [game](https://isl.co/work/rival-road/) for one of our clients.  In the game we expected a high volume of traffic, with a number of simultaneous users playing the game. One of the core components of any game is keeping score. In addition to keeping score we need to create a leaderboard to show how players rank against one another.
 
-To accomplish we are using Django backed by Redis. However before we jump into using Redis let's test how we could do this with our DB Postgres and compare the performance of the two. 
+To accomplish we used Django, backed by Redis. However before we jump into using Redis let's test how we could do this with PostgreSQL and compare the performance of the two. 
 
-*Note there is additional caching we can perform that we will not cover in the post.
+*Note there is additional caching we can perform that will not be covered in the post.
 
-At first this can be very straightforward, we create a Player model and on the player model we save the score
+At first this can be very straightforward. We create a Player model and on the player model we save the score.
 
-Here is a basic example our model 
+Here is a basic example of the model:
 ```
 class Player(models.Model):
 
     name = models.CharField(
-        max_length=10, unique=True,
+        max_length=10,
         error_messages={'unique': 'Name not available.'})
     top_score = models.FloatField(db_index=True, default=0.0, blank=True)
 ```
 
 
-Now to create our leaderboard, all we need to is just sort by sore.
-We want to display top 25 players. To do so we can query our model:
+Now to create our leaderboard, all we need is to just sort by score.
+We want to display the top 25 players. To do so we can query our model:
 
 ```
 Player.objects.order_by('-top_score')[:25]
 ```
 
-To make things simple we can display these players in a Listview
+To make things simple we can display these players in a ListView
 and loop through the results in our template.
 
 
@@ -45,7 +45,7 @@ and loop through the results in our template.
 ```
 
 This will give us exactly what we need. 
-However when you have a DB with a lot players this can be start to be very slow operation.
+However when you have a DB with a lot players this can start to be very slow operation.
 
 We profiled our app with 100,000 players and here are the results
 
@@ -77,10 +77,10 @@ We profiled our app with 100,000 players and here are the results
 Total time: 0.000469 s
 
 
-This isn't bad for single request and a template doing only one thing but we can do better.
+This isn't bad for a single request and a template doing only one thing, but we can do better.
 
-We love Postgres it is fully featured, fast and reliable but maybe we should use a faster data store.
-The answer we were looking for is Redis, particularly the sorted sets datatype worked perfectly for this situation.
+We love Postgres as it is fully featured, fast and reliable but maybe we should use a more appropriate data store.
+The answer we were looking for is Redis, particularly the sorted sets datatype, worked perfectly for this situation.
 
 
 `Redis Sorted Sets are, similarly to Redis Sets, non repeating collections of Strings. The difference is that every member of a Sorted Set is associated with score, that is used in order to take the sorted set ordered, from the smallest to the greatest score. While members are unique, scores may be repeated.`
@@ -100,7 +100,7 @@ Add the following to your `settings.py` file.
         }
     },
 ```
-'leaderboard' is name of our cache configuration
+'leaderboard' is the name of our cache configuration
 
 
 In your `models.py` add the following import and set the `rediscon` variable for use later.
@@ -116,7 +116,7 @@ redis client directly.
 rediscon = get_redis_connection('leaderboard_default')
 ```
 
-For convenience override the save method. Now when we save or update a user we save them to redis in our sorted set.
+For convenience, override the save method. Now when we save or update a user we save them to redis in our sorted set.
 
 
 ```
@@ -129,20 +129,19 @@ For convenience override the save method. Now when we save or update a user we s
 [Redis Python Client zadd API](https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zadd) 
 
 
-Now that we have this setup and we are saving players' name and scores to redis, how can we use this data?
+Now that we have this setup and we are saving players' names and scores to redis, how can we use this data?
 To get our top 25 players again we can query redis doing the following:
 
 
 ```
-data = []
 leaderboard = rediscon.zrevrange('leaderboard', 0, 24, withscores=True)
 data = [{'name': players[0], 'top_score': players[1]} for players in leaderboard]
 ```
 
 
-We created an empty list called `data`. This will be used to for a dictionary of our leaderboard data. 
-Next we can a use build redis function [zrevrange](http://redis.io/commands/zrevrange) which will give us all the members in the given range sorted by score.
-Last using list comprehension we populate our list dictionaries.
+We created a list called `data`. This will be used to for a dictionary of our leaderboard data. 
+Next we can use built-in redis function [zrevrange](http://redis.io/commands/zrevrange) which will give us all the members in the given range sorted by score.
+Last, using a list comprehension we populate our list dictionaries.
 
 
 We can return `data` instead of our normal queryset and use the same template as before
@@ -188,7 +187,7 @@ There are few things to notice here.
 - There was a small increase in time on the view function.
 
 
-From here we can determine the majority of work being is being done by the server and redis and not the DB.
+From here we can determine the majority of work being done by the server and Redis, and not the database. An additional tradeoff is overhead during the save function, during both saving to the model, database and Redis.  Since saving happens less frequently we will take the greater performance in an area that is accessed far more often.
 
 
 So far we are pretty happy with these results.
@@ -197,7 +196,7 @@ So far we are pretty happy with these results.
 
 
 In our game we will more than likely need to display a user's individual rank to a player.
-We are going profile one more important function to see how redis matches up.
+We are going to profile one more important function to see how redis matches up.
 
 
 If we add this info to the context in one of our views it might look like the following.
@@ -209,9 +208,8 @@ def get_context_data(self, **kwargs):
     # For simplicity we are hardcoding the user, in practice
     # This will come from a request.
     player = Player.objects.get(name='FEG6MMR6HB')
-    aggregate = Player.objects.filter(
-        top_score__gt=player.top_score).aggregate(ranking=Count('top_score'))
-    context['rank'] = aggregate['ranking']
+    ranking = Player.objects.filter(top_score__gt=player.top_score).count()
+    context['rank'] = ranking
     return context
 ```
 
@@ -224,14 +222,14 @@ than the score of our current player.
 ## Time
 |                 |              |
 |-----------------|--------------|
-| User CPU time   | 326.645 msec |
-| System CPU time | 59.076 msec  |
-| Total CPU time  | 385.721 msec |
-| Elapsed time    | 485.044 msec | 
+| User CPU time   | 322.079 msec |
+| System CPU time | 58.778 msec  |
+| Total CPU time  | 380.857 msec |
+| Elapsed time    | 448.701 msec | 
 
 
 ### SQL
-62.78 ms (2 queries )
+4.06 ms (2 queries )
 
 
 ### View
@@ -240,8 +238,8 @@ than the score of our current player.
 
 |          |       |
 |----------|-------|
-| CumTime  | 0.453 |
-| Per      | 0.453 |
+| CumTime  | 0.417 |
+| Per      | 0.417 |
 | TotTime  | 0.000 |
 | Per      | 0.000 | 
 | Count    | 1     | 
@@ -263,7 +261,7 @@ Redis's sorted set has a built in function [zrevrank](http://redis.io/commands/z
 ```
 
 
-We pass in two values 'leaderboard' is the name of our sortedset. 'FEG6MMR6HB' is the player name.
+We pass in two values: 'leaderboard' is the name of our sortedset, 'FEG6MMR6HB' is the player name.
 The rank is 0-based so we add 1 to the rank.
 [Redis Python Client zrevrank API](https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zrevrank) 
 
@@ -299,7 +297,7 @@ The rank is 0-based so we add 1 to the rank.
 Total time: 0.006418 s
 
 
-Much like before this has proved to be significantly faster, with no DB calls.
+Much like before this has proved to be significantly faster, with no database calls.
 
 
 To Wrap up
