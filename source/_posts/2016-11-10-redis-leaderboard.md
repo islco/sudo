@@ -6,18 +6,22 @@ description: "Creating a high performance leaderboard using Django and
 backed by Redis"
 ---
 
-We built a desktop [game](https://isl.co/work/rival-road/) for one of our clients.  In the game we expected a high volume of traffic, with a number of simultaneous users playing the game. One of the core components of any game is keeping score. In addition to keeping score we need to create a leaderboard to show how players rank against one another.
+We were recently contracted to build a web based [game](https://isl.co/work/rival-road/) for one of our clients.  We expected both high volumes of traffic, with a number of simultaneous users. Thus, we knew from the beginning that performance would be critical.  
 
-To accomplish we used Django, backed by Redis. However before we jump into using Redis let's test how we could do this with PostgreSQL and compare the performance of the two. 
+Like many games, one of the core components of our game was keeping score for each player. In addition to keeping individual scores we needed to create a leaderboard to show how players rank against one another and encourage users to compete.
+
+To accomplish we used Django, backed by Redis. However, before we jump into using Redis we wanted to have a baseline benchmark. Thus, let's test how this would perform with PostgreSQL and later compare the performance of the two. 
+
 
 *Note there is additional caching we can perform that will not be covered in the post.
 
+
 At first this can be very straightforward. We create a Player model and on the player model we save the score.
+
 
 Here is a basic example of the model:
 ```
 class Player(models.Model):
-
     name = models.CharField(
         max_length=10,
         error_messages={'unique': 'Name not available.'})
@@ -25,15 +29,13 @@ class Player(models.Model):
 ```
 
 
-Now to create our leaderboard, all we need is to just sort by score.
-We want to display the top 25 players. To do so we can query our model:
+Now, to create our leaderboard, all we need is to just sort by score.  In our case, we want to display the top 25 players. To do so we first query our model:
 
 ```
 Player.objects.order_by('-top_score')[:25]
 ```
 
-To make things simple we can display these players in a ListView
-and loop through the results in our template.
+Next, we simply display these players in a ListView and loop through the results in the template.
 
 
 ```
@@ -45,12 +47,17 @@ and loop through the results in our template.
 ```
 
 This will give us exactly what we need. 
-However when you have a DB with a lot players this can start to be very slow operation.
-
-We profiled our app with 100,000 players and here are the results
+However when you have a DB with a lot players this can be a very slow operation.
 
 
-### Time
+We profiled our app with 100,000 players and here are the results. 
+Below we have 3 results:
+Total Time is a break of time it took the applicaiton to perform an action. Elapsted time is the time from start to finish since the request was made.
+SQL is the number of queries and the time it took to execute the queries.
+View is the time it took run all the functions associated with the view.
+
+
+### Total Time
 |                 |              |
 |-----------------|--------------|
 | User CPU time   | 105.966 msec |
@@ -66,6 +73,7 @@ We profiled our app with 100,000 players and here are the results
 ### View
 /django/views/generic/base.py in view(61)
 
+time: 0.000469 s
 
 |          |       |
 |----------|-------|
@@ -74,21 +82,23 @@ We profiled our app with 100,000 players and here are the results
 | TotTime  | 0.000 |
 | Per      | 0.000 | 
 | Count    | 1     | 
-Total time: 0.000469 s
 
 
-This isn't bad for a single request and a template doing only one thing, but we can do better.
 
-We love Postgres as it is fully featured, fast and reliable but maybe we should use a more appropriate data store.
-The answer we were looking for is Redis, particularly the sorted sets datatype, worked perfectly for this situation.
+
+This isn't bad for a single request and a template doing only one thing, but we knew we could do better.
+
+
+Postgres is fully featured, fast, and reliable.  However, given our specific use case we felt that maybe we should use a more appropriate data store.
+The answer we were looking for was Redis, particularly the sorted sets datatype, which worked perfectly for this situation.
 
 
 `Redis Sorted Sets are, similarly to Redis Sets, non repeating collections of Strings. The difference is that every member of a Sorted Set is associated with score, that is used in order to take the sorted set ordered, from the smallest to the greatest score. While members are unique, scores may be repeated.`
 ~ [Data Types](http://redis.io/topics/data-types)
 
 
-To setup Redis to work with Django you need two packages redis-py and django-redis
-Add the following to your `settings.py` file.
+To setup Redis with Django you need two packages redis-py and django-redis.
+Next, add the following to your `settings.py` file.
 
 
 ```
@@ -103,20 +113,15 @@ Add the following to your `settings.py` file.
 'leaderboard' is the name of our cache configuration
 
 
-In your `models.py` add the following import and set the `rediscon` variable for use later.
-`django-redis` is great for doing basic caching by getting and setting keys. However
-we are going use some more advanced features of redis which will require us to use the 
-redis client directly.
+Finally, in your `models.py` add the following import and set the `rediscon` variable for use later. While, `django-redis` is great for doing basic caching - getting and setting keys - However there are more advanced features of redis which require us to use the redis client directly.  `django_redis` provides interface `get_redis_connection` to expose the client.
 
 
 ```
- from django_redis import get_redis_connection
-
-
+from django_redis import get_redis_connection
 rediscon = get_redis_connection('leaderboard_default')
 ```
 
-For convenience, override the save method. Now when we save or update a user we save them to redis in our sorted set.
+For convenience, overrode the save method for convenience. Thus, when we save or update a user we store them in redis in our sorted set.
 
 
 ```
@@ -129,8 +134,9 @@ For convenience, override the save method. Now when we save or update a user we 
 [Redis Python Client zadd API](https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zadd) 
 
 
-Now that we have this setup and we are saving players' names and scores to redis, how can we use this data?
-To get our top 25 players again we can query redis doing the following:
+
+Now that we have this setup and are saving players' names and scores to redis, how can we use this data?
+To get our top 25 players again we can query redis with the following:
 
 
 ```
@@ -139,19 +145,22 @@ data = [{'name': players[0], 'top_score': players[1]} for players in leaderboard
 ```
 
 
-We created a list called `data`. This will be used to for a dictionary of our leaderboard data. 
-Next we can use built-in redis function [zrevrange](http://redis.io/commands/zrevrange) which will give us all the members in the given range sorted by score.
-Last, using a list comprehension we populate our list dictionaries.
+We can use a built-in redis function [zrevrange](http://redis.io/commands/zrevrange) which will give us all the members in the given range sorted by score.
+Next, using list comprehension we populate our list of dictionaries that contains the data for the leaderboard.. 
 
 
-We can return `data` instead of our normal queryset and use the same template as before
 
 
-Let's profile our app now
+We return `data` instead of our normal queryset and use the same template as before
+
+
+
+
+Let's profile our app now.
 ## The Results:
 
 
-### Time:
+### Total Time:
 
 
 |                 |             |
@@ -169,7 +178,9 @@ Let's profile our app now
 
 
 ### View
-/django/views/generic/base.py in view(61)
+`/django/views/generic/base.py in view(61)`
+
+time: 0.005919 s
 
 |          |       |
 |----------|-------|
@@ -178,28 +189,26 @@ Let's profile our app now
 | TotTime  | 0.000 |
 | Per      | 0.000 | 
 | Count    | 1     | 
-Total time: 0.005919 s
+
 
 
 There are few things to notice here.
-- This is 7 times faster than doing almost the same thing with Postgres
-- We have zero SQL queries
+- This is 7 times faster than comparable functionality with Postgres.
+- We have zero SQL queries. 
 - There was a small increase in time on the view function.
 
 
-From here we can determine the majority of work being done by the server and Redis, and not the database. An additional tradeoff is overhead during the save function, during both saving to the model, database and Redis.  Since saving happens less frequently we will take the greater performance in an area that is accessed far more often.
-
-
-So far we are pretty happy with these results.
+From this we can determine the majority of work being done by the server and Redis, and not the database. An additional tradeoff here is overhead during the save function; for both saving to the model, database, and Redis.  However, since saving happens less frequently it seems reasonable to take the increased performance in an area that is accessed far more often and give up performance in the less critical component.  We calculate leaders far more than we make new users.  
 
 
 
-
-In our game we will more than likely need to display a user's individual rank to a player.
+The leaderboard wasn’t the only area where switching to redis resulted in considerable performance gains.  
+In the game we  also needed to display a user's individual rank to each player.
 We are going to profile one more important function to see how redis matches up.
 
 
-If we add this info to the context in one of our views it might look like the following.
+
+Add this info to the context in one of the view.
 
 
 ```
@@ -213,19 +222,19 @@ def get_context_data(self, **kwargs):
     return context
 ```
 
-What we are doing here is counting the number of players with a score greater
-than the score of our current player.
+The logic here is to simply count the number of players with a score greater than the score of the current player.
 
 
 ## The Results:
 
-## Time
-|                 |              |
-|-----------------|--------------|
-| User CPU time   | 322.079 msec |
-| System CPU time | 58.778 msec  |
-| Total CPU time  | 380.857 msec |
-| Elapsed time    | 448.701 msec | 
+## Total Time
+
+|                  |              |
+|------------------|--------------|
+| User CPU time    | 322.079 msec |
+| System CPU time  | 58.778 msec  |
+| Total CPU time   | 380.857 msec |
+| Elapsed time     | 448.701 msec | 
 
 
 ### SQL
@@ -233,18 +242,19 @@ than the score of our current player.
 
 
 ### View
-/django/views/generic/base.py in view(61)
+`/django/views/generic/base.py in view(61)`
+
+time: 0.453381 s
+
+|           |       |
+|-----------|-------|
+| CumTime   | 0.417 |
+| Per       | 0.417 |
+| TotTime   | 0.000 |
+| Per       | 0.000 | 
+| Count     | 1     | 
 
 
-|          |       |
-|----------|-------|
-| CumTime  | 0.417 |
-| Per      | 0.417 |
-| TotTime  | 0.000 |
-| Per      | 0.000 | 
-| Count    | 1     | 
-
-Total time: 0.453381 s
 
 
 
@@ -269,40 +279,42 @@ The rank is 0-based so we add 1 to the rank.
 ## The Results
 
 
-### Time
-|                 |             |
-|-----------------|-------------|
-| User CPU time   | 8.408 msec  |
-| System CPU time | 1.262 msec  |
-| Total CPU time  | 9.670 msec  |
-| Elapsed time    | 15.835 msec | 
+### Total Time
+
+|                  |             |
+|------------------|-------------|
+| User CPU time    | 8.408 msec  |
+| System CPU time  | 1.262 msec  |
+| Total CPU time   | 9.670 msec  |
+| Elapsed time     | 15.835 msec | 
 
 
 ### SQL
 0 SQL queries 
 
 ### View
-/django/views/generic/base.py in view(61)
+`/django/views/generic/base.py in view(61)`
 
-|          |       |
-|----------|-------|
-| CumTime  | 0.006 |
-| Per      | 0.006 |
-| TotTime  | 0.000 |
-| Per      | 0.000 | 
-| Count    | 1     | 
+time: 0.006418 s
+
+|           |       |
+|-----------|-------|
+| CumTime   | 0.006 |
+| Per       | 0.006 |
+| TotTime   | 0.000 |
+| Per       | 0.000 | 
+| Count     | 1     | 
 
 
 
-Total time: 0.006418 s
 
 
 Much like before this has proved to be significantly faster, with no database calls.
 
 
-To Wrap up
-*TODO*
-*Add link to github*
+
+### To Wrap up
+In our specific use case, of creating the leaderboard and individual rankings, switching to Redis simplified our code, and improved critical performance.   Redis contained the functionality we desired out of the box and saved us from reinventing the wheel using Django queries that were not performant for the scale of the application. 
 
 
 
