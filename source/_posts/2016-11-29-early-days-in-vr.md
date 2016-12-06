@@ -18,7 +18,13 @@ We have had some experience using Unity and Unreal in the past and were comforta
 
 We were already very comfortable with the asset creation pipeline of mesh creation in Blender, texturing in Substance Designer/Painter and bringing all those assets into UE4. There isn't much worth note here aside from a few pretty screenshots, enjoy!
 
-{% picnic.png 'Liz, an ISL engineer writing code' %}
+{% asset_img barn.png 'A barn' %}
+
+{% asset_img house.png 'A country house' %}
+
+{% asset_img picnic.png 'A picnic table' %}
+
+{% asset_img platform.png 'A cornhole platform' %}
 
 ## Challenges
 
