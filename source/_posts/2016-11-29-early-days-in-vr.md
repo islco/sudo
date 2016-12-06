@@ -4,9 +4,9 @@ author: 'Rodrigo Thauby'
 description: 'Something'
 ---
 
-There are a lot of gamers here in our team. We've played all the big games together online: Counter-Strike, Diablo, GTA, Overwatch, you name it. Naturally some of us have spent a fair amount delving into game development as more than just a hobby as well.
+There are a lot of gamers here in our team. We've played all the big games together online: Counter-Strike GO, Diablo III, GTA V, Overwatch, you name it. Naturally some of us have also spent a fair amount delving into game development as more than just a hobby.
 
-Further learning and exploration led us to try our hand at VR. We came up with the idea of building a very simple game; and what could be simpler than throwing bean bags into a hole? So we set out to build it. We thought it would also be a good idea to try making it multiplayer, because why make it too easy on ourselves?
+Further learning and exploration led us to try our hand at VR. We came up with the idea of building a very simple game; and what could be simpler than throwing bean bags into a hole? So we set out to build a Cornhole video game. We thought it would also be a good idea to try making it multiplayer, because why make it too easy on ourselves?
 
 We bought 2 HTC Vives and got to work.
 
@@ -41,7 +41,7 @@ Other aspects were much more obscure and took some finessing.
 
 ### Positioning
 
-Positioning of the HTC Vive came out of the box as a blueprint component. A blueprint component is a ready-made piece of visual code that is made with integration points (an API) ready to be incorporated into your game. It comes ready to inform your game on each tick on the position of each controller, which buttons have been pressed, the orientation of each controller, and other useful data. Unfortunately, one of the problems we ran into early on was that this component was never designed with multiplayer support in mind. As soon as we had two clients connected into the same session, the component would try to control both clients at the same time, so we had to implement our own solution.
+Positioning of the HTC Vive came out of the box as a blueprint component. A blueprint component is a ready-made piece of visual code that is made with integration points (an API) ready to be incorporated into your game. It comes ready to inform your game on each tick on the position of each controller, which buttons have been pressed, the orientation of each controller, and other useful data. Unfortunately, one of the problems we ran into early on was that this component was never designed with multiplayer support in mind, a known bug with the engine itself that hadn't been resolved by the time of writing this blog post. As soon as we had two clients connected into the same session, the component would try to control both clients at the same time, so we had to implement our own solution.
 
 Luckily, the Unreal engine had us covered. There was an API for listening to Motion Controllers per controller index (effectively, per player), so we could then only replicate that information to our servers selectively, thus isolating the data sent out to the server to the player in question.
 
@@ -49,8 +49,30 @@ As a side note, we also implemented a neat feature where we copied the position 
 
 ### Eyeballing is (sadly) the best way
 
-Proportions in VR are everything. Initially we made great efforts in trying to keep every model in accurate meassurments, but it quickly became apparent that it wouldn't work. As soon as we imported everything into the game engine, things lose their objectivity and manual tweaking is the best way to go. We did, however, maintain a constant ratio to scale all elements to each other in order to maintain some consistency.
+Proportions in VR are everything. When you are walking around in a virtual world, the perception of space becomes paramount to the user. There is a lot to be said about this, and a lot of ideas about interesting gameplay could be explored when thinking about the relationship between size and space. For our purposes, we just wanted to get the dimensions as realistically as possible.
+
+Initially we made great efforts in trying to keep every model in accurate measurements, but it quickly became apparent that it wouldn't work. As soon as we imported everything into the game engine, things lost their objectivity and manual tweaking ended up being the best way to go. We did, however, maintain a constant ratio to scale all elements to each other in order to maintain some consistency.
 
 ### Menus in 3D
 
+One of the features that we wanted to achieve, but ultimately dropped, was fully interactable in-game menus. We wanted to be able to control all the UI from within the VR world so that the player wouldn't have to put the headset on and off every time they changed settings or paused the game, etc. Unfortunately, we realized this was easier said than done, and it quickly became one of the first features to hit the chopping block because we didn't have enough time to complete it. There were no built-in components within the UE4 engine that let us achieve this easily, so we would have to create our own, and no one had built a plugin to do this.
+
+We did create a rough draft of this feature that did fully work. It functioned like this: the menu would be displayed in front of the user in 3D space, as a flat screen, the player would use the motion controller as a laser pointer of sorts and use the trigger to "click" on the buttons. The inner workings of it were complicated. We needed to do simple but convoluted math and logic to determine which button you intended to hit. It quickly became unwieldy, and refactoring it for a modular approach would have consumed precious development time that would've been better served on the game itself.
+
+Chopping block it was then.
+
 ### Multiplayer, Sessions & Replication
+
+One of the core features we wanted, and the one that took us longest to get right, was networked multiplayer support. UE4 has a robust built-in network support system, designed for AAA games. It's designed using a Client/Server architecture, and RPC (Remote Procedure Calls) via UDP (User Datagram Protocol). The engine gives the developer full control over how your code will be propagated over the network reliably as it uses a concept called "Authoritative Server", which essentially means that the server is always the single source of truth.
+
+Understanding this client/server model was key to structuring our code properly and turned out to be the biggest challenge to us. Most of the documentation provided by Epic Games regarding the best practices and recommended approach of Networking fall into three categories: C++ code, Blueprints examples, and more academic conceptual topics.
+
+In our specific case, we had one simple bug which disabled inputs from the client upon connection to the Host. It was a simple matter of asking the Server to enable inputs, in the Player controller upon connection. The catch was, that this needed to happen *on the server side, and inside the player controller, then replicated to every client*. This is something we assumed was done automatically, and was not described anywhere we could find anywhere on the documentation.
+
+Getting started on networking is hard. C++ code was inaplicable to our case, so that was out. After reading and understanding the high level concepts, you naturally look at the examples and use them as a basis for your case. Sadly, we found that some example are incomplete, outdated, or don't work as expected. This is understandable, Epic Games is doing a laudable job in keeping up with the demand of an Open Source community, but it's definitely discouraging when you find these.
+
+As you try to adapt those examples to your case, you often find that veering away slightly is enough to find yourself in a place where you simply can't find the answers to your problem. Forums are hard to navigate and don't have all the answers. There are numerous threads with varying degrees of knowledge and false answers which will take you down paths that just waste your time.
+
+In addition, there's the problem where the community has now split. you will find answers to your problem in C++ flavor, but not in Blueprint flavor. Depending on your issue you can get some insight from a solution in another flavor, but it's a rare occurrence.
+
+In general, UE4 is an extremely powerful and flexible engine. It is a beast. It can and will do anything you ask it to do, you just need to really understand *how* it works. That is the key. To do this effectively, you need time to learn it. Documentation helps tremendously, but at this stage Epic Games needs to catch up.
