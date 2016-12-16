@@ -57,7 +57,7 @@ Initially we made great efforts in trying to keep every model in accurate measur
 
 ### Multiplayer, Sessions & Replication
 
-One of the core features we wanted, and the one that took us longest to get right, was networked multiplayer support. UE4 has a robust built-in network support system, designed for AAA games. It's designed using a Client/Server architecture, and RPC (Remote Procedure Calls) via UDP (User Datagram Protocol). The engine gives the developer full control over how your code will be propagated over the network reliably as it uses a concept called "Authoritative Server", which essentially means that the server is always the single source of truth.
+As described above, one of the core features we wanted (and the one that took us longest to get right) was networked multiplayer support. UE4 has a robust built-in network support system, designed for AAA games. It's designed using a Client/Server architecture, and RPC (Remote Procedure Calls) via UDP (User Datagram Protocol). The engine gives the developer full control over how your code will be propagated over the network reliably as it uses a concept called "Authoritative Server", which essentially means that the server is always the single source of truth.
 
 Understanding this client/server model was key to structuring our code properly and turned out to be the biggest challenge to us. Most of the documentation provided by Epic Games regarding the best practices and recommended approach of Networking fall into three categories: C++ code, Blueprints examples, and more academic conceptual topics.
 
