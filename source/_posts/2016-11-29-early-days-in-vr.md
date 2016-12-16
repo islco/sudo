@@ -14,7 +14,7 @@ I had personally been developing in the Unreal Engine for over a year. It was mo
 
 We had also put in some time in Unity in the past, so we felt comfortable using both engines. We analyzed how complex it would've been to integrate the HTC Vive into either engine, and determined that it was well supported on both. The decision then was mostly based on our comfort level with leveraging either engine. Furthermore, we thought we could achieve a higher degree of visual fidelity and immersion with the Unreal Engine over Unity with little effort.
 
-## Easy stuff
+## The Easy stuff
 
 We were already very comfortable with the asset creation pipeline of mesh creation in Blender, texturing in Substance Designer/Painter and bringing all those assets into UE4. There isn't much worth note here aside from a few pretty screenshots. Enjoy!
 
