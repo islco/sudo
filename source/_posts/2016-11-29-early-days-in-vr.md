@@ -1,7 +1,7 @@
 ---
 title: 'Early days in VR'
 author: 'Rodrigo Thauby'
-description: 'Something'
+description: 'How we developed our first VR game on Unreal Engine 4 for the HTC VIVE'
 ---
 
 There are a lot of gamers here in our team. We've played all the big games together online: Counter-Strike GO, Diablo III, GTA V, Overwatch, you name it. Naturally some of us have also spent a fair amount delving into game development as more than just a hobby.
