@@ -71,11 +71,13 @@
 
     img {
         display: block;
-        margin: 2rem auto;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     blockquote,
     figure.highlight,
+    img,
     p,
     ul,
     > table {

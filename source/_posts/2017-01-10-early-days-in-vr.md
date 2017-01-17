@@ -20,22 +20,8 @@ We had also put time into Unity in the past, so we felt comfortable using both e
 
 We were already very comfortable with the asset creation pipeline of mesh creation in Blender, texturing in Substance Designer/Painter and bringing all those assets into UE4. There isn't much worth note here aside from a few pretty screenshots. Enjoy!
 
-```html
-<div class="row">
-    <div class="small-12 medium-6 columns">
-        {% asset_img barn.png 'A barn' %}
-    </div>
-    <div class="small-12 medium-6 columns">
-        {% asset_img house.png 'A country house' %}
-    </div>
-    <div class="small-12 medium-6 columns">
-        {% asset_img picnic.png 'A picnic table' %}
-    </div>
-    <div class="small-12 medium-6 columns">
-        {% asset_img platform.png 'A cornhole platform' %}
-    </div>
-</div>
-```
+<div class="row"><div class="small-12 medium-6 columns">{% asset_img barn.png 'A
+VR barn' %}</div><div class="small-12 medium-6 columns">{% asset_img house.png 'A VR country house' %}</div><div class="small-12 medium-6 columns">{% asset_img cornhole-board.png 'A VR cornhole board' %}</div><div class="small-12 medium-6 columns">{% asset_img picnic-table.png 'A VR picnic table' %}</div></div>
 
 ## Challenges
 
