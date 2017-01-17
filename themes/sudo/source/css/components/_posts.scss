@@ -12,13 +12,13 @@
     max-width: $text-width;
     padding-bottom: 6rem;
     padding-top: 6rem;
+    color: $navy;
 
     a {
         @include link-underline($red, $offwhite, 2px);
     }
 
     blockquote {
-        margin-top: 2rem;
         padding: 1rem 1.5rem;
 
         p {
@@ -33,13 +33,19 @@
 
     h2 {
         @include alt-heading(1.5rem);
+    }
+
+    h2, h3 {
         margin-top: 3rem;
+        margin-bottom: 1rem;
     }
 
     p {
-        padding-top: 1rem;
         margin-bottom: 1rem;
+    }
 
+    ul {
+        margin-bottom: 1rem;
     }
 
     code {
@@ -69,6 +75,45 @@
     img {
         display: block;
         margin: 2rem auto;
+    }
+
+    > table {
+
+        margin-bottom: 1rem;
+
+        thead {
+            background-color: $navy;
+            color: $white;
+        }
+
+        tbody {
+
+        }
+
+        tr {
+
+        }
+
+        th {
+            border: 1px solid $navy;
+            padding: 15px 20px 10px 20px;
+            text-align: left;
+            font-family: $font-family-sans;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        td {
+            border: 1px solid $navy;
+            padding: 10px 20px;
+            text-align: left;
+            font-family: $font-family-sans;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: $navy;
+        }
     }
 
     ::selection {
