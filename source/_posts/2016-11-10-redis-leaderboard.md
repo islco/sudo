@@ -47,35 +47,24 @@ This will give us exactly what we need. However, when you have a DB with a lot p
 
 To test, we profiled our app with 100,000 players. Below we have 3 results:
 
-- Total Time - a breakdown of the time it took the applicaiton to perform an
-individual action. Note: Elapsed time additionally accounts for network
-round-trip time.
-- SQL - the number of queries and the time to execute those queries.
-- View - the time it took run all the functions associated with the view.
+- User CPU - The time the it took your application to process the request.
+- System CPU - The time it took the operating system to process the request 
+- Total CPU - This is the combination of the User + System CPU Time.
+- Elapsed - The time since the request; this include time for the network round-trip.
+- View Execution - The time it took run all the functions associated with the view.
+- SQL - The number of queries and the time to execute those queries.
 
-| Total Time      |              |
-|-----------------|--------------|
-| User CPU time   | 105.966 msec |
-| System CPU time | 45.221 msec  |
-| Total CPU time  | 151.187 msec |
-| Elapsed time    | 172.241 msec |
 
-### SQL
+## The Results
 
-6.21 ms (1 query )
-
-### View
-
-/django/views/generic/base.py in view(61)
-time: 0.000469 s
-
-|          |       |
-|----------|-------|
-| CumTime  | 0.000 |
-| Per      | 0.000 |
-| TotTime  | 0.000 |
-| Per      | 0.000 |
-| Count    | 1     |
+| Resource       | Time               |
+|----------------|--------------------|
+| User CPU       | 105.966 ms         |
+| System CPU     | 45.221 ms          |
+| Total CPU      | 151.187 ms         |
+| Elapsed        | 172.241 ms         |
+| View Execution | 0.469 ms           |
+| SQL            | 1 query in 6.21 ms |
 
 This isn't bad for a single request and a template doing only one thing, but we knew we could do better.
 
@@ -88,6 +77,8 @@ Postgres is fully featured, fast, and reliable.  However, given our specific use
 To setup Redis with Django you need two packages, _redis-py_ and _django-redis_.  Add the following to your `settings.py` file.
 
 ```python
+CACHES = {
+    ...
     "leaderboard_default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": REDIS_URL,
@@ -95,8 +86,10 @@ To setup Redis with Django you need two packages, _redis-py_ and _django-redis_.
             "CONNECTION_POOL_KWARGS": {"decode_responses": True}
         }
     },
+}
+
 ```
-'leaderboard' is the name of our cache configuration
+'leaderboard_default' is the name of our cache configuration
 
 Finally, in your `models.py` add the following import and set the `rediscon` variable for use later. While, `django-redis` is great for doing basic caching (getting and setting keys), there are more advanced features that require the use of the redis client directly. `django_redis` provides the interface `get_redis_connection` to expose the client.
 
@@ -128,29 +121,16 @@ We return `data` instead of our normal queryset and use the same template as bef
 
 Let's profile our app now.
 
-| Total Time      |             |
-|-----------------|-------------|
-| User CPU time   | 17.577 msec |
-| System CPU time | 2.775 msec  |
-| Total CPU time  | 20.352 msec |
-| Elapsed time    | 23.072 msec |
+## The Results:
 
-### SQL
-
-0 SQL queries
-
-### View
-
-`/django/views/generic/base.py in view(61)`
-time: 0.005919 s
-
-|          |       |
-|----------|-------|
-| CumTime  | 0.006 |
-| Per      | 0.006 |
-| TotTime  | 0.000 |
-| Per      | 0.000 |
-| Count    | 1     |
+| Resource       | Time      |
+|----------------|-----------|
+| User CPU       | 17.577 ms |
+| System CPU     | 2.775 ms  |
+| Total CPU      | 20.352 ms |
+| Elapsed        | 23.072 ms |
+| View Execution | 5.919 ms  |
+| SQL            | 0 queries |
 
 There are few things to notice here.
 
@@ -177,30 +157,16 @@ def get_context_data(self, **kwargs):
 
 The logic here is to simply count the number of players with a score greater than the score of the current player.
 
-| Total Time       |              |
-|------------------|--------------|
-| User CPU time    | 322.079 msec |
-| System CPU time  | 58.778 msec  |
-| Total CPU time   | 380.857 msec |
-| Elapsed time     | 448.701 msec |
+## The Results:
 
-
-### SQL
-
-4.06 ms (2 queries )
-
-### View
-
-`/django/views/generic/base.py in view(61)`
-time: 0.453381 s
-
-|           |       |
-|-----------|-------|
-| CumTime   | 0.417 |
-| Per       | 0.417 |
-| TotTime   | 0.000 |
-| Per       | 0.000 |
-| Count     | 1     |
+| Resource       | Time                  |
+|----------------|-----------------------|
+| User CPU       | 322.079 ms            |
+| System CPU     | 58.778 ms             |
+| Total CPU      | 380.857 ms            |
+| Elapsed        | 448.701 ms            |
+| View Execution | 453.381ms             |
+| SQL            |  2 queries in 4.06 ms |
 
 Now to compare this to Redis.
 
@@ -216,29 +182,16 @@ Redis's sorted set has a built in function [zrevrank](http://redis.io/commands/z
 
 We pass in two values: 'leaderboard' is the name of our sortedset, 'FEG6MMR6HB' is the player name. The rank is zero-based so we add 1 to the rank.
 
-| Total Time       |             |
-|------------------|-------------|
-| User CPU time    | 8.408 msec  |
-| System CPU time  | 1.262 msec  |
-| Total CPU time   | 9.670 msec  |
-| Elapsed time     | 15.835 msec |
+## The Results
 
-### SQL
-
-0 SQL queries
-
-### View
-
-`/django/views/generic/base.py in view(61)`
-time: 0.006418 s
-
-|           |       |
-|-----------|-------|
-| CumTime   | 0.006 |
-| Per       | 0.006 |
-| TotTime   | 0.000 |
-| Per       | 0.000 |
-| Count     | 1     |
+| Resource       | Time      |
+|----------------|-----------|
+| User CPU       | 8.408 ms  |
+| System CPU     | 1.262 ms  |
+| Total CPU      | 9.670 ms  |
+| Elapsed        | 15.835 ms |
+| View Execution | 6.418 ms  |
+| SQL            | 0 queries |
 
 Much like before this has proved to be significantly faster, with no database calls.
 
