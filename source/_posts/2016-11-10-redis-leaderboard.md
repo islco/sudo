@@ -47,11 +47,13 @@ This will give us exactly what we need. However, when you have a DB with a lot p
 
 To test, we profiled our app with 100,000 players. Below we have 3 results:
 
-- Total Time - a breakdown of the time it took the applicaiton to perform an
-individual action. Note: Elapsed time additionally accounts for network
-round-trip time.
-- SQL - the number of queries and the time to execute those queries.
-- View - the time it took run all the functions associated with the view.
+- User CPU - The time the it took your application to process the request.
+- System CPU - The time it took the operating system to process the request 
+- Total CPU - This is the combination of the User + System CPU Time.
+- Elapsed - The time since the request; this include time for the network round-trip.
+- View Execution - The time it took run all the functions associated with the view.
+- SQL - The number of queries and the time to execute those queries.
+
 
 ## The Results
 
