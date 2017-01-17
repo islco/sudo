@@ -53,9 +53,7 @@ round-trip time.
 - SQL - the number of queries and the time to execute those queries.
 - View - the time it took run all the functions associated with the view.
 
-### Total Time
-
-| Foo             |              |
+| Total Time      |              |
 |-----------------|--------------|
 | User CPU time   | 105.966 msec |
 | System CPU time | 45.221 msec  |
@@ -130,9 +128,7 @@ We return `data` instead of our normal queryset and use the same template as bef
 
 Let's profile our app now.
 
-### Total Time
-
-|                 |             |
+| Total Time      |             |
 |-----------------|-------------|
 | User CPU time   | 17.577 msec |
 | System CPU time | 2.775 msec  |
@@ -181,9 +177,7 @@ def get_context_data(self, **kwargs):
 
 The logic here is to simply count the number of players with a score greater than the score of the current player.
 
-## Total Time
-
-|                  |              |
+| Total Time       |              |
 |------------------|--------------|
 | User CPU time    | 322.079 msec |
 | System CPU time  | 58.778 msec  |
@@ -222,9 +216,7 @@ Redis's sorted set has a built in function [zrevrank](http://redis.io/commands/z
 
 We pass in two values: 'leaderboard' is the name of our sortedset, 'FEG6MMR6HB' is the player name. The rank is zero-based so we add 1 to the rank.
 
-### Total Time
-
-|                  |             |
+| Total Time       |             |
 |------------------|-------------|
 | User CPU time    | 8.408 msec  |
 | System CPU time  | 1.262 msec  |
