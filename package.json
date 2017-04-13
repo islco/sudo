@@ -1,7 +1,7 @@
 {
   "private": true,
   "hexo": {
-    "version": "3.1.1"
+    "version": "3.3.1"
   },
   "scripts": {
     "hexo": "hexo",
@@ -22,9 +22,9 @@
     "gulp-rev-replace": "0.4.0",
     "gulp-uglify": "1.1.0",
     "gulp-useref": "3.0.7",
-    "hexo": "3.1.1",
+    "hexo": "3.3.1",
     "hexo-browsersync": "0.2.0",
-    "hexo-generator-feed": "1.1.0",
+    "hexo-generator-feed": "1.2.0",
     "hexo-generator-index": "0.1.2",
     "hexo-generator-sitemap": "1.0.1",
     "hexo-renderer-marked": "0.2.4",
