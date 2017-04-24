@@ -5,7 +5,6 @@ The [Hexo](https://hexo.io/) Powered ISL Engineering Blog
 ## Installation
 
     $ nvm install
-    $ npm install -g npm@3.x
     $ npm install
 
 ## Quick Start
