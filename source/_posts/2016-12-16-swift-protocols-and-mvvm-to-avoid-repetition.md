@@ -6,8 +6,8 @@ permalink: swift-mvvm-protocols
 ---
 
 When we were laying the groundwork for our latest iOS application Viable, we wanted to learn from our previous iOS applications. We set out two goals:
-- Avoid the Massive View Controller Syndrome
-- Have as little repetitive code possible
+- Avoid the Massive View Controller syndrome
+- Have as little repetitive code as possible
 
 The initial Viable screens we got from our design team has a lot of similar screens. Take a look at a simplified example below. Both screens have a `UILabel` on top and a `UITableView` displaying search results. The `UITableViewCell` for each result is very similar. They share more or less the same layout but display different data.
 {% asset_img mvvm-scenario.png 'Two similar screens that have the same UI elements' %}
