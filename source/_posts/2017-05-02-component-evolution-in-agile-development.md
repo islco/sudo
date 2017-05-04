@@ -47,9 +47,9 @@ Then in our component template, we can easily apply specific classes based on th
 
 ```
 <section class=”side-by-side
-{% if object.content_size == 'body' %}
+    {% if object.content_size == 'body' %}
         side-by-side--body
-{% endif %}”>
+    {% endif %}”>
 ```
 
 The result is a more extensible Side by Side component that works for our new use-case with greater copy length for a more supplemental, informational block.
