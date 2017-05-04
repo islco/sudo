@@ -43,7 +43,7 @@ class WeatherData: NSObject {
     var minTemp: Double
     var maxTemp: Double
     var summary: String
-    
+
     init(rawUnixTime: Double, minTemp: Double, maxTemp: Double, summary: String) {
         self.rawUnixTime = rawUnixTime
         self.minTemp = minTemp
@@ -65,17 +65,17 @@ The snippet above grabs one `WeatherData` object based on its index and then ins
 ```Swift
 init(_ weatherData: WeatherData) {
     self.weatherData = weatherData
-    
+
     rawUnixTime = weatherData.rawUnixTime
     minTemp = Int(weatherData.minTemp.rounded())
     maxTemp = Int(weatherData.maxTemp.rounded())
     summary = weatherData.summary
-    
+
     guard let unixTime = rawUnixTime else {
         print("Invalid unix time")
         return
     }
-    
+
     let date = Date(timeIntervalSince1970: unixTime)
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .medium
@@ -91,30 +91,30 @@ return weatherViewModel.cellInstance(tableView, indexPath: indexPath)
 
 This method creates the table view cell from the index, which in this scenario is our view. This is achieved by casting the cell to a `WeatherTableViewCell`. After getting the cell instance, the cell's `setup()` method is called to populate the cell with data from the view model.
 
- 
+
 ```Swift   
 func cellInstance(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! WeatherTableViewCell
     cell.setup(self)
-    
+
     return cell
 }
 ```
 
-A peak at the `setup()` method can be seen below.
+A peek at the `setup()` method can be seen below.
 
 
 ```Swift
 func setup(_ viewModel: WeatherViewModel) {
     self.selectionStyle = .none
-    
+
     guard let minTemp = viewModel.minTemp,
         let maxTemp = viewModel.maxTemp,
         let summary = viewModel.summary else {
             print("ViewModel is invalid")
             return
     }
-    
+
     dateLabel.text = viewModel.dateString
     minTempLabel.text = String(minTemp)
     maxTempLabel.text = String(maxTemp)
