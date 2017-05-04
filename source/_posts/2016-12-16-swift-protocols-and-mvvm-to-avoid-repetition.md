@@ -2,7 +2,7 @@
 title: Protocols and MVVM in Swift to avoid repetition
 author: Thomas Degry
 description: How we used protocols and MVVM in our latest iOS app to avoid MVC syndrome and repetition
-permalink: swift-mvvm
+permalink: swift-mvvm-protocols
 ---
 
 When we were laying the groundwork for our latest iOS application Viable, we wanted to learn from our previous iOS applications. We set out two goals:
@@ -15,10 +15,10 @@ Viable had six different types of data to display, creating a new view controlle
 A big if/else statement in `tableView:cellForRowAtIndexPath:` to render a different cell depending on the data type might be the first solution that comes to mind but that wouldn't scale well and would also result in a long and ugly method.
 
 ## MVVM and Protocols to the rescue
-Tyalor Guidon wrote an introductory blog post to MVVM if you're not familiar with the pattern that you can find [here](/swift-mvvm). This is the tl;dr version applied to our [demo project](https://github.com/istrategylabs/swift-mvvm-protocols) that you can find on Github.
+Taylor Guidon wrote an introductory blog post to MVVM if you're not familiar with the pattern that you can find [here](/swift-mvvm). This is the tl;dr version applied to our [demo project](https://github.com/istrategylabs/swift-mvvm-protocols) that you can find on Github.
 
 ### Models
-Our models, in the model group, will hold the data, we have a `DomainModel` and a `ProductModel`, both are structs. The `DomainModel` will hold the domain name and it's status. The `ProductModel` will hold the product name, product rating, product logo and the product price.
+Our models, in the model group, will hold the data, we have a `DomainModel` and a `ProductModel`, both are structs. The `DomainModel` will hold the domain name and its status. The `ProductModel` will hold the product name, product rating, product logo and the product price.
 
 ### View Models
 For every model we have a view model. In our example that means we have a `DomainViewModel` and a `ProductViewModel`. View models are supposed to take data from a model and do any transformations to them to present them to the user. For instance, our `ProductViewModel` will take the float `4.99` price and convert it into a string that reads `$4.99`.
@@ -27,7 +27,7 @@ For every model we have a view model. In our example that means we have a `Domai
 In our example our views are our two UITableViewCells. We have a DomainTableViewCell and a ProductTableViewCell. The layout if these is done in the app's storyboard. Both classes are simple, they have just one `setup` method that takes a view model. The view model is used to populate the cell, for instance take the readable price ($4.99) and assing that to a `UILabel` text property.
 
 ## Glueing it together
-Now that we listed the 3 pilars, let's bring them together. To combine our view controller and our view models we'll use a protocol. Protocols define which variables and methods a class or struct should have when it wants to conform to the protocol. Think of it as a contract, if you want to conform to protocol X you need to implement everything that protocol X dictates. For the domains and products we created a `CellRepresentable` protocol. It has one property and one method for the sake of semplicity. Both of our view models, the `DomainViewModel` and `ProductViewModel` conform to this protocol.
+Now that we listed the 3 pillars, let's bring them together. To combine our view controller and our view models we'll use a protocol. Protocols define which variables and methods a class or struct should have when it wants to conform to the protocol. Think of it as a contract, if you want to conform to protocol X you need to implement everything that protocol X dictates. For the domains and products we created a `CellRepresentable` protocol. It has one property and one method for the sake of simplicity. Both of our view models, the `DomainViewModel` and `ProductViewModel` conform to this protocol.
 ```swift
 protocol CellRepresentable {
     var rowHeight: CGFloat { get }
