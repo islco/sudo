@@ -21,7 +21,7 @@ Taylor Guidon wrote an introductory blog post to the MVVM pattern that you can f
 Our models, in the model group, will hold the data, we have a `DomainModel` and a `ProductModel`, both are structs. The `DomainModel` will hold the domain name and its status. The `ProductModel` will hold the product name, product rating, product logo and the product price.
 
 ### View Models
-For every model we have a view model. In our example that means we have a `DomainViewModel` and a `ProductViewModel`. View models are supposed to take data from a model and do any transformations to them to present them to the user. For instance, our `ProductViewModel` will take the float `4.99` price and convert it into a string that reads `$4.99`.
+Every data model has its respective view model. In our example that means we have a `DomainViewModel` and a `ProductViewModel`. View models take data from a model and apply transformations to the view before we present them to the user. For instance, our `ProductViewModel` will take the float `4.99` price and convert it into a string that reads `$4.99`.
 
 ### Views
 In our example our views are our two UITableViewCells. We have a DomainTableViewCell and a ProductTableViewCell. The layout if these is done in the app's storyboard. Both classes are simple, they have just one `setup` method that takes a view model. The view model is used to populate the cell, for instance take the readable price ($4.99) and assing that to a `UILabel` text property.
