@@ -11,7 +11,7 @@ When we were laying the groundwork for our latest iOS application Viable, we wan
 
 The initial Viable screens we got from our design team has a lot of similar screens. Take a look at a simplified example below. Both screens have a `UILabel` on top and a `UITableView` displaying search results. The `UITableViewCell` for each result is very similar. They share more or less the same layout but display different data.
 {% asset_img mvvm-scenario.png 'Two similar screens that have the same UI elements' %}
-Viable has six different types of data to display, creating a new view controller for each type would mean a lot of duplicate code. Ideally we has one `SearchResultsViewController` that was capable of displaying all six data types.
+Viable has six different types of data to display, creating a new view controller for each type would mean a lot of duplicate code. Ideally we have one `SearchResultsViewController` that was capable of displaying all six data types.
 A big if/else statement in `tableView:cellForRowAtIndexPath:` to render a different cell depending on the data type might be the first solution that comes to mind but that wouldn't scale well and would also result in a long and ugly method.
 
 ## MVVM and Protocols to the rescue
