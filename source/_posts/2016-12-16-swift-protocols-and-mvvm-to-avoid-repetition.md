@@ -15,7 +15,7 @@ Viable had six different types of data to display, creating a new view controlle
 A big if/else statement in `tableView:cellForRowAtIndexPath:` to render a different cell depending on the data type might be the first solution that comes to mind but that wouldn't scale well and would also result in a long and ugly method.
 
 ## MVVM and Protocols to the rescue
-Tyalor Guidon wrote an introductory blog post to MVVM if you're not familiar with the pattern that you can find [here](/swift-mvvm). This is the tl;dr version applied to our [demo project](https://github.com/istrategylabs/mvvm) that you can find on Github.
+Tyalor Guidon wrote an introductory blog post to MVVM if you're not familiar with the pattern that you can find [here](/swift-mvvm). This is the tl;dr version applied to our [demo project](https://github.com/istrategylabs/swift-mvvm-protocols) that you can find on Github.
 
 ### Models
 Our models, in the model group, will hold the data, we have a `DomainModel` and a `ProductModel`, both are structs. The `DomainModel` will hold the domain name and it's status. The `ProductModel` will hold the product name, product rating, product logo and the product price.
@@ -56,4 +56,4 @@ extension SearchresultsViewController: UITableViewDelegate {
 }
 ```
 
-And that's all there is to it. We have one tiny view controller that is capable of displaying a variety of cells with different row heights! You can find the demo project [on ISL's Github page](https://github.com/istrategylabs/mvvm). If you have suggestions or questions, don't hesitate to tweet [@thomasdegry](https://twitter.com/thomasdegry).
+And that's all there is to it. We have one tiny view controller that is capable of displaying a variety of cells with different row heights! You can find the demo project [on ISL's Github page](https://github.com/istrategylabs/swift-mvvm-protocols). If you have suggestions or questions, don't hesitate to tweet [@thomasdegry](https://twitter.com/thomasdegry).
