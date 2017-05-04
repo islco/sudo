@@ -3,6 +3,7 @@ title: Protocols and MVVM in Swift to avoid repetition
 author: Thomas Degry
 description: How we used protocols and MVVM in our latest iOS app to avoid MVC syndrome and repetition
 permalink: swift-mvvm-protocols
+date: 2017-05-04 06:40:12
 ---
 
 When we were laying the groundwork for our latest iOS application Viable, we wanted to learn from our previous iOS applications. We set out two goals:
