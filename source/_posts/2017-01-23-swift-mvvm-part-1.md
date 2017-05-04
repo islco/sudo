@@ -2,6 +2,7 @@
 title: Swifty MVVM Part 1
 author: Taylor Guidon
 description: "Building a flexible MVVM pattern for ISL"
+permalink: swift-mvvm-intro
 ---
 
 {% asset_img Swift_logo.png 'Swift Logo' %}
@@ -128,4 +129,4 @@ Once the `setup()` function has ran, all of the data has been loaded into the ta
 ## Why MVVM?
 
 
-Check that out in Part 2 here!
+[Check that out in Part 2 here!](/swift-mvvm-protocols)
