@@ -6,7 +6,7 @@ description: "A glimpse into how agile software development allows ISL Engineeri
 
 
 ## Agile Keeps Us Nimble
-Here at ISL, we practice agile development methodologies when building large-scale software products. Being agile gives us the flexibility to rapidly respond to feedback as we build out solutions. Continuous testing, integration and feedback allows our team to iteratively deliver software that is constantly evolving. We recently saw these benefits during our regular Design / Dev sync meeting. During development, we discovered that a reusable component we built would have to evolve as our use for it had evolved.
+Here at ISL, we practice agile development methodologies when building large-scale software products. Being agile gives us the flexibility to rapidly respond to feedback as we build out solutions. Continuous testing, integration and feedback allows our team to iteratively deliver software that is constantly evolving. We recently saw these benefits during our regular Design / Dev sync meeting for our client the [Service Year Alliance](https://serviceyear.org/). Our team is building the software platform to help Service Year bring paid, full-service opportunities to young Americans. During development, we discovered that a reusable component we built would have to evolve as our use for it had evolved.
 
 
 ## Component Driven Development
@@ -59,7 +59,8 @@ The result is a more extensible Side by Side component that works for our new us
 
 
 ## Happy Clients
-Our team’s ability to practice effective and empowered decision-making allowed us to quickly pivot when we saw a new application of our component. In the end, our client was happy with our cross-team collaboration and quick implementation of the solution.
+Our team’s ability to practice effective and empowered decision-making allowed us to quickly pivot when we saw a new application of our component. In the end, our client was happy with our cross-team collaboration and quick implementation of the solution. Take a look at our Service Year [case study](https://isl.co/case-studies/service-year/) to learn more about our iterative design and development approach and our partnership with the Service Year Alliance!
+
 <pre>
 {% asset_img tada.png "Tada Emoji" %}
 </pre>
