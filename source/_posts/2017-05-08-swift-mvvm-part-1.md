@@ -1,7 +1,7 @@
 ---
 title: Swifty MVVM Part 1
 author: Taylor Guidon
-description: "Building a flexible MVVM pattern for ISL"
+description: "Introduction to building a flexible MVVM pattern for ISL"
 permalink: swift-mvvm-intro
 ---
 
@@ -11,13 +11,15 @@ permalink: swift-mvvm-intro
 
 MVVM (Model-View-ViewModel) is a software design pattern that recently has risen in popularity with iOS developers. At a high level, MVVM separates the data from the view, with a view model formatting or converting the data to a format the view understands. This removes the logic from the view, creating very flexible code. MVVM works extremely well when handling data from an API.
 
+{% asset_img mvvm.png 'MVVM Flow' %}
+
 MVVM can be broken down into three pieces:
 
 * **Model** - Data for view
 * **View Model** - Formats the data
 * **View** - Presents the data
 
-In part one of this blog post I will cover a few key MVVM concepts and show you what they look like in Swift. In part two of this post, we will show you how and why we used MVVM in the creation of our first iPhone app, [Viable.af](https://viable.af).
+In part one of this blog post, we will cover a few key MVVM concepts and show you what they look like in Swift. In part two, we will show you how and why we used MVVM in the creation of our first iPhone app, [Viable.af](https://viable.af).
 
 
 ## How we did it
