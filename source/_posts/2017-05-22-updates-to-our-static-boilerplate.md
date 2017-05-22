@@ -10,7 +10,7 @@ Most of the new projects we start at ISL rely on one of our boilerplates. For ou
 mo-static has served us well over the past years. It has been the starting point of numerous projects and our developers loved it. But at the same time some it's default dependencies were starting to become a little old fashioned thanks to our rapidly evolving industry. It was powered by Gulp, Browserify to bundle Javscript, Foundation CSS and JavaScript, jQuery (because Foundation JavaScript relies on it) and Sass.
 
 ## The Changes
-Andrew's article ["what you should bring to a code review"](/what-you-should-bring-to-a-code-review/) talks about AMOP, an acronym we came up with as a team, our team tries to write and evaluate code with those principles in mind. We had to admit that the mo-static architecture as described above could do a better job in helping us achieve those goals. Especially the **P**erformance part could be better out of the box.
+Andrew's article ["what you should bring to a code review"](/what-you-should-bring-to-a-code-review/) talks about AMOP, an acronym we came up with as a team, our team tries to write and evaluate code with those principles in mind. We had to admit that the mo-static architecture as described above could do a better job in helping us achieve those goals. Especially the **A**ccsessibility and **P**erformance parts could be better out of the box.
 
 
 ### CSS
