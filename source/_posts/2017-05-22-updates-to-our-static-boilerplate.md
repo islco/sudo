@@ -22,7 +22,7 @@ Since Foundation's CSS is pretty expansive started looking for alternatives. The
 | SUIT CSS       |  44K  |    20K   |       3.9K      |
 
 
-#### JavaScript
+### JavaScript
 While we didn't love Foundation's CSS, its JavaScript side even a bigger issue. Foundation requires jQuery so before we could even initialize Foundation we also had to include the entire jQuery library. But since Foundation doesn't support jQuery 3.x yet (although they are talking about it as you can see in [this issue](https://github.com/zurb/foundation-sites/issues/8834)), for a lot of its plugins we also had to include `jquery-migrate`. All of this meant an exorbitant amount of Kilobytes again. Especially considering we, just as a lot of other developers, are trying to move away from jQuery and try to write as much vanilla JavaScript as possible. There's no denying that there are useful plugins in the Foundation JavaScript toolbelt but often there are lightweight alternatives available that don't rely on this many dependencies. By removing Foundation we wanted to push our front-end developers to use those alternatives.
 
 On a higher level there were two other things we wanted to achieve with this update:
@@ -32,7 +32,7 @@ On a higher level there were two other things we wanted to achieve with this upd
 
 Since Browserify's code splitting abilities are limited and it doesn't support tree shaking it seemed like a good time to make the switch to Webpack. Our `webpack.config.js` file is rather simple at the moment but it's ready to expand on for when a project requires a more complex configuration.
 
-#### Environment Configuration
+### Environment Configuration
 Sometimes we want to pass environment variables to our client side. Up until now we were using `nconf` to achieve exactly that but we switched it out for `node-convict` [by Mozilla](https://github.com/mozilla/node-convict). Key advantages of `node-convict` are the ability to define some basic validation on these variables and to write a few sentences of documentation for each variable. That way we can document decisions we took for our future selves and coworkers, adding to the **M**aintainability of the AMOP acronym.
 
 
