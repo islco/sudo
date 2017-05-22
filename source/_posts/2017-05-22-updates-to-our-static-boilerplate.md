@@ -37,7 +37,7 @@ Sometimes we want to pass environment variables to our client side. Up until now
 
 
 ### Testing
-We added testing to the boilerplate as well as including default tests for the generated projects. These boilerplate tests are integrated into CircleCi to help verify the changes we make to the project template still produce a valid generated project.
+We added testing to the boilerplate as well as including default tests for the generated projects. These boilerplate tests are integrated into CircleCi to help verify the changes we make to the project template that still produces a valid generated project.
 
 For the project tests, it's difficult to provide out-of-the-box tests since the projects will differ wildly from each other. Regardless, we still wanted an easy way for our devs to get started with testing and have a baseline for continuous integration. That means we had to pick default tests that apply to ALL static sites, and the first obvious starter was accessibility testing. So, we added [nightwatch-cucumber](https://github.com/mucsi96/nightwatch-cucumber) (to provide Gherkin-style tests) and [axe-core](https://github.com/dequelabs/axe-core) which verifies our pages conform to WCAG 2.0 AA standards. Axe provides reliable accessibility testing since it strives for [zero false-positives](https://github.com/dequelabs/axe-core#manifesto), and is highly configurable so we can tweak the accessibility tests depending on the requirements of our projects.
 
