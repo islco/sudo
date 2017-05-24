@@ -30,7 +30,7 @@ On a higher level there were two other things we wanted to achieve with this upd
 - Code splitting our JS into multiple bundles
 - Tree shaking for dead-code elimination (you can read more about [tree shaking here](https://webpack.js.org/guides/tree-shaking/))
 
-Since Browserify's code splitting abilities are limited and doesn't support tree shaking, it seemed like a good time to make the switch to Webpack. Our `webpack.config.js` file is rather simple at the moment, but it's ready to be expanded for when a project requires a more complex configuration.
+Since Browserify's code splitting abilities are limited and doesn't support tree shaking, it seemed like a good time to make the switch to Webpack. Our `webpack.config.js` file is rather simple at the moment, but it's ready to be expanded for when a project requires a more complex configuration. If you're interested in a comparison between module bundlers, Webpack has a great one [on their website](https://webpack.js.org/guides/comparison/).
 
 ### Environment Configuration
 Sometimes we want to pass environment variables to our client side. Up until now we were using `nconf` to achieve exactly that but we switched it out for `node-convict` [by Mozilla](https://github.com/mozilla/node-convict). Key advantages of `node-convict` are the ability to define some basic validation on these variables and to write a few sentences of documentation for each variable. That way we can document decisions for our future selves and coworkers, adding to the **M**aintainability of the AMOP acronym.
