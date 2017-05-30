@@ -15,7 +15,7 @@
     color: $navy;
 
     a {
-        @include link-underline($red, $offwhite, 2px);
+        @include link-underline($red, $offwhite);
     }
 
     blockquote {

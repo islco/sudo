@@ -44,18 +44,12 @@
  * Mixin for custom link underlines
  */
 
-@mixin link-underline($text-color, $background-color, $space) {
+@mixin link-underline($text-color, $background-color) {
+    background-image: linear-gradient(to bottom, $background-color 85%, $text-color 90%, $background-color 90.5%, $background-color 100%);
     color: $text-color;
     position: relative;
     text-shadow: 1px 1px $background-color, -1px 1px $background-color;
     z-index: 0;
-
-    // fixes issues with links spanning multiple lines
-    display: inline-block;
-
-    @if $space {
-        padding-bottom: $space;
-    }
 
     &:hover,
     &:hover:focus {
@@ -67,17 +61,5 @@
     &:focus {
         color: $text-color;
         outline: $text-color thin solid;
-    }
-
-
-    &:after {
-        border-bottom: 1px solid $text-color;
-        bottom: 4px;
-        content: '';
-        left: 0;
-        position: absolute;
-        transition: width 200ms ease-out;
-        width: 100%;
-        z-index: -1;
     }
 }
