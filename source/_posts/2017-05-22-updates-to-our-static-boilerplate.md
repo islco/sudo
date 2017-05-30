@@ -4,10 +4,10 @@ author: Thomas Degry
 description: "Why we updated our open-source static boilerplate."
 ---
 
-Most of the new projects we start at ISL rely on one of our boilerplates. For our Django projects that are [mo-django](https://github.com/istrategylabs/mo-django) and for our static projects we use [mo-static](https://github.com/istrategylabs/mo-static). Although these boilerplates are developed open-source, we primarily use them internally so our developers can hit the ground running when starting new projects. We aren't aiming to be a go-to solution for everyone; our goal is to focus on our needs.
+Most of the new projects we start at ISL rely on one of our boilerplates: for our Django projects we use [mo-django](https://github.com/istrategylabs/mo-django) and for our static projects we use [mo-static](https://github.com/istrategylabs/mo-static). Although these boilerplates are developed in the open, we primarily use them internally so that our developers can hit the ground running when starting a new project. We aren't aiming to be a go-to solution for everyone, our goal is to focus on our needs.
 
 ## Some Background
-mo-static has served us well over the past few years. It has been the starting point of numerous projects and our developers loved it. But at the same time, some of it's default dependencies were starting to become a little old fashioned due to rapidly evolving industry standards. It was powered by Gulp, Browserify to bundle Javscript, Foundation CSS and JavaScript, jQuery (because Foundation JavaScript relies on it) and Sass.
+mo-static has served us well over the past few years. It has been the starting point of numerous projects and our developers loved it. But at the same time, due to rapidly evolving industry standards, some of it's default dependencies were starting to become a little old fashioned. It was powered by Gulp, Browserify to bundle Javscript, Foundation CSS and JavaScript, jQuery (because Foundation JavaScript relies on it), and Sass.
 
 ## The Changes
 Andrew's article ["what you should bring to a code review"](/what-you-should-bring-to-a-code-review/) talks about AMOP, an acronym we came up with as a team. Our team tries to write and evaluate code with those principles in mind. We had to admit that the mo-static architecture as described above could do a better job in helping us achieve those goals, especially since the **A**ccessibility and **P**erformance parts could be better out of the box.
