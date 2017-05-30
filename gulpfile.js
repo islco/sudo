@@ -69,7 +69,7 @@ gulp.task('build', function() {
 
   // uglify js
   .pipe($.if('*.js', $.uglify({
-    preserveComments: 'license'
+    preserveComments: 'some'
   })))
 
   // rev assets
