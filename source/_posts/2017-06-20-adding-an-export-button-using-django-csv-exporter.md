@@ -20,7 +20,8 @@ pip install django-csv-exporter
 ```
 
 ## Steps to Adding an Export to Page Using Django CSV Exporter
-Here are the steps needed to an
+Here are the steps needed to add an export button using this package.
+
 ### Step 1 - Adding the View
 First, you will need to update imports so you have the following packages:
 
