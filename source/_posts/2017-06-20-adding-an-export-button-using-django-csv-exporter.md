@@ -106,7 +106,7 @@ methods: {
     }
   })
 ```
-The main app needed to be updated as well:
+The main app needed to be updated as well with the following:
 
 ```javascript
 exportSuccess: false
