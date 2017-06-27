@@ -5,7 +5,7 @@ description: "How to add export functionality to a site"
 ---
 I'm a new Software Engineer here at ISL and one of the first tasks assigned to me was to add an export button to an internal site.
 
-We have an employee perk here, called the funfund. The funfund is a fund of money that can be used on events with four or more coworkers. There is an internal tracker that allows us to see how much is being spent. This tracking site needed the ability to be able to export a spreadsheet of recent transactions so that our finance team could work with the data in a more robust fashion.
+We have an employee perk here called the funfund. The funfund is a fund of money that can be used on events with four or more coworkers. There is an internal tracker that allows us to see how much is being spent. This tracking site needed the ability to be able to export a spreadsheet of recent transactions so that our finance team could work with the data in a more robust fashion.
 
 The idea was that a user would login into the funfund site, scroll to the bottom of the page, click on a button that says "export", and they would receive an email with a link to download the CSV from an s3 bucket that would expire after 2 days.
 
