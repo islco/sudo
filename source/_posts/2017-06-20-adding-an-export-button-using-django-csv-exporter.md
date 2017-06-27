@@ -3,15 +3,16 @@ title: Adding an Export Button Using Django CSV Exporter
 author: Jessica Garson
 description: "How to add export functionality to a site"
 ---
-## The Task
-I recently started as a Software Engineer here at ISL, and one of the first tasks assigned to me was to add the ability to export to an internal site. We have something called the funfund, which is a fund of money that can be used on fun events with four or more coworkers. There is an internal tracker that allows us to see how much is being spent which needed export capability.
+I'm a new Software Engineer here at ISL and one of the first tasks assigned to me was to add an export button to an internal site.
 
-The idea behind the functionality I was creating was that the user would login into the funfund site, scroll to the bottom of the page, click on a button that says "export", and they would receive an email with a link to download the CSV from an s3 bucket that would expire after 2 days.
+We have an employee perk here, called the funfund. The funfund is a fund of money that can be used on events with four or more coworkers. There is an internal tracker that allows us to see how much is being spent. This tracking site needed the ability to be able to export a spreadsheet of recent transactions so that our finance team could work with the data in a more robust fashion.
+
+The idea was that a user would login into the funfund site, scroll to the bottom of the page, click on a button that says "export", and they would receive an email with a link to download the CSV from an s3 bucket that would expire after 2 days.
 
 ## Django CSV Exporter
-After talking with my coworkers, I learned there was a package called [Django CSV Exporter](https://sudo.isl.co/django-csv-exporter-the-one-that-does-it-all/) that was created here at ISL. This package to have much of the functionality described above so I decided this what I would use for this work.
+After talking with my coworkers, I learned there was a package called [Django CSV Exporter](https://sudo.isl.co/django-csv-exporter-the-one-that-does-it-all/) that was created here at ISL. This package had most of the functionality described above built in.
 
-An outcome of the project, was that released a new version of the package to allow support for queries in addition to queryset. This new change made the package a bit more flexible. This was my first time updating a publicly available package on PyPI and it was one of the more challenging parts of the project. I'm personally hoping to do this more so that I learn the process of packaging better.
+While in the midst of the work on funfund, we released a new version of the package to allow support for queries in addition to queryset. This new change made the package a bit more flexible. This was my first time updating a publicly available package on PyPi and it was one of the more challenging parts of the project. I'm personally hoping to do this a bit more so that I learn the process of packaging better and hopefully in time release my own package on PyPi.
 
 To use Django CSV Exporter you will need to install the package and add it to your requirements.txt file.
 ```
@@ -19,15 +20,16 @@ pip install django-csv-exporter
 ```
 
 ## Steps to Adding an Export to Page Using Django CSV Exporter
-## Step 1 - Adding the View
-First you will need to update imports so you have the following packages:
+Here are the steps needed to an
+### Step 1 - Adding the View
+First, you will need to update imports so you have the following packages:
 
 ```python
 from csv_exporter import export, send_email_to_user
 import django_rq as django_rq
 from django.http import JsonResponse
 ```
-You will also need to create a new view for exporting and pass in the item you are trying to export as a query or queryset. Here is the code I used:
+You will also need to create a new view and pass in the query or queryset. Here is the code I used:
 
 ```python
 class TransactionExport(BaseTransactionList):
@@ -40,17 +42,16 @@ class TransactionExport(BaseTransactionList):
                           ('date_created', 'date_assigned', 'value', 'title', 'description', 'attendees', 'author'), callback=callback)
         return JsonResponse({})
 ```
-
 This code passes in the transactions and allows it pass through the package to allow for emails to be sent.
 
-## Step 2 - Updating urls.py
-I updated urls.py to have a url for my new export view I created in the previous step.
+### Step 2 - Updating urls.py
+I updated urls.py to have a url for my new export view.
 
 ```python
 url(r'^transactions/export/$', TransactionExport.as_view(), name='export'),
 ```
 
-## Step 3 - HTML Updates
+### Step 3 - HTML Updates
 After I created the view, I needed to update the HTML to have a button for exporting. Below is the code I used to make this button:
 
 ```html
@@ -61,8 +62,8 @@ After I created the view, I needed to update the HTML to have a button for expor
 <div v-show="exportSuccess">You will be emailed a link to your export file.</div>
 ```
 
-## Step 4 - Vue.js
-To get a message that appears to notify the user that they will soon be getting an email after they click the button, I originally started off using [django's messages framework](https://docs.djangoproject.com/en/1.11/ref/contrib/messages/) but I was having issues when I requested multiple exports showing muliple messages so I needed something more dynamic for the task. I ended up using vue.js in the app.js file.
+### Step 4 - Vue.js
+To get a message that notifies the user that they will soon be getting an email after they click the button, I originally started off using [django's messages framework](https://docs.djangoproject.com/en/1.11/ref/contrib/messages/) but I was having issues when I requested multiple exports showing muliple messages so I needed something more dynamic for the task. I ended up using vue.js in the app.js file.
 
 ```javascript
 function submitExport(e) {
@@ -110,9 +111,9 @@ The main app needed to be updated as well:
 exportSuccess: false
 ```
 
-## Step 5 - Getting your Environments Set Up
-You will also need to make sure you have a Sendgrid account created and are using the Sendgrid Django package (sendgrid-django) and an s3 bucket set up as well before your code will be working correctly.
+### Step 5 - Getting your Environments Set Up
+You will also need to make sure you have a Sendgrid account created and are using the Sendgrid Django package (sendgrid-django) and an s3 bucket set up with the permissions set to your preferences.
 
 
-## Step 6 - Deploying with Heroku
-For me, one of the biggest learning curves in getting this feature deployed was using Heroku. In past roles, I used AWS so using using Heroku was something that was new. Once I got the hang of using something new, I really liked the deployment process and it became a lot smoother.
+## Deploying with Heroku
+Since this was one of the first features I deployed at ISL, I had to get the hang of using Heroku. In past roles, I'd only used AWS so this was a learning curve. Once I got the hang of using something new, I really liked the speed and ease of the deployment process.
