@@ -59,7 +59,7 @@ I updated urls.py to have a url for my new export view.
 url(r'^transactions/export/$', TransactionExport.as_view(), name='export'),
 ```
 
-### Step 3 - Adding the Button Your Site
+### Step 3 - Adding the Button in HTML 
 After I created the view, I needed to update the HTML to have a button for exporting. Below is the code I used to make this button:
 
 ```html
@@ -99,4 +99,4 @@ function submitExport(e) {
 ### Conclusion
 Since this was one of the first features I deployed at ISL, this was great way to learn more about how we write code here and the systems that we use. This project was a great introduction to learning more about the process of packaging, updating a task and adding functionality to a Django site.
 
-I also really enjoyed using Django CSV Exporter and the ease of use it provided me in this task. Feel free to check out the code for [Django CSV Exporter](https://github.com/istrategylabs/django-csv-exporter) and play around with it. 
+I also really enjoyed using Django CSV Exporter and the ease of use it provided me in this task. Feel free to check out the code for [Django CSV Exporter](https://github.com/istrategylabs/django-csv-exporter) and play around with it.
