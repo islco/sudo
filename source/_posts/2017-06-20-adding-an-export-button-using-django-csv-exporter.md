@@ -59,7 +59,7 @@ I updated urls.py to have a url for my new export view.
 url(r'^transactions/export/$', TransactionExport.as_view(), name='export'),
 ```
 
-### Step 3 - Adding the Button in HTML 
+### Step 3 - Adding the Button in HTML
 After I created the view, I needed to update the HTML to have a button for exporting. Below is the code I used to make this button:
 
 ```html
@@ -73,9 +73,9 @@ After I created the view, I needed to update the HTML to have a button for expor
 ### Step 4 - Adding JavaScript
 Since the user will need notified that they will soon be getting an email after they click the button I needed to figure out a method to convey this message. I originally started off using [Django's messages framework](https://docs.djangoproject.com/en/1.11/ref/contrib/messages/), however since this use case was different from intended use of the messages framework it seemed more pragmatic to use JavaScript to accomplish this task.
 
-I ended up using [Vue.js](https://Vuejs.org/) in the main application file mostly because the site was already using this. You could also use something like Angular or another JavaScript framework to complete this task.
+I ended up using [Vue.js](https://Vuejs.org/) in the main application file mostly because the site was already using this framework and it seemed to make the most sense for the job at hand. You could also use something like Angular or another JavaScript framework to complete this task.
 
-I set the timeout so that the message to the user would expire after 5 seconds after it appears. I also used a flag to bind to the code with Vue’s v-show and displays the message “You will be emailed a link to your export file”.
+I set the timeout so that the message to the user would expire after 5 seconds after it appears. I also used a flag to bind to the code with Vue’s v-show as show in the previous step. This message which now displays the message as “You will be emailed a link to your export file”.
 
 Here is the Vue.js code that I used:
 
