@@ -13,7 +13,7 @@ The idea of the functionality that I was implementing was that a user would logi
 ## Django CSV Exporter
 After talking with my coworkers, I learned there was a package called [Django CSV Exporter](https://sudo.isl.co/django-csv-exporter-the-one-that-does-it-all/) that was created here at ISL. This package had most of the functionality described above built in. Since here at ISL, we use cloud based solutions such as [Heroku](https://www.heroku.com), [Amazon S3](https://aws.amazon.com/s3/) and [SendGrid](https://sendgrid.com/). Django CSV Exporter was designed to allow you to send an email with a link to the CSV you requested using a mail in a secure fashion.
 
-While in the midst this work, I made a few changes so the package would be more flexible. Since Django CSV Exporter is installed via pip, you had to learn how to deploy to the Python packaging index ([PyPI](https://pypi.python.org/pypi)), in addition to just opening a P.R. on the project itself. Figuring out the process of uploading to PyPI was one of the more challenging parts of the project. I'm personally hoping to do this a bit more so that I learn the process of packaging better and hopefully in time release my own publicly available package.
+While in the midst this work, I made a few changes so the package would be more flexible. Since Django CSV Exporter is installed via pip, I had to learn how to deploy to the Python packaging index ([PyPI](https://pypi.python.org/pypi)), in addition to just opening a P.R. on the project itself. Figuring out the process of uploading to PyPI was one of the more challenging parts of the project. I'm personally hoping to do this a bit more so that I learn the process of packaging better and hopefully in time release my own publicly available package.
 
 
 ## Steps to Adding an Export Button to a Page Using Django CSV Exporter
@@ -66,11 +66,11 @@ After I created the view, I needed to update the HTML to have a button for expor
 ```
 
 ### Step 4 - Adding JavaScript
-Since the user will need notified that they will soon be getting an email after they click the button I needed to figure out a method to convey this message. I originally started off using [Django's messages framework](https://docs.djangoproject.com/en/1.11/ref/contrib/messages/), but found that  because of the single-page nature of the application using JavaScript would be a better fit. If this was a traditional, all server-side application then the messages framework would be perfect.
+Since the user will need to be notified that they will soon be getting an email after they click the button I needed to figure out a method to convey this message. I originally started off using [Django's messages framework](https://docs.djangoproject.com/en/1.11/ref/contrib/messages/), but found that  because of the single-page nature of the application using JavaScript would be a better fit. If this was a traditional, all server-side application then the messages framework would be perfect.
 
 I ended up using [Vue.js](https://Vuejs.org/) in the main application file mostly because the site was already using this framework and it seemed to make the most sense for the job at hand. You could also use something like Angular or another JavaScript framework to complete this task.
 
-I set the timeout so that the message to the user would expire after 5 seconds after it appears. I also used a flag to bind to the code with Vue’s v-show as show in the previous step. This message which now displays the message as “You will be emailed a link to your export file”. If there is a failure the user would also get a notification letting them know that there was a problem with the export they submitted. 
+I set the timeout so that the message to the user would expire after 5 seconds after it appears. I also used a flag to bind to the code with Vue’s v-show as shown in the previous step. This message which now displays the message as “You will be emailed a link to your export file”. If there is a failure the user would also get a notification letting them know that there was a problem with the export they submitted.
 
 Here is the Vue.js code that I used:
 
