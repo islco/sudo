@@ -4,7 +4,7 @@ author: Trish O'Connor
 description: Tips for Alexa Skill Certification
 ---
 
-We’ve just pushed our latest skill, [The Capitals](https://www.amazon.com/Monumental-Sports-and-Entertainment-Capitals/dp/B0767PGMMD/ref=cm_cr_arp_d_product_top?ie=UTF8), onto the Amazon Skills Store. However, before getting to the Skills Store, every skill must go through Amazon’s Certification process. Certification can be tricky. Amazon has their testers manually confirm that the skill works. This takes up time and the feedback can be subjective (depending on the tester).
+We’ve just pushed our latest skill, [The Capitals](https://www.amazon.com/Monumental-Sports-and-Entertainment-Capitals/dp/B0767PGMMD/ref=cm_cr_arp_d_product_top?ie=UTF8), onto the Amazon Skills Store. However, before getting to the Skills Store, every skill must go through Amazon’s Certification process. Certification can be tricky. Amazon has its testers manually confirm that the skill works. This takes up time and the feedback can be subjective (depending on the tester).
 
 That said, if you’re a developer looking to get your custom skill in the Skills Store, there are some things you can do to make the process a bit smoother. Here are some tips and tricks we learned along the way.
 
@@ -33,7 +33,7 @@ Note here that to submit for certification, you need to have your utterances and
 ## 4. Use metaphones (or a similar phonetic algorithm) to deal with names
 When building the skill for [Monumental Sports and Entertainment](http://www.monumentalsports.com/), one of the key intents the client wanted was the ability to ask about specific players’ stats. This meant that the slot for the intent would include all of the players’ names. However, not all of the names are spelled phonetically, so we were seeing a lot of errors in testing where Alexa would pick up a similar sounding word or phrase instead of the name. 
 
-For example, when I asked about Ovechkin, she didn’t know anything about him— because she thought I asked about “a veg kin.” This needed a solution, and for that, we turned to the double metaphone algorithm. It’s a set of rules that turn any word into a phonetic standard. That dramatically improved our accuracy. It’s a great way to account for variations in the user’s speech and correct for Alexa’s speech to text interpretation when needed. 
+For example, when I asked about Ovechkin, she didn’t know anything about him— because she thought I asked about “a veg kin.” This needed a solution, and for that, we turned to the [double metaphone algorithm](http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html). It’s a set of rules that turn any word into a phonetic standard. That dramatically improved our accuracy. It’s a great way to account for variations in the user’s speech and correct for Alexa’s speech to text interpretation when needed.
 
 This also helped us deal with possessives. When a user asks “What are Wilson’s stats?”, that falls into the utterance: `what are {player} stats`. We found that the Alexa speech to text translation can vary with possessives. She can return back “Wilson”, “Wilsons”, or “Wilson’s.” To account for this, we included all three in the slot value list and then stored a list of metaphones of all three to compare against.
 
