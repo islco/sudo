@@ -33,7 +33,7 @@ AWS_SECRET_ACCESS_KEY=INSERT_AWS_SECRET_ACCESS_KEY
 
 
 
-We are going to look at four functions from the library `detect_labels()`, `detect_faces()`, `compare_faces()`, , and `recognize_celebrities()`.
+We are going to look at two functions from the library `detect_labels()`, `detect_faces()`, we have examples of `compare_faces()`, and `recognize_celebrities()` on our [Github](https://github.com/istrategylabs/python-image-recognition).
 
 In our first example we are going to use detect_labels. Since we have our environment variables are set. The next step is to create a python file named `py_detect_labels.py`. In this file we are going to:
 - Read in our environment variables.
@@ -115,4 +115,4 @@ A sample of the response
 }]}}
 ```
 
-That is all you need to get started to use AWS's image recognition library. Stay tuned for the next part where we combine Rekognition with OpenCV.
+That is all you need to get started to use AWS's image recognition library. Checkout out our [Github project](https://github.com/istrategylabs/python-image-recognition) for more examples. Stay tuned for the next part where we combine Rekognition with OpenCV.
