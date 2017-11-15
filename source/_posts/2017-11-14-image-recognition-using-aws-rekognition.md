@@ -6,16 +6,18 @@ permalink: python-aws-rekognition
 ---
 
 Amazon has a whole suite of tools to add artificial intelligence capabilities to your app.
-We are going to look at one tool [Amazon Rekognition](https://aws.amazon.com/rekognition/), which an image analysis service. Rekognition can do a number of things such as detect faces, objects, celebrities.
+We are going to look at one tool, [Amazon Rekognition](https://aws.amazon.com/rekognition/), which is an image analysis service. Rekognition can do a number of things such as detect faces, objects, and celebrities.
 
-To interact with this service we are going use [Boto 3](https://aws.amazon.com/sdk-for-python/), which is an SDK for Python.
+To interact with this service, we are going use [Boto 3](https://aws.amazon.com/sdk-for-python/), which is an SDK for Python.
 
-If you do not have an AWS account you can create one now following their [documentation](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-sign-up-for-aws.html). Once you sign up you will need to create an [access key](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html). Save your key you will need it later.
+If you do not have an AWS account, you can create one now following their [documentation](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-sign-up-for-aws.html). Once you sign up, you will need to create an [access key](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html). Save your key you - will need it later.
 
 ## Tools
-- Python3
-- Virtualenvwrapper
+- [Python3](https://www.python.org/downloads/)
+- [Virtualenvwrapper](https://pypi.python.org/pypi/virtualenvwrapper)
 
+
+## Setup
 Our first steps will be to create a new virtual environment and pip install `boto` and `decouple`. We use decouple just to manage our environment variables.
 
 ```
@@ -24,25 +26,25 @@ pip install python-decouple
 pip install boto3
 ```
 
-
-Now we have our virtual environment setup with all the packages we need to get started. Let's create a new file to save our environment variables mainly our AWS Access Key and Secret Key. Create a new file named `.env`. Set two variables
+Now we have our virtual environment setup with all the packages we need to get started. Let's create a new file to save our environment variables, mainly our AWS Access Key and Secret Key. Create a new file named `.env`. Set two variables
 ```
 AWS_ACCESS_KEY=INSERT_AWS_ACCESS_KEY
 AWS_SECRET_ACCESS_KEY=INSERT_AWS_SECRET_ACCESS_KEY
 ````
 
 
+## Development
+In this post we are going to look at two functions from the library `detect_labels()`, `detect_faces()`. There are two more examples for `compare_faces()`, and `recognize_celebrities()` on our [Github](https://github.com/istrategylabs/python-image-recognition).
 
-We are going to look at two functions from the library `detect_labels()`, `detect_faces()`, we have examples of `compare_faces()`, and `recognize_celebrities()` on our [Github](https://github.com/istrategylabs/python-image-recognition).
-
-In our first example we are going to use detect_labels. Since we have our environment variables are set. The next step is to create a python file named `py_detect_labels.py`. In this file we are going to:
-- Read in our environment variables.
+In our first example we are going to use `detect_labels()`. Since we have our environment variables set, the next step is to create a python file named `py_detect_labels.py`. In this file we are going to:
+- Read in our environment variables
 - Connect to AWS
 - Open an image locally
 - Pass that image to Rekognition
 - Print out the results
 
 
+### Example
 Your file will look like the following.
 
 ```
@@ -78,11 +80,12 @@ print(response)
 Let's look at this line.
 `response = client.detect_labels(Image=imgobj)`
 
-[detect_labels](http://boto3.readthedocs.io/en/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) is the function that passes the image to Rekognition and returns an analysis of the image. `detect_labels` takes either and S3 object or an Image object as bytes. Two other optional parameters are `MaxLabels` and  `MinConfidence`
+[detect_labels](http://boto3.readthedocs.io/en/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) is the function that passes the image to Rekognition and returns an analysis of the image. `detect_labels()` takes either a S3 object or an Image object as bytes. Two other optional parameters are `MaxLabels` and  `MinConfidence`.
 It will try to detect all the objects in the image and give it label and confidence rating on the label.
 
 
-You can run your program from the command line:  `python py_detect_labels.py john-wall.jpg` . The parameter is the name of the file you want to analysis.
+# Test It Out
+You can run your program from the command line:  `python py_detect_labels.py john-wall.jpg` . The parameter is the name of the file you want to analyze.
 
 The response will be:
 
@@ -95,9 +98,9 @@ The response will be:
 ```
 
 
-The next function we are going to use is [detect_faces](http://boto3.readthedocs.io/en/latest/reference/services/rekognition.html#Rekognition.Client.detect_faces) This returns details on a face. It can detect attributes such as gender, emotion, if the person is wearing a beard, or eyeglasses as well an age range of the subject.
+The next function we are going to use is [detect_faces](http://boto3.readthedocs.io/en/latest/reference/services/rekognition.html#Rekognition.Client.detect_faces) This returns details on a face. It can detect attributes such as gender, emotion, if the person is wearing a beard, or eyeglasses as well as an age range of the subject.
 
-We can reuse a similar setup from previous program.
+We can reuse a similar setup from the previous program for detect_labels().
 
 
 
@@ -115,4 +118,7 @@ A sample of the response
 }]}}
 ```
 
-That is all you need to get started to use AWS's image recognition library. Checkout out our [Github project](https://github.com/istrategylabs/python-image-recognition) for more examples. Stay tuned for the next part where we combine Rekognition with OpenCV.
+## Wrap Up
+That is all you need to get started to use AWS's image recognition library. In just a few lines of code you can add image or facial recognition to an application.
+
+Checkout out our [Github project](https://github.com/istrategylabs/python-image-recognition) for more examples. Stay tuned for the next part where we combine Rekognition with OpenCV.
