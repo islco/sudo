@@ -10,7 +10,7 @@ We are going to look at one tool, [Amazon Rekognition](https://aws.amazon.com/re
 
 To interact with this service, we are going use [Boto 3](https://aws.amazon.com/sdk-for-python/), which is an SDK for Python.
 
-If you do not have an AWS account, you can create one now following their [documentation](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-sign-up-for-aws.html). Once you sign up, you will need to create an [access key](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html). Save your key you - will need it later.
+If you do not have an AWS account, you can create one now following their [documentation](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-sign-up-for-aws.html). Once you sign up, you will need to create an [access key](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html). Save your key - you will need it later.
 
 ## Tools
 - [Python3](https://www.python.org/downloads/)
@@ -30,11 +30,11 @@ Now we have our virtual environment setup with all the packages we need to get s
 ```
 AWS_ACCESS_KEY=INSERT_AWS_ACCESS_KEY
 AWS_SECRET_ACCESS_KEY=INSERT_AWS_SECRET_ACCESS_KEY
-````
+```
 
 
 ## Development
-In this post we are going to look at two functions from the library `detect_labels()`, `detect_faces()`. There are two more examples for `compare_faces()`, and `recognize_celebrities()` on our [Github](https://github.com/istrategylabs/python-image-recognition).
+In this post we are going to look at two functions from the library - `detect_labels()`, `detect_faces()`. There are two more examples for `compare_faces()` and `recognize_celebrities()` on our [Github](https://github.com/istrategylabs/python-image-recognition).
 
 In our first example we are going to use `detect_labels()`. Since we have our environment variables set, the next step is to create a python file named `py_detect_labels.py`. In this file we are going to:
 - Read in our environment variables
@@ -85,7 +85,7 @@ It will try to detect all the objects in the image and give it label and confide
 
 
 # Test It Out
-You can run your program from the command line:  `python py_detect_labels.py john-wall.jpg` . The parameter is the name of the file you want to analyze.
+You can run your program from the command line:  `python py_detect_labels.py john-wall.jpg`. The parameter is the name of the file you want to analyze.
 
 The response will be:
 
@@ -98,9 +98,9 @@ The response will be:
 ```
 
 
-The next function we are going to use is [detect_faces](http://boto3.readthedocs.io/en/latest/reference/services/rekognition.html#Rekognition.Client.detect_faces) This returns details on a face. It can detect attributes such as gender, emotion, if the person is wearing a beard, or eyeglasses as well as an age range of the subject.
+The next function we are going to use is [detect_faces](http://boto3.readthedocs.io/en/latest/reference/services/rekognition.html#Rekognition.Client.detect_faces). This returns details on a face. It can detect attributes such as gender, emotion, if the person is wearing a beard or eyeglasses, as well as an age range of the subject.
 
-We can reuse a similar setup from the previous program for detect_labels().
+We can reuse a similar setup from the previous program for `detect_labels()`.
 
 
 
