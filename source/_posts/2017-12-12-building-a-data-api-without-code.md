@@ -45,8 +45,8 @@ To create the binary file:
 import struct
 
 with open('temperatures.dat', 'wb') as datfile:
-	for day in data_from_somewhere_else:
-		datfile.write(struct.pack('HH', day.low, day.high))
+    for day in data_from_somewhere_else:
+        datfile.write(struct.pack('HH', day.low, day.high))
 ```
 
 Once the resulting file has been uploaded to S3 or some other server that supports HTTP ranges, we can fetch the data for a day by calculating its offset from the beginning of the year, setting the appropriate headers on the HTTP request, and then unpacking the bytes of the HTTP response.
