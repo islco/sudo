@@ -10,11 +10,11 @@ We have recently been working on a project dealing with historical Bitcoin price
 Using a lesser-known part of HTTP, we can serve this data in a generally efficient way with *no code*.
 
 ## HTTP Range Headers
-HTTP defines a set of [range headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests) that enable a server to send a specific portion of a response to a client. Suppose we have a resource on a server somewhere and want to verify that it is a JPEG image. We know it's going to be a very large file, so we don't want to have to download megabytes of data just to ensure that the file is what it claims to be. Using the range headers, we can request just enough of the content to check the JPEG [magic number](https://en.wikipedia.org/wiki/Magic_number_(programming)) without downloading multiple megabytes of the file. 
+HTTP defines a set of [range headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests) that enable a server to send a specific portion of a response to a client. Suppose we have a resource on a server somewhere and want to verify that it is a JPEG image. We know it's going to be a very large file, so we don't want to have to download megabytes of data just to ensure that the file is what it claims to be. Using the range headers, we can request just enough of the content to check the JPEG [magic number](https://en.wikipedia.org/wiki/Magic_number_(programming) without downloading multiple megabytes of the file. 
 
 Not all HTTP servers support the range header, so let's first check to see if this server does:
 
-```
+```text
 curl -I https://isl-experiments.s3.amazonaws.com/http-range/tacos.jpg
 
 HTTP/1.1 200 OK
@@ -24,7 +24,7 @@ Content-Length: 9679479
 
 Great! The Accept-Ranges header in the response indicates that this server supports ranges in bytes and, based on Content-Length, the file is 9679479 bytes, or about 9.23 MB. Definitely don't want to download all of this just to verify the file. According to the magic number in the specification, all JPEG files start with the bytes `FF D8 FF` so we'll need the first three bytes of the remote resource to verify the format.
 
-```
+```text
 curl -H "Range: bytes=0-2" https://isl-experiments.s3.amazonaws.com/http-range/tacos.jpg | xxd -p
 
 ffd8ff
@@ -77,7 +77,7 @@ print(f'On {fourth_of_july.isoformat()} the low was {low}° and high was {high}�
 
 If you run this code locally, using Python 3 of course, you should see the output:
 
-```
+```text
 On 2017-07-04 the low was 73° and high was 89°.
 ```
 
