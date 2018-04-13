@@ -4,7 +4,7 @@ author: Scott Donaldson
 description:
 ---
 
-In July 2017, WebRTC (Real-Time Communication) came to Safari on iOS, a move that greatly expanded the audience for media-driven mobile web applications. With WebRTC, a browser can not only gain access to media from a user’s microphone or camera, but to _streams_ of media. It means the difference between still photos and real-time video playback.
+WebRTC (Real-Time Communication) lets a browser gain access not only to media from a user’s microphone or camera, but to _streams_ of media. That means the difference between still photos and real-time video playback. In July 2017, WebRTC came to Safari on iOS, a move that greatly expanded the audience for media-driven mobile web applications.
 
 You can often find WebRTC powering person-to-person communication apps like Google Hangouts or Skype. But in this post, it’ll be a tool for person-to-algorithm communication — specifically, real-time image filtering algorithms, like in this demo:
 
@@ -159,5 +159,6 @@ From this point on, the limits are more creative than technical! `GlslCanvas` pr
 ## Further Reading:
 
 - [`getUserMedia` documentation](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia)
+- [WebRTC adapter.js polyfill/library](https://github.com/webrtc/adapter)
 - [`<video>` policies for iOS/Webkit](https://webkit.org/blog/6784/new-video-policies-for-ios/)
 - [The Book of Shaders](https://thebookofshaders.com/) &mdash; an interactive "step-by-step guide through the abstract and complex universe of Fragment Shaders" (by the creator of `GlslCanvas`, [Patricio Gonzalez](https://twitter.com/patriciogv) Vivo, and Deep Lab/SfPC's [Jen Lowe](https://twitter.com/_jenlowe_)).
