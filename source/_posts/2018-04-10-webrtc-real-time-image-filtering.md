@@ -1,5 +1,5 @@
 ---
-title: WebRTC and Real-Time Image Filtering
+title: Using WebRTC for Real-Time Image Filtering
 author: Scott Donaldson
 description:
 ---
@@ -56,7 +56,7 @@ video.srcObject = stream;
 video.play();
 ```
 
-Regardless of how or where the JS references the `<video>` element, it’s important that the `playsinline` attribute is present on it (i.e. `<video playsinline></video>`). Without this, your code won’t work in iOS, since those devices typically don’t allow video to autoplay (further reading).
+Regardless of how or where the JS references the `<video>` element, it’s important that the `playsinline` attribute is present on it (i.e. `<video playsinline></video>`). Without this, your code won’t work in iOS, since those devices typically don’t allow video to autoplay (see further reading below).
 
 Now that we have a reference to the `<video>` in our code, we’ll continue this ‘hot potato’ strategy, and pass it along to…
 
