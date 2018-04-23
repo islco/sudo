@@ -1,7 +1,7 @@
 ---
 title: Using WebRTC for Real-Time Image Filtering
 author: Scott Donaldson
-description:
+description: WebRTC and WebGL come together to filter images and video in real-time.
 ---
 
 WebRTC (Real-Time Communication) lets a browser gain access not only to media from a user’s microphone or camera, but to _streams_ of media. That means the difference between still photos and real-time video playback. In July 2017, WebRTC came to Safari on iOS, a move that greatly expanded the audience for media-driven mobile web applications.
