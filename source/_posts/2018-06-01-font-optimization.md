@@ -4,7 +4,7 @@ author: Marissa Halpert
 description: When font files are too big for a project, what do you do?
 ---
 
-At ISL, we like to experiment with our capabilities. That's why when our sister company, JWT Atlanta asked us to help them create ad banners for their client, we said yes! These ad banners were exciting for us because they were a little different than the work we typically do (website builds). While we always care about performance and optimization, it was especially important for these ad banners. They also let us flex our CSS Animations muscle. Keep an eye on [ESPN](https://www.espn.com) for our ad banners!
+At ISL, we like to experiment with our capabilities. That's why when our sister company, JWT Atlanta asked us to help them create ad banners for their client, we said yes! These ad banners were exciting for us because they were a little different than the website builds we typically do. While we always care about performance and optimization, it was especially important for these ad banners. They also let us flex our CSS Animations muscle. Keep an eye on [ESPN](https://www.espn.com) for our ad banners!
 
 ## Background Information
 
