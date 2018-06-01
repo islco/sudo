@@ -8,7 +8,7 @@ At ISL, we like to experiment with our capabilities. That's why when our sister 
 
 ## Background Information
 
-ESPN sets strict [guidelines](http://www.espn.com/adspecs/guidelines/en/index.html) for all ad banners served on their site. The most noteable is the file size restriction. Each ad banner had to be under the file size limit (50KB, 150KB, or 200KB based on the ad size) including HTML, CSS, and assets. When you have 4 fonts and a few images, it's easy to push the bounds. I knew we'd be close to the limit from the beginning. The images were easy to compress thanks to [tinypng](https://tinypng.com/). I converted the fonts to `.woff2` format (the most compressed of the formats). At this point, we were just barely under the limit but okay.
+ESPN sets strict [guidelines](http://www.espn.com/adspecs/guidelines/en/index.html) for all ad banners served on their site. The most noteable is the file size restriction. Each ad banner had to be under the file size limit (50KB, 150KB, or 200KB based on the ad size) including HTML, CSS, and assets. When you have 4 fonts and a few images, it's easy to push the bounds. I knew we'd be close to the limit from the beginning. The images were easy to compress thanks to [tinypng](https://tinypng.com/). I converted the fonts to `.woff2` format, which is the most compressed of the file formats. At this point, we were just barely under the file size limit.
 
 ## The Problem
 
