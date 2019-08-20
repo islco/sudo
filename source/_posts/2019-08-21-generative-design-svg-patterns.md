@@ -6,7 +6,7 @@ description: Using generative design extends our creative capabilities and lets 
 
 In this article, we’ll talk about using generative design to produce graphic patterns (in SVG format). [Click here](#Extended-Demo) to skip directly to the demo, or [here](#Building-a-Generative-System) for a tutorial on the code behind it. Otherwise, read on to learn about what generative design is and why you might want to use it on the web!
 
-{% asset_img axon1.jpg 'An isometric view of a generative group of boxes' %}
+{% asset_img patterns-anim.gif 'A variety of generative patterns created in SVG' %}
 
 ## What is Generative Design?
 
