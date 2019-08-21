@@ -4,9 +4,9 @@ author: Scott Donaldson
 description: Using generative design extends our creative capabilities and lets us automatically generate beautiful, visually compelling patterns built with SVG.
 ---
 
-In this article, we’ll talk about using generative design to produce graphic patterns (in SVG format). [Click here](#Extended-Demo) to skip directly to the demo, or [here](#Building-a-Generative-System) for a tutorial on the code behind it. Otherwise, read on to learn about what generative design is and why you might want to use it on the web!
+In this article, we’ll talk about using generative design to produce graphic patterns (in SVG format). Check out the interactive demo below, or [skip right to the tutorial on how to build a generative system using JavaScript and SVG](#Building-a-Generative-System). Otherwise, read on to learn about what generative design is and why you might want to use it on the web!
 
-{% asset_img patterns-anim.gif 'A variety of generative patterns created in SVG' %}
+<p class="codepen" data-height="600" data-theme-id="0" data-default-tab="result" data-user="istrategylabs" data-slug-hash="wvwMeqN" style="height: 600px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Generative Patterns in SVG"></p>
 
 ## What is Generative Design?
 
@@ -15,6 +15,8 @@ In a web project that uses graphic patterns for visual interest, it’s often we
 The key aspect of generative design that differentiates it from typical visual or interactive design is the self-conscious encoding of rules and relationships over objects and artifacts. For a designer producing an image, the decision-making takes place in their mind, their eyes, and their hands. Manipulating shapes, paths, and patterns, they assess their work critically and refine it based on aesthetic value judgments and (often unconscious) rules of layout, hierarchy, repetition, and so on. They also operate based on a set of rules that’s particular to the work at hand — for example, the rules for a minimalist geometric design might include separating elements by ample white space, utilizing a rigid, underlying grid, and placing a cap on the number of elements visible on screen at any given time. By contrast, the rules for a contemporary, edgy design might include overlaying filtered photos, juxtaposing type styles, and using clashing colors.
 
 To go from the process above to a generative system, the designer’s opinions and values (basically, the things that drive decision decisions) need to be translated into computations. The English phrase “separating elements by ample white space” might become a function that loops over data, and sets X and Y offsets based on a minimum distance threshold to the neighboring objects. “Using clashing colors” would likely operate on RGB or HSL values and return outputs based on minimum distances in [color space](https://en.wikipedia.org/wiki/Color_space). (In general, a lot of this type of process can be made easier by thinking spatially, or dimensionally!) In any case, basic programming, as well as math and geometry, are necessary skills to be able to encode generative design systems — but conversely, building such a system is a great way to remember that math is about much more than numbers, and that it can produce really beautiful, compelling visual imagery.
+
+{% asset_img patterns-anim.gif 'A variety of generative patterns created in SVG' %}
 
 ## Why Generative Design?
 
@@ -156,7 +158,7 @@ for (let x = 0; x < width; x++) {
 
 ## Extended Demo
 
-The demo below includes a modified version of the above circular pattern, as well as three others — diamonds, hexagons, and triangles. They all use the same base SVG, and all follow the grid system, generating paths for every grid cell that differ depending on the geometric pattern selected. Check out the code for each (lines 24-71 of the JavaScript) to see how we did it!
+The demo below (and at the top of this post) includes a modified version of the above circular pattern, as well as three others — diamonds, hexagons, and triangles. They all use the same base SVG, and all follow the grid system, generating paths for every grid cell that differ depending on the geometric pattern selected. Check out the code for each (look for `const PATTERNS`, which starts at line 24 of the JavaScript) to see how we did it!
 
 <p class="codepen" data-height="600" data-theme-id="0" data-default-tab="result" data-user="istrategylabs" data-slug-hash="wvwMeqN" style="height: 600px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Generative Patterns in SVG"></p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
