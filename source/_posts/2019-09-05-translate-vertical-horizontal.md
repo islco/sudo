@@ -38,10 +38,21 @@ The second key is how we translate the smooth vertical scrolling input of the us
 
 We accomplish this by getting the sticky container’s `offsetTop` (a pixel value) with JavaScript. As the sticky container moves down the page, it gets farther away from the top of its own container, and the value of `offsetTop` increases. As the user scrolls, we apply this pixel value of the `offsetTop` distance with `transform: translateX()` as an inline `style` property on the horizontal cards -1:1 (negative so that the cards move to the left).
 
-The result is a pleasing horizontal scroll effect controlled with the natural and familiar scrolling input of the user. You can see a basic illustration of this effect below viewed from two different perspectives.
+The result is a pleasing horizontal scroll effect controlled with the natural and familiar scrolling input of the user. You can see a basic illustration of this effect below viewed from two different perspectives (note that this codepen is a fake effect for illustrative purposes).
 
-https://codepen.io/istrategylabs/pen/rNBYBpZ
-https://codepen.io/istrategylabs/pen/QWLOLXr
+From the perspective of viewport:
+
+<div style="padding: 0.75rem 0 1.5rem"><iframe height="700" style="width: 100%;" scrolling="no" title="Horizontal Scroll Diagram 2" src="//codepen.io/istrategylabs/embed/QWLOLXr/?height=265&theme-id=light&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/istrategylabs/pen/QWLOLXr/'>Horizontal Scroll Diagram 2</a> by ISL
+  (<a href='https://codepen.io/istrategylabs'>@istrategylabs</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe></div>
+
+From the perspective of the tall outer container:
+
+<div style="padding: 0.75rem 0 1.5rem"><iframe height="700" style="width: 100%;" scrolling="no" title="Horizontal Scroll Diagram 1" src="//codepen.io/istrategylabs/embed/rNBYBpZ/?height=265&theme-id=light&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/istrategylabs/pen/rNBYBpZ/'>Horizontal Scroll Diagram 1</a> by ISL
+  (<a href='https://codepen.io/istrategylabs'>@istrategylabs</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe></div>
 
 The green box is the tall outer container. The blue box represents the viewport and the 100vh sticky inner container inside of it. The red box is the horizontal translate container with the array of cards inside. As you scroll down and then back up again, the distance from the top of the blue box to the top of the green box (the `offsetTop` value) increases. This distance is applied -1:1 to the `transform: translateX()` inline style on the red box. If you scroll back up, the `offsetTop` value decreases, and the red box moves back to the right.
 
@@ -212,5 +223,7 @@ Then, we’ll get our horizontal translate engine going. We’ll apply a scroll 
 Using Styled Components, we can then pass this pixel value as a prop to the horizontal translate container. From there, we interpolate the value into the `transform: translateX()` CSS property as an inline style using `.attrs`.
 
 Now, whenever our sticky inner container moves up and down within the tall outer container, our horizontal translate container moves left-to-right in kind!
+
+## The Full Implementation in Action
 
 <iframe src="https://codesandbox.io/embed/horizontal-scroll-usestate-nlkyt?fontsize=14" title="horizontal-scroll-usestate" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
