@@ -42,23 +42,6 @@ gulp.task("build", function() {
         )
       )
 
-      // minify html
-      .pipe(
-        $.if(
-          ["**/*.html"],
-          $.htmlMinifier({
-            collapseBooleanAttributes: true,
-            collapseWhitespace: true,
-            minifyCSS: true,
-            minifyJS: true,
-            removeComments: true,
-            removeOptionalTags: true,
-            removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true
-          })
-        )
-      )
-
       // autoprefix & minify css
       .pipe(
         $.if(
@@ -74,7 +57,7 @@ gulp.task("build", function() {
       )
 
       // uglify js
-      .pipe($.if("*.js", $.uglify()))
+      .pipe($.if("*.js", $.uglifyEs.default()))
 
       // rev assets
       .pipe($.if(["**/*", "!**/*.html", "!**/*.xml"], $.rev()))
