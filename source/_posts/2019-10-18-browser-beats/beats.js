@@ -1,36 +1,36 @@
 function slice(array, start, end) {
-  let length = array == null ? 0 : array.length;
-  if (!length) {
+  let len = array == null ? 0 : array.length;
+  if (!len) {
     return [];
   }
   start = start == null ? 0 : start;
-  end = end === undefined ? length : end;
+  end = end === undefined ? len : end;
 
   if (start < 0) {
-    start = -start > length ? 0 : length + start;
+    start = -start > len ? 0 : len + start;
   }
-  end = end > length ? length : end;
+  end = end > len ? len : end;
   if (end < 0) {
-    end += length;
+    end += len;
   }
-  length = start > end ? 0 : (end - start) >>> 0;
+  len = start > end ? 0 : (end - start) >>> 0;
   start >>>= 0;
 
   let index = -1;
-  const result = new Array(length);
-  while (++index < length) {
+  const result = new Array(len);
+  while (++index < len) {
     result[index] = array[index + start];
   }
   return result;
 }
 
 function takeRight(array, n = 1) {
-  const length = array == null ? 0 : array.length;
-  if (!length) {
+  const len = array == null ? 0 : array.length;
+  if (!len) {
     return [];
   }
-  n = length - n;
-  return slice(array, n < 0 ? 0 : n, length);
+  n = len - n;
+  return slice(array, n < 0 ? 0 : n, len);
 }
 
 class TierController {
