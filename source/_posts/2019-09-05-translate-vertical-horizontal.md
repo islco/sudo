@@ -47,19 +47,19 @@ Turns out Warren even has a plan for carousels! See it [live on her site](https:
 
 ## The Desired Behavior
 
-While scrolljacking is frequently debated, it's reputation as an 'antipattern' comes from the manipulation of the browser's natural scroll momentum. This could include replacing the user's scroll behavior with a pager, or changing the speed & timing of the mousewheel/scroll.  Instead, for this tutorial we'll <i>harness</i> the expected behavior of the scroll wheel, where the browser's sensitivity of pixels moved per amount scrolled is respected.
+While scrolljacking is frequently debated, its reputation as an 'antipattern' comes from the manipulation of the browser's natural scroll momentum. This could include replacing the user's scroll behavior with a pager, or changing the speed & timing of the mousewheel/scroll.  Instead, for this tutorial we'll <i>harness</i> the expected behavior of the scroll wheel, where the browser's sensitivity of pixels moved per amount scrolled is respected.
 <blockquote>We'll harness the expected behavior of the scroll wheel, respecting the browser's sensitivity of pixels moved per amount scrolled. </blockquote>
 
-In our desired behavior, the user scrolls down naturally through the page until he or she arrives at a section that contains a row of content laid out horizontally. The content extend beyond the right edge of the viewport, and the user understands there are more items beyond that edge.
+In our desired behavior, the user scrolls down naturally through the page until he or she arrives at a section that contains a row of content laid out horizontally. The content extends beyond the right edge of the viewport, and the user understands there are more items beyond that edge.
 
-Once this 100vh (100% viewport height) section occupies the entire height of the viewport, vertical scrolling should appear to lock, holding the section in place. Any additional vertical scrolling (or remaining scroll inertia) will be translated to move the row of cards across the page to the left, causing a horizontal scroll through these cards. Scrolling back up should send the cards back to the right.
+Once this 100vh (100% viewport height) section occupies the entire height of the viewport, vertical scrolling should appear to lock, holding the section in place. Any additional vertical scrolling (or remaining scroll inertia left over from scrolling into the section) will be translated to move the row of cards across the page to the left, causing a horizontal scroll through these cards. Scrolling back up should send the cards back to the right.
 
 See a similar effect in action on the official [iPad Pro](https://www.apple.com/ipad-pro/) site, Twitch's [brand page](), or the site for [Speedgate](https://playspeedgate.org/) (a sport designed by A.I.).
 
 ## Approach
 <i>Disclaimer: This tutorial assumes a working understanding of CSS, JavaScript, React, and to a lesser extent Styled Components.</i>
 
-At first we set out to find a third party library that might handle this for us. We found plenty of horizontal scroll / swiper examples, but most of these would require the user to stop scrolling on their own accord, and switch to manual horizontal scrolling or swiping. There were examples of horizontal swipers that would capture vertical scroll events and translate them into horizontal scrolling, but the user would need to pause in that part of the page and enter their mouse into the swiping container before resuming scrolling.
+At first our team set out to find a third party library that might handle this for us. We found plenty of horizontal scroll / swiper examples, but most of these would require the user to stop scrolling on their own accord and switch to manual horizontal scrolling or swiping. There were examples of horizontal swipers that would capture vertical scroll events and translate them into horizontal scrolling, but the user would need to pause in that part of the page and enter their mouse into the swiping container before resuming scrolling.
 
 We needed to achieve the experience of a section locking into place, with vertical scroll being immediately translated onto the horizontal array of cards. We also needed a solution that would be compatible with Chrome, Firefox, Safari and Edge. We decided to experiment with our own implementation, inspired by the Speedgate example.
 
