@@ -98,9 +98,6 @@ class PubSub {
 const runtime = new PubSub();
 
 /* - - - - - - - - - - - - - - - - - - TONE MUSIC -- refactor to add to new JS file  - - - - - - - - - - - - - - - - - - */
-const lazerOneOff = new Audio(
-  "http://audiosoundclips.com/wp-content/uploads/2014/02/DJ-Lazer-2.mp3"
-);
 
 const slowScroll = new Audio(
   "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/f_maj7_03_ambient_swells.wav"
@@ -110,7 +107,16 @@ const fastScroll = new Audio(
   "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/c_maj7_04_ambient_swells.wav"
 );
 
-lazerOneOff.volume = 0.2;
+const copy = new Audio(
+  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/copynew.mp3"
+);
+
+const paste = new Audio(
+  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/pastenew.mp3"
+);
+
+copy.volume = 0.1;
+paste.volume = 0.1;
 
 // Initialize audio samples in a buffer
 const audioBuffers = {
@@ -434,9 +440,13 @@ const handleMessageOneOff = (type, event) => {
 // Make music here!
 
 const makeOneOffSound = (type, event) => {
-  if (type === "paste" || type === "copy") {
+  if (type === "copy") {
+    copy.play();
+  }
+
+  if (type === "paste") {
     // play some sound
-    lazerOneOff.play();
+    paste.play();
   }
 
   if (type === "scroll") {
