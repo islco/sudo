@@ -99,21 +99,13 @@ const runtime = new PubSub();
 
 /* - - - - - - - - - - - - - - - - - - TONE MUSIC -- refactor to add to new JS file  - - - - - - - - - - - - - - - - - - */
 
-const slowScroll = new Audio(
-  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/f_maj7_03_ambient_swells.wav"
-);
+const slowScroll = new Audio("./sound_files/f_maj7_03_ambient_swells.wav");
 
-const fastScroll = new Audio(
-  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/c_maj7_04_ambient_swells.wav"
-);
+const fastScroll = new Audio("./sound_files/c_maj7_04_ambient_swells.wav");
 
-const copy = new Audio(
-  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/copynew.mp3"
-);
+const copy = new Audio("./sound_files/copynew.mp3");
 
-const paste = new Audio(
-  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/pastenew.mp3"
-);
+const paste = new Audio("./sound_files/pastenew.mp3");
 
 copy.volume = 0.1;
 paste.volume = 0.1;
@@ -121,44 +113,34 @@ paste.volume = 0.1;
 // Initialize audio samples in a buffer
 const audioBuffers = {
   c_maj7_01_swell: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/c_maj7_01_ambient_swells.wav"
+    "./sound_files/c_maj7_01_ambient_swells.wav"
   ),
   c_maj7_02_swell: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/c_maj7_02_ambient_swells.wav"
+    "./sound_files/c_maj7_02_ambient_swells.wav"
   ),
   c_maj7_03_swell: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/c_maj7_03_ambient_swells.wav"
+    "./sound_files/c_maj7_03_ambient_swells.wav"
   ),
   c_maj7_04_swell: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/c_maj7_04_ambient_swells.wav"
+    "./sound_files/c_maj7_04_ambient_swells.wav"
   ),
   f_maj07_01_swell: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/f_maj7_01_ambient_swells.wav"
+    "./sound_files/f_maj7_01_ambient_swells.wav"
   ),
   f_maj07_02_swell: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/f_maj7_02_ambient_swells.wav"
+    "./sound_files/f_maj7_02_ambient_swells.wav"
   ),
   f_maj07_03_swell: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/f_maj7_03_ambient_swells.wav"
+    "./sound_files/f_maj7_03_ambient_swells.wav"
   ),
   f_maj07_04_swell: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/f_maj7_04_ambient_swells.wav"
+    "./sound_files/f_maj7_04_ambient_swells.wav"
   ),
-  kick: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/kick.wav"
-  ),
-  snare: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/snare.wav"
-  ),
-  hihatshort: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/hihat-short.wav"
-  ),
-  hihatlong: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/hihat-long.wav"
-  ),
-  ride: new Tone.Buffer(
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/310575/ride.wav"
-  )
+  kick: new Tone.Buffer("./sound_files/kick.wav"),
+  snare: new Tone.Buffer("./sound_files/snare.wav"),
+  hihatshort: new Tone.Buffer("./sound_files/hihat-short.wav"),
+  hihatlong: new Tone.Buffer("./sound_files/hihat-long.wav"),
+  ride: new Tone.Buffer("./sound_files/ride.wav")
 };
 
 // Custom BrowserBeats Object
