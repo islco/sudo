@@ -196,122 +196,24 @@ cymbalSynth.volume.value = -20;
 loopBeat = new Tone.Loop(song, "16n").start(0);
 
 function song(time) {
-  if (counter === 0) {
-    kick.triggerSound();
+  if (counter % 2 === 0) {
     hihatshort.triggerSound();
-    hihatlong.triggerSound();
+  }
+
+  if (counter % 8 === 0) {
+    kick.triggerSound();
+  }
+
+  if (counter === 0) {
     fMaj701Swell.triggerSound();
   }
 
-  if (counter === 4) {
-    hihatshort.triggerSound();
-  }
-
   if (counter === 8) {
-    hihatshort.triggerSound();
-    snare.triggerSound();
     fMaj702Swell.triggerSound();
   }
 
-  if (counter === 12) {
-    hihatshort.triggerSound();
-  }
-
-  if (counter === 14) {
-    kick.triggerSound();
-  }
-
   if (counter === 16) {
-    kick.triggerSound();
     fMaj703Swell.triggerSound();
-  }
-
-  if (
-    counter === 17 ||
-    counter === 18 ||
-    counter === 19 ||
-    counter === 20 ||
-    counter === 21 ||
-    counter === 22 ||
-    counter === 23
-  ) {
-    hihatshort.triggerSound();
-  }
-
-  if (counter === 24) {
-    hihatshort.triggerSound();
-    snare.triggerSound();
-  }
-
-  if (counter === 26) {
-    snare.triggerSound();
-  }
-
-  if (counter === 28) {
-    hihatshort.triggerSound();
-  }
-
-  if (counter === 29) {
-    ride.triggerSound();
-  }
-
-  if (counter === 32) {
-    hihatshort.triggerSound();
-    kick.triggerSound();
-  }
-
-  if (counter === 36) {
-    hihatshort.triggerSound();
-  }
-
-  if (counter === 40) {
-    hihatshort.triggerSound();
-    snare.triggerSound();
-  }
-
-  if (counter === 42) {
-    kick.triggerSound();
-  }
-
-  if (counter === 44) {
-    hihatshort.triggerSound();
-  }
-
-  if (counter === 45) {
-    kick.triggerSound();
-  }
-
-  if (counter === 48) {
-    hihatshort.triggerSound();
-    kick.triggerSound();
-  }
-
-  if (counter === 51 || counter === 52 || counter === 54 || counter === 55) {
-    hihatshort.triggerSound();
-  }
-
-  if (counter === 56) {
-    snare.triggerSound();
-  }
-
-  if (counter === 57) {
-    hihatshort.triggerSound();
-  }
-
-  if (counter === 58) {
-    snare.triggerSound();
-  }
-
-  if (counter === 59 || counter === 60) {
-    hihatshort.triggerSound();
-  }
-
-  if (counter === 61) {
-    ride.triggerSound();
-  }
-
-  if (counter === 62 || counter === 63) {
-    hihatshort.triggerSound();
   }
 
   // if (counter % 16 === 0) {
@@ -322,7 +224,7 @@ function song(time) {
 }
 
 function masterStart() {
-  Tone.Transport.start().bpm.value = 50;
+  Tone.Transport.start().bpm.value = 100;
 }
 
 function masterStop() {
@@ -359,8 +261,6 @@ window.setInterval(() => {
   console.log({ avgAPM, tier });
 
   if (tier === 0) {
-    Tone.Transport.bpm.value = 80;
-
     toneInstrumentOn(fMaj701Swell.player);
     toneInstrumentOn(fMaj702Swell.player);
     toneInstrumentOn(fMaj703Swell.player);
@@ -386,20 +286,24 @@ window.setInterval(() => {
   }
 
   if (tier === 1) {
-    Tone.Transport.bpm.value = 100;
-    toneInstrumentOn(kick.player);
+    // setTimeout(loopBeat.start(7), 3000);
+    loopBeat.start(0);
+
+    // toneInstrumentOn(kick.player);
+    setTimeout(toneInstrumentOn(kick.player), 3000);
 
     toneInstrumentOn(ride.player);
     toneInstrumentOn(snare.player);
     toneInstrumentOn(hihatshort.player);
 
     // TURN OFF
-    toneInstrumentOff(kick.player);
+    // toneInstrumentOff(kick.player);
   }
 
   if (tier >= 2) {
-    Tone.Transport.bpm.value = 130;
-    toneInstrumentOn(kick.player);
+    // loopBeat.start(0);
+
+    // toneInstrumentOn(kick.player);
     toneInstrumentOn(hihatshort.player);
     toneInstrumentOn(hihatlong.player);
   }
