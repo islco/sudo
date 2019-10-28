@@ -192,6 +192,7 @@ hihatlong.player.volume.value = -100;
 
 // Global variables to initialze counter and looped beat
 let counter = 0;
+let firstTimeThru = true;
 let loopBeat;
 
 /* Tone.js Instrument setup - Currently not used */
@@ -219,7 +220,18 @@ function song(time) {
     hihatshort.triggerSound();
   }
 
-  if (counter % 8 === 0) {
+  if (counter % 2 !== 0) {
+    // hihatlong.triggerSound();
+  }
+
+  if (
+    counter === 0 ||
+    counter === 6 ||
+    counter === 8 ||
+    counter === 16 ||
+    counter === 22 ||
+    counter === 26
+  ) {
     kick.triggerSound();
   }
 
@@ -227,12 +239,15 @@ function song(time) {
     fMaj701Swell.triggerSound();
   }
 
-  if (counter === 8) {
-    fMaj702Swell.triggerSound();
+  if (
+    (counter === 4 || counter === 12 || counter === 20 || counter === 28) &&
+    !firstTimeThru
+  ) {
+    snare.triggerSound();
   }
 
-  if (counter !== 0 && counter % 8 === 0) {
-    snare.triggerSound();
+  if (counter === 8) {
+    fMaj702Swell.triggerSound();
   }
 
   if (counter % 16 === 0) {
@@ -240,7 +255,9 @@ function song(time) {
     // hihatlong.triggerSound();
   }
 
-  counter = (counter + 1) % 64;
+  // counter = (counter + 1) % 64;
+  firstTimeThru = false;
+  counter = (counter + 1) % 32;
 }
 
 function masterStart() {
@@ -272,7 +289,7 @@ masterStart();
 
 // Controller Initialization
 
-const thresholds = [100, 200, 500, 1000, 2000];
+const thresholds = [100, 200, 800, 1000, 2000];
 const controller = new TierController(thresholds);
 
 let prevTier = 0;
@@ -289,6 +306,7 @@ window.setInterval(() => {
     console.log("tier", tier);
     Tone.Transport.stop();
     counter = 0;
+    firstTimeThru = true;
     Tone.Transport.start();
     prevTier = tier;
   }
@@ -306,6 +324,7 @@ window.setInterval(() => {
     kick.player.volume.value = -100;
     ride.player.volume.value = -100;
     hihatshort.player.volume.value = -100;
+
     hihatlong.player.volume.value = -100;
     snare.player.volume.value = -100;
     prevTier = 0;
@@ -318,17 +337,19 @@ window.setInterval(() => {
     // toneInstrumentOn(hihatshort.player);
     kick.player.volume.value = 0;
     ride.player.volume.value = 0;
-    hihatshort.player.volume.value = 0;
-    hihatlong.player.volume.value = 0;
+
+    snare.player.volume.value = 0;
     // TURN OFF
-    snare.player.volume.value = -100;
+    hihatlong.player.volume.value = -100;
+    hihatshort.player.volume.value = -100;
   }
 
   if (tier >= 2) {
     //   toneInstrumentOn(hihatshort.player);
     //   toneInstrumentOn(hihatlong.player);
     // }
-    snare.player.volume.value = 0;
+    hihatlong.player.volume.value = 0;
+    hihatshort.player.volume.value = 0;
   }
 }, 1000);
 
@@ -346,8 +367,7 @@ const handleMessageOneOff = (type, event) => {
   makeOneOffSound(type, event);
 };
 
-// Make music here!
-
+// One-Off Sounds
 const makeOneOffSound = (type, event) => {
   if (type === "copy") {
     copy.play();
