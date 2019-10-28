@@ -171,11 +171,30 @@ const hihatshort = new BBPlayer("hihatshort");
 const hihatlong = new BBPlayer("hihatlong");
 const ride = new BBPlayer("ride");
 
+// NEW Set to master
+toneInstrumentOn(cMaj701Swell.player);
+toneInstrumentOn(cMaj702Swell.player);
+toneInstrumentOn(cMaj703Swell.player);
+toneInstrumentOn(cMaj704Swell.player);
+toneInstrumentOn(fMaj701Swell.player);
+toneInstrumentOn(fMaj702Swell.player);
+toneInstrumentOn(kick.player);
+toneInstrumentOn(snare.player);
+toneInstrumentOn(hihatshort.player);
+toneInstrumentOn(hihatlong.player);
+toneInstrumentOn(ride.player);
+
+kick.player.volume.value = -100;
+ride.player.volume.value = -100;
+snare.player.volume.value = -100;
+hihatshort.player.volume.value = -100;
+hihatlong.player.volume.value = -100;
+
 // Global variables to initialze counter and looped beat
 let counter = 0;
 let loopBeat;
 
-/* Tone.js Instrument setup */
+/* Tone.js Instrument setup - Currently not used */
 let bassSynth = new Tone.MembraneSynth();
 bassSynth.volume.value = -14;
 let cymbalSynth = new Tone.MetalSynth({
@@ -191,7 +210,7 @@ let cymbalSynth = new Tone.MetalSynth({
   octaves: 0.5
 });
 cymbalSynth.volume.value = -20;
-/* End  Tone.js Instrument setup */
+/* End  Tone.js Instrument setup - Currently not used */
 
 loopBeat = new Tone.Loop(song, "16n").start(0);
 
@@ -212,13 +231,14 @@ function song(time) {
     fMaj702Swell.triggerSound();
   }
 
-  if (counter === 16) {
-    fMaj703Swell.triggerSound();
+  if (counter !== 0 && counter % 8 === 0) {
+    snare.triggerSound();
   }
 
-  // if (counter % 16 === 0) {
-  //   fMaj701Swell.triggerSound()
-  // }
+  if (counter % 16 === 0) {
+    fMaj703Swell.triggerSound();
+    // hihatlong.triggerSound();
+  }
 
   counter = (counter + 1) % 64;
 }
@@ -255,57 +275,60 @@ masterStart();
 const thresholds = [100, 200, 500, 1000, 2000];
 const controller = new TierController(thresholds);
 
+let prevTier = 0;
 window.setInterval(() => {
   const avgAPM = controller.getAverageAPM();
-  const tier = controller.getTier();
+  let tier = controller.getTier();
+
   console.log({ avgAPM, tier });
+  console.log("prevTier", prevTier);
+
+  if (prevTier !== tier && prevTier === 0) {
+    console.log("tier change!");
+    console.log("prevtier", prevTier);
+    console.log("tier", tier);
+    Tone.Transport.stop();
+    counter = 0;
+    Tone.Transport.start();
+    prevTier = tier;
+  }
 
   if (tier === 0) {
-    toneInstrumentOn(fMaj701Swell.player);
-    toneInstrumentOn(fMaj702Swell.player);
-    toneInstrumentOn(fMaj703Swell.player);
-    // toneInstrumentOn(snare.player)
-    // toneInstrumentOn(hihatshort.player)
-    // toneInstrumentOn(hihatshort.player)
-    // toneInstrumentOn(ride.player)
-
-    // toneInstrumentOn(cMaj701Swell.player)
-    // toneInstrumentOn(cMaj702Swell.player)
-    // toneInstrumentOn(cMaj703Swell.player)
-    // toneInstrumentOn(cMaj704Swell.player)
-    // toneInstrumentOff(bassSynth)
-    // toneInstrumentOff(snare.player)
-    // toneInstrumentOff(cymbalSynth)
-
+    // toneInstrumentOn(fMaj701Swell.player);
+    // toneInstrumentOn(fMaj702Swell.player);
+    // toneInstrumentOn(fMaj703Swell.player);
     // TURN OFF
-    toneInstrumentOff(kick.player);
-    toneInstrumentOff(ride.player);
-    toneInstrumentOff(hihatlong.player);
-    toneInstrumentOff(hihatshort.player);
-    toneInstrumentOff(snare.player);
+    // toneInstrumentOff(kick.player);
+    // toneInstrumentOff(ride.player);
+    // toneInstrumentOff(hihatlong.player);
+    // toneInstrumentOff(hihatshort.player);
+    // toneInstrumentOff(snare.player);
+    kick.player.volume.value = -100;
+    ride.player.volume.value = -100;
+    hihatshort.player.volume.value = -100;
+    hihatlong.player.volume.value = -100;
+    snare.player.volume.value = -100;
+    prevTier = 0;
   }
 
   if (tier === 1) {
-    // setTimeout(loopBeat.start(7), 3000);
-    loopBeat.start(0);
-
     // toneInstrumentOn(kick.player);
-    setTimeout(toneInstrumentOn(kick.player), 3000);
-
-    toneInstrumentOn(ride.player);
-    toneInstrumentOn(snare.player);
-    toneInstrumentOn(hihatshort.player);
-
+    // toneInstrumentOn(ride.player);
+    // toneInstrumentOn(snare.player);
+    // toneInstrumentOn(hihatshort.player);
+    kick.player.volume.value = 0;
+    ride.player.volume.value = 0;
+    hihatshort.player.volume.value = 0;
+    hihatlong.player.volume.value = 0;
     // TURN OFF
-    // toneInstrumentOff(kick.player);
+    snare.player.volume.value = -100;
   }
 
   if (tier >= 2) {
-    // loopBeat.start(0);
-
-    // toneInstrumentOn(kick.player);
-    toneInstrumentOn(hihatshort.player);
-    toneInstrumentOn(hihatlong.player);
+    //   toneInstrumentOn(hihatshort.player);
+    //   toneInstrumentOn(hihatlong.player);
+    // }
+    snare.player.volume.value = 0;
   }
 }, 1000);
 
