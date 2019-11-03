@@ -1,7 +1,7 @@
 ---
 title: "Introducing Browser Beats"
 author: Brittany Miltenberger
-description: Creating interactive music in your browser
+description: Creating interactive music in the browser
 ---
 
 <script src="https://unpkg.com/tone"></script>
@@ -13,7 +13,7 @@ description: Creating interactive music in your browser
 // };
 </script>
 
-_Note: This post is not intended as a step-by-step tutorial, but rather as documentation and insight into our approach in creating interactive music in your browser._
+_Note: This post is not intended as a step-by-step tutorial, but rather as documentation and insight into our approach in creating interactive music in the browser._
 
 Browser Beats is a JavaScript web application that utilizes the [Tone.js](https://tonejs.github.io/) library, [Ableton Live](https://www.ableton.com/en/live/) samples, and [DOM Events](https://developer.mozilla.org/en-US/docs/Web/Events) to generate unique sounds with the intention of complementing user activity in the browser.
 
