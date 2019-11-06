@@ -193,7 +193,7 @@ We now have two separate pieces to bring together &mdash; **our tiered actions p
 We follow a similar conditional based approach as we did in our looping beat construction. At a set interval, Browser Beats conditionally checks the value of the current tier. Based on that value, our audio player will either connect or disconnect from our Tone.js [master output](https://tonejs.github.io/docs/13.8.25/Master).
 
 ```js
-const thresholds = [100, 200, 800, 1000, 2000];
+const thresholds = [100, 200, 800];
 const controller = new TierController(thresholds);
 
 window.setInterval(() => {
