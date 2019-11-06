@@ -15,9 +15,21 @@ description: Creating interactive music in the browser
 
 _Note: This post is not intended as a step-by-step tutorial, but rather as documentation and insight into our approach in creating interactive music in the browser._
 
+## What if the music you listened to automatically matched your mood?
+
+---
+
+You know those chill lo-fi study beats on Spotify? What about the playlists labeled "Jazz for Study" or "Music for Concentration." There are thousands of songs dedicated to focus, accounting for billions of streams. But think – how many times have you skipped a track, or sought a different playlist entirely, because the song's energy didn't match the task at hand.
+
+If you're reading a long editorial article or academic paper – or perhaps you're pausing to consider the next sentence you'll write – you might want something lighter, easier on the ears; something bordering on white noise, providing the audio you need without impeding your concentration.
+
+If you're doing something more active like writing or coding, you might want something upbeat; something that matches your energy and drives you forward as you type away.
+
 Browser Beats is a JavaScript web application that utilizes the [Tone.js](https://tonejs.github.io/) library, [Ableton Live](https://www.ableton.com/en/live/) samples, and [DOM Events](https://developer.mozilla.org/en-US/docs/Web/Events) to generate unique sounds with the intention of complementing user activity in the browser.
 
-Give it a try in the text box below. Note how as you begin to type at a moderate pace, a drum beat will begin playing, and change beats, based on your typing speed. Also try copy, pasting, and scrolling for more unique sounds.
+Pause on a page to read, you hear low frequency, major key base lines. Scroll up or down and hear higher frequency synths. Type slowly and Browser Beats automatically layers a four-on-the-floor beat atop the synths. Type quickly to get one final layer – high-hat eighth notes that add a sense of speed and pace. **Give it a try in the text box below.**
+
+Also try copying and pasting for a little easter egg :)
 
 <textarea style="height: 200px; width: 100%;"></textarea>
 
