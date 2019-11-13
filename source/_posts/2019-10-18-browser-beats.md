@@ -7,10 +7,9 @@ description: Creating interactive music in the browser
 <script src="https://unpkg.com/tone"></script>
 <script src="{% asset_path 'beats.js' %}"></script>
 <script>
-// Turn off Browser Beats on page leave
-// window.onunload = function() {
-//   console.log("Stop Browser Beats);
-// };
+// window.addEventListener('popstate', (event) => {
+//   console.log("CHANGED!!!");
+// })
 </script>
 
 _Note: This post is not intended as a step-by-step tutorial, but rather as documentation and insight into our approach in creating interactive music in the browser._
@@ -138,7 +137,8 @@ const sumReducer = (accum, current) => accum + current;
 Based on current Actions per minute, Browser Beats will then decide what beat to play. When exploring different approaches for sounds and beat construction we arrived at a [step sequencer](<https://en.wikipedia.org/wiki/Music_sequencer#Step_sequencer_(step_recording_mode)>) composition approach. Step sequencers allow for generation of beats by cycling through a repeated number of steps, where at each step, a sound is either on or off. Furthermore, sequencers allow for the control of how many steps exist and the speed at which the sequencer loops through these steps.
 
 _Building out a simple drum beat with Ableton Live's Step Sequencer (16 steps)_
-![alt text](./images/4onFloorAbleton.png "Ableton Live Step Sequencer")
+
+{% asset_img 4onFloorAbleton.png 'Ableton Live Step Sequencer' %}
 
 Browser Beats makes use of [Tone.js](https://tonejs.github.io/docs/13.8.25/Loop) library’s `Tone.Loop` which creates a looped callback `song` at the specified interval of `"16n"`.
 
