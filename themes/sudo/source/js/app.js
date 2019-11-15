@@ -35,14 +35,11 @@ $(document).on("pjax:success", function() {
 });
 
 $(document).on("pjax:complete", function() {
-  // masterStop();
-  // stop all one off sounds
-
   //console.log("test print path", window.location.pathname);
   if (window.location.pathname !== "/browser-beats/") {
     // Stop Browser Beats if it has already been visited
     if (typeof browerBeatsVisited !== "undefined") {
-      masterStop();
+      loopBeat.stop();
       window.removeEventListener("keydown", handlePress);
       window.removeEventListener("click", handlePress);
       window.removeEventListener("copy", handleOneOff);
@@ -53,7 +50,7 @@ $(document).on("pjax:complete", function() {
   if (window.location.pathname === "/browser-beats/") {
     // Restart Browser Beats if it has already been visited
     if (typeof browerBeatsVisited !== "undefined") {
-      masterStart();
+      loopBeat.start();
       window.addEventListener("keydown", handlePress);
       window.addEventListener("click", handlePress);
       window.addEventListener("copy", handleOneOff);
