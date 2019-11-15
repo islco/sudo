@@ -1,3 +1,6 @@
+// Global check for page visit
+var browerBeatsVisited = true;
+
 function slice(array, start, end) {
   let len = array == null ? 0 : array.length;
   if (!len) {
@@ -290,6 +293,7 @@ masterStart();
 // Controller Initialization
 
 const thresholds = [100, 200, 800, 1000, 2000];
+
 const controller = new TierController(thresholds);
 
 let prevTier = 0;
@@ -297,13 +301,13 @@ window.setInterval(() => {
   const avgAPM = controller.getAverageAPM();
   let tier = controller.getTier();
 
-  console.log({ avgAPM, tier });
-  console.log("prevTier", prevTier);
+  // console.log({ avgAPM, tier });
+  // console.log("prevTier", prevTier);
 
   if (prevTier !== tier && prevTier === 0) {
-    console.log("tier change!");
-    console.log("prevtier", prevTier);
-    console.log("tier", tier);
+    // console.log("tier change!");
+    // console.log("prevtier", prevTier);
+    // console.log("tier", tier);
     Tone.Transport.stop();
     counter = 0;
     firstTimeThru = true;
