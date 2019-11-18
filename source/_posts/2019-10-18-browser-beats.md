@@ -6,13 +6,10 @@ description: Creating interactive music in the browser
 
 <script src="https://unpkg.com/tone"></script>
 <script src="{% asset_path 'beats.js' %}"></script>
-<script>
-// window.addEventListener('popstate', (event) => {
-//   console.log("CHANGED!!!");
-// })
-</script>
 
 _Note: This post is not intended as a step-by-step tutorial, but rather as documentation and insight into our approach in creating interactive music in the browser._
+
+_If using **Safari**, you'll likely need to allow auto-play via Preferences > Websites > Autoplay._
 
 ## What if the music you listened to automatically matched your mood?
 

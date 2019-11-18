@@ -38,7 +38,7 @@ $(document).on("pjax:complete", function() {
   //console.log("test print path", window.location.pathname);
   if (window.location.pathname !== "/browser-beats/") {
     // Stop Browser Beats if it has already been visited
-    if (typeof browerBeatsVisited !== "undefined") {
+    if (typeof browserBeatsVisited !== "undefined") {
       loopBeat.stop();
       window.removeEventListener("keydown", handlePress);
       window.removeEventListener("click", handlePress);
@@ -49,7 +49,7 @@ $(document).on("pjax:complete", function() {
   }
   if (window.location.pathname === "/browser-beats/") {
     // Restart Browser Beats if it has already been visited
-    if (typeof browerBeatsVisited !== "undefined") {
+    if (typeof browserBeatsVisited !== "undefined") {
       loopBeat.start();
       window.addEventListener("keydown", handlePress);
       window.addEventListener("click", handlePress);
